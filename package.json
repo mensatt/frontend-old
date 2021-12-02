@@ -8,15 +8,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.6.2",
     "next": "12.0.3",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-redux": "^7.2.6"
   },
   "devDependencies": {
     "@types/node": "16.11.7",
     "@types/react": "17.0.34",
     "eslint": "7",
     "eslint-config-next": "12.0.3",
+    "redux-devtools": "^3.7.0",
     "typescript": "4.4.4"
   }
 }
