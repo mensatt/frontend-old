@@ -5,7 +5,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "types": "apollo client:codegen src/graphql/graphql-types.ts --endpoint='http://localhost:5858/graphql' --target typescript --outputFlat --includes='src/**/*.gql.ts'"
   },
   "dependencies": {
     "@apollo/client": "^3.5.8",
