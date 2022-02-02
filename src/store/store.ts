@@ -1,10 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterSlice from "./actions/counter";
 import dishesSlice from "./actions/dishes";
 
 export const store = configureStore({
   reducer: {
-    counter: counterSlice,
     selectedDish: dishesSlice,
   },
 });
