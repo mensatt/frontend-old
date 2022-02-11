@@ -4,7 +4,7 @@ import {
   GetDishInfoVariables,
 } from "../../../graphql/graphql-types";
 import { getDishInfo } from "./queries.gql";
-import { set } from "./";
+import { setSelectedDish } from "./";
 import { useAppDispatch } from "../..";
 import apolloClient from "../../../apolloClient";
 
@@ -18,7 +18,7 @@ export const getDish = createAsyncThunk(
       },
     });
     if (result.data.dish != null) {
-      dispatch(set(result.data.dish));
+      dispatch(setSelectedDish(result.data.dish));
     }
   }
 );
