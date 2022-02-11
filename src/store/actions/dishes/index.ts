@@ -16,7 +16,10 @@ export const dishesSlice = createSlice({
   name: "selectedDish",
   initialState: initialState,
   reducers: {
-    set: (state: DishesState, action: PayloadAction<DishesState>) => {
+    setSelectedDish: (
+      state: DishesState,
+      action: PayloadAction<DishesState>
+    ) => {
       state.id = action.payload.id;
       state.allergies = action.payload.allergies;
       state.name = action.payload.name;
@@ -24,7 +27,7 @@ export const dishesSlice = createSlice({
   },
 });
 
-export const { set } = dishesSlice.actions;
+export const { setSelectedDish } = dishesSlice.actions;
 
 export const selectSelectedDish = (state: RootState) => state.selectedDish;
 
