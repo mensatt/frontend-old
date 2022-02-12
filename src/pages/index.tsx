@@ -1,6 +1,7 @@
 import { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
+import Navigation from "../components/navigation";
 
 const Home: NextPage = () => {
   return (
@@ -9,6 +10,7 @@ const Home: NextPage = () => {
         <title>Mensatt</title>
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
+      <Navigation />
       <main></main>
     </div>
   );
