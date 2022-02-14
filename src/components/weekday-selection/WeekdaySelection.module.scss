@@ -1,6 +1,21 @@
 .container {
-  display: block;
+  display: inline-flex !important;
   height: $height-header-element;
+  border-radius: $br-header-element;
+  overflow: hidden;
+  background-color: $bg-light;
+  box-sizing: border-box;
+  padding: 3pt;
+
+  button {
+    border: none;
+    outline: none;
+    background-color: $bg-light;
+  
+    &:hover {
+      background-color: $bg-dark;
+    }
+  }
 }
 
 .selected {
