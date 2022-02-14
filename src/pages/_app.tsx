@@ -6,7 +6,7 @@ import { store } from "../store";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
-      <div id="styling" className="theme-light2">
+      <div id="styling" className="theme-TODO">
         <Component {...pageProps} />
       </div>
     </Provider>
