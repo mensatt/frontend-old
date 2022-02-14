@@ -5,7 +5,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "yarn run lint:next && yarn run lint:style",
+    "lint-fix": "yarn run lint:style-fix",
+    "lint:next": "next lint",
+    "lint:style": "stylelint \"src/**/*.scss\"",
+    "lint:style-fix": "stylelint \"src/**/*.scss\" --fix",
     "types": "apollo client:codegen src/graphql/graphql-types.ts --endpoint='http://localhost:5858/graphql' --target typescript --outputFlat --includes='src/**/*.gql.ts'"
   },
   "dependencies": {
@@ -17,7 +21,11 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-redux": "^7.2.6",
-    "sass": "^1.49.7"
+    "sass": "^1.49.7",
+    "stylelint": "^14.5.0",
+    "stylelint-config-standard": "^25.0.0",
+    "stylelint-order": "^5.0.0",
+    "stylelint-scss": "^4.1.0"
   },
   "devDependencies": {
     "@types/node": "17.0.14",
@@ -25,6 +33,7 @@
     "dayjs": "^1.10.7",
     "eslint": "8.8.0",
     "eslint-config-next": "12.0.10",
+    "postcss-scss": "^4.0.3",
     "typescript": "4.5.5"
   }
 }
