@@ -1,0 +1,12 @@
+
+
+@mixin theme-light {
+  --test: blue;
+}
+
+@mixin theme-dark {
+  --test: red;
+}
+
+
+$test: var(--test);

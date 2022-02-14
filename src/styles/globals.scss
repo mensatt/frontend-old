@@ -18,14 +18,6 @@ a {
 
 /* THEMING */
 
-@mixin theme-light {
-  --test: blue;
-}
-
-@mixin theme-dark {
-  --test: red;
-}
-
 #styling {
   @media (prefers-color-scheme: dark) {
     & * { @include theme-dark() }
