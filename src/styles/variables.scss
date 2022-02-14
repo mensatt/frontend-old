@@ -1,12 +1,36 @@
 
 
 @mixin theme-light {
-  --test: blue;
+  --bg-darker: #ccc;
+  --bg-dark: #ddd;
+  --bg-light: #eee;
+  --bg-lighter: #fff;
+  --color-blue: #55ACEE;
 }
 
 @mixin theme-dark {
-  --test: red;
+  /* DARK THEME TODO */
+  --bg-darker: #ccc;
+  --bg-dark: #ddd;
+  --bg-light: #eee;
+  --bg-lighter: #fff;
+  --color-blue: #55ACEE;
 }
 
 
-$test: var(--test);
+//// COLORS
+
+// backgrounds
+$bg-darker: var(--bg-darker);
+$bg-dark: var(--bg-dark);
+$bg-light: var(--bg-light);
+$bg-lighter: var(--bg-lighter);
+
+// theme
+$color-blue: var(--color-blue);
+
+
+//// SPACING / SIZES
+
+$height-header-element: 50pt;
+$br-header-element: 999pt;

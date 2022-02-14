@@ -1,7 +1,7 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import dayjs from "dayjs";
 import Weekday from "./Weekday";
-import styles from "./WeekdaySelection.module.css";
+import styles from "./WeekdaySelection.module.scss";
 import {
   selectNavigation,
   setWeekday,
@@ -24,7 +24,7 @@ const WeekdaySelection = ({ className }: Props) => {
         <Weekday
           key={elem}
           date={thisWeeksMonday.add(elem, "day")}
-          selected={elem == weekday}
+          selected={elem === weekday}
           onClick={() => dispatch(setWeekday(elem))}
         />
       );
