@@ -1,22 +1,27 @@
-
-
 @mixin theme-light {
-  --bg-darker: #cccccc;
-  --bg-dark: #dddddd;
-  --bg-light: #eeeeee;
-  --bg-lighter: #ffffff;
-  --color-blue: #55ACEE;
+	--bg-darker: #cccccc;
+	--bg-dark: #dddddd;
+	--bg-light: #eeeeee;
+	--bg-lighter: #ffffff;
+	--color-blue: #55acee;
+	--color-minor: #585858;
+	--color-regular: #141414;
+	--color-major: #080808;
+	--color-header: #000000;
 }
 
 @mixin theme-dark {
-  /* DARK THEME TODO */
-  --bg-darker: #cccccc;
-  --bg-dark: #dddddd;
-  --bg-light: #eeeeee;
-  --bg-lighter: #ffffff;
-  --color-blue: #55ACEE;
+	/* DARK THEME TODO */
+	--bg-darker: #cccccc;
+	--bg-dark: #dddddd;
+	--bg-light: #eeeeee;
+	--bg-lighter: #ffffff;
+	--color-blue: #55acee;
+	--color-minor: #585858;
+	--color-regular: #141414;
+	--color-major: #080808;
+	--color-header: #000000;
 }
-
 
 //// COLORS
 
@@ -28,9 +33,12 @@ $bg-lighter: var(--bg-lighter);
 
 // theme
 $color-blue: var(--color-blue);
-
+$color-minor: var(--color-minor);
+$color-regular: var(--color-regular);
+$color-major: var(--color-major);
+$color-header: var(--color-header);
 
 //// SPACING / SIZES
 
-$height-header-element: 50pt;
+$height-header-element: 40pt;
 $br-header-element: 999pt;

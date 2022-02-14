@@ -34,8 +34,8 @@ const Weekday = ({ date, selected, onClick }: Props) => {
       className={selected ? styles.selected : undefined}
       onClick={onClick}
     >
-      <p id="dow"> {getDisplayText(date)} </p>
-      <p id="date"> {getDisplayDate(date)} </p>
+      <span className={styles.dow}> {getDisplayText(date)} </span>
+      <span className={styles.date}> {getDisplayDate(date)} </span>
     </button>
   );
 };
