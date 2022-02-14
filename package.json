@@ -10,7 +10,8 @@
     "lint:next": "next lint",
     "lint:style": "stylelint \"src/**/*.scss\"",
     "lint:style-fix": "stylelint \"src/**/*.scss\" --fix",
-    "types": "apollo client:codegen src/graphql/graphql-types.ts --endpoint='http://localhost:5858/graphql' --target typescript --outputFlat --includes='src/**/*.gql.ts'"
+    "types": "apollo client:codegen src/graphql/graphql-types.ts --endpoint='http://localhost:5858/graphql' --target typescript --outputFlat --includes='src/**/*.gql.ts'",
+    "clean": "rm -rf node_modules/"
   },
   "dependencies": {
     "@apollo/client": "^3.5.8",
