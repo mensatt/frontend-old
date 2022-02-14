@@ -1,23 +1,23 @@
 .container {
-  display: inline-flex !important;
-  height: $height-header-element;
-  border-radius: $br-header-element;
-  overflow: hidden;
-  background-color: $bg-light;
-  box-sizing: border-box;
-  padding: 3pt;
+	box-sizing: border-box;
+	display: inline-flex !important;
+	height: $height-header-element;
+	padding: 3pt;
+	overflow: hidden;
+	background-color: $bg-light;
+	border-radius: $br-header-element;
 
-  button {
-    border: none;
-    outline: none;
-    background-color: $bg-light;
-  
-    &:hover {
-      background-color: $bg-dark;
-    }
-  }
+	button {
+		background-color: $bg-light;
+		border: none;
+		outline: none;
+
+		&:hover {
+			background-color: $bg-dark;
+		}
+	}
 }
 
 .selected {
-  background-color: #6aa9ea;
+	background-color: #6aa9ea;
 }
