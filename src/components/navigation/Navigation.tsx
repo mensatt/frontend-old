@@ -1,6 +1,6 @@
 import React from "react";
 import WeekdaySelection from "../weekday-selection/";
-import styles from "./Navigation.module.css";
+import styles from "./Navigation.module.scss";
 
 const Navigation = () => {
   return (

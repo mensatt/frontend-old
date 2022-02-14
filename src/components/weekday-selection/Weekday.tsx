@@ -1,6 +1,6 @@
 import React from "react";
 import dayjs from "dayjs";
-import styles from "./WeekdaySelection.module.css";
+import styles from "./WeekdaySelection.module.scss";
 
 type Props = {
   date: dayjs.Dayjs;
