@@ -5,11 +5,11 @@ type Props = {
   className?: string;
 };
 
-const Navigation = ({ className }: Props) => {
+const MensaSelection = ({ className }: Props) => {
   return (
     <div className={className + " " + styles.content}>
       Südmensa
     </div>
   );
 };
-export default Navigation;
+export default MensaSelection;
