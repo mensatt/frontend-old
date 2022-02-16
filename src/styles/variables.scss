@@ -1,26 +1,26 @@
 @mixin theme-light {
-	--bg-darker: #cccccc;
-	--bg-dark: #dddddd;
-	--bg-light: #eeeeee;
-	--bg-lighter: #ffffff;
-	--color-blue: #55acee;
-	--color-minor: #585858;
-	--color-regular: #141414;
-	--color-major: #080808;
-	--color-header: #000000;
+  --bg-darker: #cccccc;
+  --bg-dark: #dddddd;
+  --bg-light: #eeeeee;
+  --bg-lighter: #ffffff;
+  --color-blue: #55acee;
+  --color-minor: #585858;
+  --color-regular: #141414;
+  --color-major: #080808;
+  --color-header: #000000;
 }
 
 @mixin theme-dark {
-	/* DARK THEME TODO */
-	--bg-darker: #cccccc;
-	--bg-dark: #dddddd;
-	--bg-light: #eeeeee;
-	--bg-lighter: #ffffff;
-	--color-blue: #55acee;
-	--color-minor: #585858;
-	--color-regular: #141414;
-	--color-major: #080808;
-	--color-header: #000000;
+  /* DARK THEME TODO */
+  --bg-darker: #cccccc;
+  --bg-dark: #dddddd;
+  --bg-light: #eeeeee;
+  --bg-lighter: #ffffff;
+  --color-blue: #55acee;
+  --color-minor: #585858;
+  --color-regular: #141414;
+  --color-major: #080808;
+  --color-header: #000000;
 }
 
 //// COLORS

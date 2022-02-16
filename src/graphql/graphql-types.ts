@@ -8,12 +8,12 @@
 // ====================================================
 
 export interface GetDishInfo_dish_allergies {
-  __typename: "Allergy";
+  __typename: 'Allergy';
   abbreviation: string;
 }
 
 export interface GetDishInfo_dish {
-  __typename: "Dish";
+  __typename: 'Dish';
   id: any;
   name: string;
   allergies: GetDishInfo_dish_allergies[];
