@@ -1,13 +1,13 @@
-import React, { useMemo } from "react";
-import dayjs from "dayjs";
-import Weekday from "./Weekday";
-import styles from "./WeekdaySelection.module.scss";
+import React, { useMemo } from 'react';
+import dayjs from 'dayjs';
+import Weekday from './Weekday';
+import styles from './WeekdaySelection.module.scss';
 import {
   selectNavigation,
   setWeekday,
   useAppDispatch,
   useAppSelector,
-} from "../../store";
+} from '../../store';
 
 type Props = {
   className?: string;
@@ -23,14 +23,14 @@ const WeekdaySelection = ({ className }: Props) => {
       return (
         <Weekday
           key={elem}
-          date={thisWeeksMonday.add(elem, "day")}
+          date={thisWeeksMonday.add(elem, 'day')}
           selected={elem === weekday}
           onClick={() => dispatch(setWeekday(elem))}
         />
       );
     });
   }, [dispatch, thisWeeksMonday, weekday]);
-  return <div className={className + " " + styles.container}>{week}</div>;
+  return <div className={className + ' ' + styles.container}>{week}</div>;
 };
 
 export default WeekdaySelection;

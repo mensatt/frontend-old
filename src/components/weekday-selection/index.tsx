@@ -1,3 +1,3 @@
-import WeekdaySelection from "./WeekdaySelection";
+import WeekdaySelection from './WeekdaySelection';
 
 export default WeekdaySelection;

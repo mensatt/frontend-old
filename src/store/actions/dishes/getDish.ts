@@ -1,15 +1,15 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   GetDishInfo,
   GetDishInfoVariables,
-} from "../../../graphql/graphql-types";
-import { getDishInfo } from "./queries.gql";
-import { setSelectedDish } from "./";
-import { useAppDispatch } from "../..";
-import apolloClient from "../../../apolloClient";
+} from '../../../graphql/graphql-types';
+import { getDishInfo } from './queries.gql';
+import { setSelectedDish } from './';
+import { useAppDispatch } from '../..';
+import apolloClient from '../../../apolloClient';
 
 export const getDish = createAsyncThunk(
-  "dishes/get",
+  'dishes/get',
   async ({ id }: GetDishInfoVariables, { dispatch }) => {
     const result = await apolloClient.query<GetDishInfo>({
       query: getDishInfo,

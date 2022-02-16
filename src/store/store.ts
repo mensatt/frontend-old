@@ -1,6 +1,6 @@
-import { configureStore } from "@reduxjs/toolkit";
-import navigationSlice from "./actions/navigation";
-import dishesSlice from "./actions/dishes";
+import { configureStore } from '@reduxjs/toolkit';
+import navigationSlice from './actions/navigation';
+import dishesSlice from './actions/dishes';
 
 export const store = configureStore({
   reducer: {

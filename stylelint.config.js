@@ -1,27 +1,19 @@
 // herzlich willkommen zur poggers config
 // mfg andi
 
-
 // from https://github.com/stormwarning/stylelint-config-recess-order/blob/main/index.js
 const orderRules = [
   {
     // Must be first.
-    properties: ['all']
+    properties: ['all'],
   },
   {
     // Position.
-    properties: [
-      'position',
-      'top',
-      'right',
-      'bottom',
-      'left',
-      'z-index'
-    ]
+    properties: ['position', 'top', 'right', 'bottom', 'left', 'z-index'],
   },
   {
     // Display mode.
-    properties: ['box-sizing', 'display']
+    properties: ['box-sizing', 'display'],
   },
   {
     // Flexible boxes.
@@ -32,8 +24,8 @@ const orderRules = [
       'flex-flow',
       'flex-grow',
       'flex-shrink',
-      'flex-wrap'
-    ]
+      'flex-wrap',
+    ],
   },
   {
     // Grid layout.
@@ -55,12 +47,12 @@ const orderRules = [
       'grid-auto-flow',
       'grid-gap',
       'grid-row-gap',
-      'grid-column-gap'
-    ]
+      'grid-column-gap',
+    ],
   },
   {
     // Gap.
-    properties: ['gap', 'row-gap', 'column-gap']
+    properties: ['gap', 'row-gap', 'column-gap'],
   },
   {
     // Layout alignment.
@@ -71,12 +63,12 @@ const orderRules = [
       'align-self',
       'justify-content',
       'justify-items',
-      'justify-self'
-    ]
+      'justify-self',
+    ],
   },
   {
     // Order.
-    properties: ['order']
+    properties: ['order'],
   },
   {
     // Box model.
@@ -112,8 +104,8 @@ const orderRules = [
       'overscroll-behavior-block',
       'clip',
       'clip-path',
-      'clear'
-    ]
+      'clear',
+    ],
   },
   {
     // Typography.
@@ -180,8 +172,8 @@ const orderRules = [
       'list-style',
       'list-style-position',
       'list-style-type',
-      'list-style-image'
-    ]
+      'list-style-image',
+    ],
   },
   {
     // Accessibility & Interactions.
@@ -207,8 +199,8 @@ const orderRules = [
       'nav-up',
       'nav-right',
       'nav-down',
-      'nav-left'
-    ]
+      'nav-left',
+    ],
   },
   {
     // Background & Borders.
@@ -271,8 +263,8 @@ const orderRules = [
       'filter:progid:DXImageTransform.Microsoft.Alpha(Opacity',
       "-ms-filter:\\'progid:DXImageTransform.Microsoft.Alpha",
       'opacity',
-      '-ms-interpolation-mode'
-    ]
+      '-ms-interpolation-mode',
+    ],
   },
   {
     // SVG Presentation Attributes.
@@ -310,8 +302,8 @@ const orderRules = [
       'mask',
       'shape-rendering',
       'stop-color',
-      'stop-opacity'
-    ]
+      'stop-opacity',
+    ],
   },
   {
     // Transitions & Animation.
@@ -330,23 +322,17 @@ const orderRules = [
       'animation-timing-function',
       'animation-delay',
       'animation-iteration-count',
-      'animation-direction'
-    ]
-  }
-]
+      'animation-direction',
+    ],
+  },
+];
 
 module.exports = {
   // extends: 'stylelint-config-standard',
   customSyntax: 'postcss-scss',
-  plugins: [
-    'stylelint-order',
-    'stylelint-scss'
-  ],
+  plugins: ['stylelint-order', 'stylelint-scss'],
   rules: {
-    'order/order': [
-      'custom-properties',
-      'declarations'
-    ],
+    'order/order': ['custom-properties', 'declarations'],
     'order/properties-order': orderRules,
     'color-hex-length': 'long',
     'custom-property-empty-line-before': null,
@@ -356,6 +342,6 @@ module.exports = {
     'scss/at-rule-no-unknown': true,
     'selector-list-comma-newline-after': null,
     'number-leading-zero': null,
-    'rule-empty-line-before': null
-  }
-}
+    'rule-empty-line-before': null,
+  },
+};

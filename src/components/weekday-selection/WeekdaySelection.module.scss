@@ -1,55 +1,55 @@
 .container {
-	box-sizing: border-box;
-	display: inline-flex !important;
-	height: $height-header-element;
-	padding: 3pt;
-	gap: 3pt;
-	overflow: hidden;
-	background-color: $bg-lighter;
-	border-radius: $br-header-element;
-	width: fit-content;
+  box-sizing: border-box;
+  display: inline-flex !important;
+  gap: 3pt;
+  width: fit-content;
+  height: $height-header-element;
+  padding: 3pt;
+  overflow: hidden;
+  background-color: $bg-lighter;
+  border-radius: $br-header-element;
 
-	button {
-		background-color: $bg-lighter;
-		border: none;
-		outline: none;
-		cursor: pointer;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		border-radius: $br-header-element;
-		width: 50pt;
-		transition: background-color 0.1s ease-out;
+  button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50pt;
+    cursor: pointer;
+    background-color: $bg-lighter;
+    border: none;
+    border-radius: $br-header-element;
+    outline: none;
+    transition: background-color 0.1s ease-out;
 
-		&:hover {
-			background-color: $bg-light;
-		}
+    &:hover {
+      background-color: $bg-light;
+    }
 
-		span {
-			transition: color 0.1s ease-out;
+    span {
+      transition: color 0.1s ease-out;
 
-			&.dow {
-				color: $color-major;
-				font-family: Arial, sans-serif;
-				font-weight: 800;
-				text-transform: uppercase;
-				font-size: 12pt;
-			}
+      &.dow {
+        font-family: Arial, sans-serif;
+        font-size: 12pt;
+        font-weight: 800;
+        color: $color-major;
+        text-transform: uppercase;
+      }
 
-			&.date {
-				font-family: monospace;
-				font-weight: 300;
-				font-size: 10pt;
-			}
-		}
+      &.date {
+        font-family: monospace;
+        font-size: 10pt;
+        font-weight: 300;
+      }
+    }
 
-		&.selected {
-			background-color: $color-blue;
+    &.selected {
+      background-color: $color-blue;
 
-			span {
-				color: $bg-lighter;
-			}
-		}
-	}
+      span {
+        color: $bg-lighter;
+      }
+    }
+  }
 }

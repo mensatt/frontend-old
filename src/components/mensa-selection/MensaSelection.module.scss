@@ -1,17 +1,17 @@
 .content {
-	box-sizing: border-box;
-	display: inline-flex !important;
-	height: $height-header-element;
-	width: fit-content;
-	margin-left: auto;
-	padding: 3pt 20pt;
-	gap: 3pt;
-	overflow: hidden;
-	background-color: $bg-lighter;
-	border-radius: $br-header-element;
-	flex-direction: column;
-	justify-content: center;
-	font-family: Arial, sans-serif;
-	font-weight: 400;
-	font-size: 12pt;
+  box-sizing: border-box;
+  display: inline-flex !important;
+  flex-direction: column;
+  gap: 3pt;
+  justify-content: center;
+  width: fit-content;
+  height: $height-header-element;
+  padding: 3pt 20pt;
+  margin-left: auto;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  font-size: 12pt;
+  font-weight: 400;
+  background-color: $bg-lighter;
+  border-radius: $br-header-element;
 }

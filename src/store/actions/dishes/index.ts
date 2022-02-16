@@ -1,19 +1,19 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Reducer } from "react";
-import { GetDishInfo_dish } from "../../../graphql/graphql-types";
-import type { RootState } from "../../store";
-export { getDish as getDishes } from "./getDish";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Reducer } from 'react';
+import { GetDishInfo_dish } from '../../../graphql/graphql-types';
+import type { RootState } from '../../store';
+export { getDish as getDishes } from './getDish';
 
-type DishesState = Omit<GetDishInfo_dish, "__typename">;
+type DishesState = Omit<GetDishInfo_dish, '__typename'>;
 
 const initialState: DishesState = {
   id: null,
-  name: "",
+  name: '',
   allergies: [],
 };
 
 export const dishesSlice = createSlice({
-  name: "selectedDish",
+  name: 'selectedDish',
   initialState: initialState,
   reducers: {
     setSelectedDish: (

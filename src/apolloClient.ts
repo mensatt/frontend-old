@@ -3,11 +3,11 @@ import {
   ApolloLink,
   HttpLink,
   InMemoryCache,
-} from "@apollo/client";
+} from '@apollo/client';
 
 const apolloClient = new ApolloClient({
   // TODO: Should have sth like an environment variable here
-  uri: "http://localhost:5858/graphql",
+  uri: 'http://localhost:5858/graphql',
   cache: new InMemoryCache({ addTypename: false, resultCaching: false }),
 });
 

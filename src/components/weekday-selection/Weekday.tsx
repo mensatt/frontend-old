@@ -1,6 +1,6 @@
-import React from "react";
-import dayjs from "dayjs";
-import styles from "./WeekdaySelection.module.scss";
+import React from 'react';
+import dayjs from 'dayjs';
+import styles from './WeekdaySelection.module.scss';
 
 type Props = {
   date: dayjs.Dayjs;
@@ -12,20 +12,20 @@ const getDisplayText = (date: dayjs.Dayjs) => {
   // TODO: Check if this is sth that dayjs can do
   switch (date.weekday()) {
     case 0:
-      return "Mo";
+      return 'Mo';
     case 1:
-      return "Di";
+      return 'Di';
     case 2:
-      return "Mi";
+      return 'Mi';
     case 3:
-      return "Do";
+      return 'Do';
     case 4:
-      return "Fr";
+      return 'Fr';
   }
 };
 
 const getDisplayDate = (date: dayjs.Dayjs) => {
-  return date.date() < 10 ? "0" + date.date() : date.date();
+  return date.date() < 10 ? '0' + date.date() : date.date();
 };
 
 const Weekday = ({ date, selected, onClick }: Props) => {
