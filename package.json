@@ -10,8 +10,8 @@
     "lint:next": "next lint",
     "lint:style": "stylelint \"src/**/*.scss\"",
     "lint:style-fix": "stylelint \"src/**/*.scss\" --fix",
-    "lint:prettier": "yarn prettier -c .",
-    "lint:prettier-fix": "yarn prettier -w .",
+    "lint:prettier": "yarn prettier -c --ignore-path .gitignore .",
+    "lint:prettier-fix": "yarn prettier -w --ignore-path .gitignore .",
     "types": "apollo client:codegen src/graphql/graphql-types.ts --endpoint='http://localhost:5858/graphql' --target typescript --outputFlat --includes='src/**/*.gql.ts'",
     "clean": "rm -rf node_modules/"
   },
