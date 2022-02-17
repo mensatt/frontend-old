@@ -7,6 +7,9 @@
   "rules": {
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-explicit-any": "error",
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "quotes": "off",
+    "@typescript-eslint/quotes": ["error", "single"],
     "prefer-const": "error"
   }
 }
