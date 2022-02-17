@@ -3,6 +3,7 @@
 
 Sigfood-Successor-Frontend/Neo-Sigfood-Frontend,
 written in Next.js
+YARN is prefered over NPM
 
 **NO ONE PUSHES TO MAIN!!!**
 
@@ -36,6 +37,9 @@ Style guideline:
 - Only unix newlines (LF, not CRLF)
 - Semicolons are in the source, not infered
 - Newline at the end of every File
+
+## Pre-Commit Hooks ##
+We use Husky for pre-commit hooks in git, to help with linting. Please run `npx husky install` to install the git hooks.
 
 ## Building ##
 
