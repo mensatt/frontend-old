@@ -6,9 +6,13 @@ import styles from './Navigation.module.scss';
 const Navigation = () => {
   return (
     <nav className={styles.content}>
-      <WeekdaySelection />
+      <div className={styles.FlexForCentering}>
+        <WeekdaySelection />
+      </div>
       <h1>Mensatt</h1>
-      <MensaSelection />
+      <div className={styles.FlexForCentering}>
+        <MensaSelection />
+      </div>
     </nav>
   );
 };
