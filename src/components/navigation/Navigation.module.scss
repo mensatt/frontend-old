@@ -10,8 +10,9 @@
     text-align: center;
     text-transform: uppercase;
   }
-  .FlexForCenter {
+  .FlexForCentering {
     display: flex;
     align-items: center;
+    float: right;
   }
 }
