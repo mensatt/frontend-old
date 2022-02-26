@@ -4,7 +4,39 @@ Frontend of [sigfood](https://www.sigfood.de/)-successor written in Next.js
 
 ## Contributing
 
-**NO ONE PUSHES TO MAIN!!!**
+By default you only have rights to view this repository (which you are doing right now). Forking is not available as this repository is currently private.
+
+### Getting write access
+
+To contribute get in touch with one of the repo admins - they will grant you write access.
+
+### Once you have write access:
+
+> Note: **Do not push directly to main**
+
+1. Create a new branch with a descriptive name based on `main`
+2. Make your changes
+3. Publish your branch to the repo
+4. [Create a pull request](https://github.com/mensatt/mensatt-frontend/compare)
+5. Wait for checks to pass (you might need to make changes)
+6. Once checks are successful, request a review from one of the other contributors
+7. Branch can be merged (by rebasing - see section below) once an approving review was given
+
+### Commit style
+
+It was agreed upon to use imperative present-tense commit messages.  
+Example: Instead of
+
+> Added new bugs so we do not run out of work
+
+use
+
+> Add new bugs so we do not run out of work`
+
+### Repo structure and merging
+
+Similarly to above it was agreed upon to use rebasing as the preferred method for updating and merging branches.  
+This has a few implications - mainly that only one person should work on a branch at a time and that force pushes become mandatory to update your branch (e.g. when `main` has changed since you created your feature-branch).
 
 ## Setting up development environment
 
