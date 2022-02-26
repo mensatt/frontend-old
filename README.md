@@ -1,6 +1,6 @@
 # mensatt
 
-Frontend of [sigfood](https://www.sigfood.de/)-successor written in Next.js
+Frontend of [mensatt](https://www.mensatt.de/) written in Next.js
 
 ## Contributing
 
@@ -31,7 +31,7 @@ Example: Instead of
 
 use
 
-> Add new bugs so we do not run out of work`
+> Add new bugs so we do not run out of work
 
 ### Repo structure and merging
 
