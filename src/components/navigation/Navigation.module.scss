@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   margin: 20pt 0;
+  align-items: center;
 
   h1 {
     font-family: Arial, sans-serif;
@@ -9,9 +10,6 @@
     font-weight: 800;
     text-align: center;
     text-transform: uppercase;
-  }
-  .FlexForCentering {
-    display: flex;
-    align-items: center;
+    margin: 0;
   }
 }
