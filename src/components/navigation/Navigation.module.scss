@@ -1,15 +1,15 @@
 .content {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  margin: 20pt 0;
   align-items: center;
+  margin: 20pt 0;
 
   h1 {
+    margin: 0;
     font-family: Arial, sans-serif;
     font-size: 18pt;
     font-weight: 800;
     text-align: center;
     text-transform: uppercase;
-    margin: 0;
   }
 }
