@@ -1,55 +1,66 @@
+# mensatt
 
-# mensatt #
+Frontend of [sigfood](https://www.sigfood.de/)-successor written in Next.js
 
-Sigfood-Successor-Frontend/Neo-Sigfood-Frontend,
-written in Next.js
-YARN is prefered over NPM
+## Contributing
 
 **NO ONE PUSHES TO MAIN!!!**
 
-## Installing Dependencies ##
+## Setting up development environment
 
-1. Installing the dependencies of the Package
-> `yarn install`  
-> or  
-> `npm install .`
-2. Backend
-mensatt requires the installation of a graphql database as backend.
-Either use `mensatt/demo-backend` or `mensatt/backend` (unfinished, use demo-backend for now)
+1. Install dependencies:
 
-## Run Developement Environment ##
+   ```
+   yarn
+   ```
 
-> `yarn dev`  
-> or  
-> `npm run dev`
+2. As this is only a frontend you need to install and run a backend as well
 
-Starts a Developement Server on `localhost:3000`
+   > Until [the proper backend](https://github.com/mensatt/mensatt-backend) is ready you have to use the [demo-backend](https://github.com/mensatt/demo-backend).
 
-## Linting & Formatting ##
+## Run development environment
 
-> `yarn lint`  
-> or  
-> `npm run lint`
+```
+yarn dev
+```
 
-`lint-fix` instead of `lint` will try to programmagically resolve linting problems.  
-Style guideline:
+Will start a development server on `localhost:3000`.
+
+## Linting and formatting
+
+```
+yarn lint
+```
+
+Will check your local files for linting and style errors and will notify you of found problems.
+
+> This is also run before every commit (see [section about husky](#pre-commit-hooks) below )
+
+```
+yarn lint-fix
+```
+
+Will try to programmatically resolve linting problems.
+
+### Style guideline:
+
 - Indentation: 2 Spaces
 - Only unix newlines (LF, not CRLF)
-- Semicolons are in the source, not infered
-- Newline at the end of every File
+- Semicolons are in the source, not inferred
+- Newline at the end of every file
 
-## Pre-Commit Hooks ##
-We use Husky for pre-commit hooks in git, to help with linting. Please run `npx husky install` to install the git hooks.
+### Pre-Commit hooks
 
-## Building ##
+We use husky for pre-commit hooks in git, to help with linting. Please run `yarn husky install` to install the git hooks.
 
-> `yarn build`  
-> or  
-> `npm run build`
+## Creating a production build
 
-## Starting builds ##
+```
+yarn build
+```
 
-> `yarn start`  
-> or  
-> `npm run start`
+can be used to create a production build that can be started with
 
+```
+yarn start
+```
