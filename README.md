@@ -46,9 +46,8 @@ This has a few implications - mainly that only one person should work on a branc
    yarn
    ```
 
-2. As this is only a frontend you need to install and run a backend as well
-
-   > Until [the proper backend](https://github.com/mensatt/mensatt-backend) is ready you have to use the [demo-backend](https://github.com/mensatt/demo-backend).
+2. As this is only a frontend you need to install and run the [backend](https://github.com/mensatt/mensatt-backend) as well.  
+   Consult the documentation of the backend for further information.
 
 ## Run development environment
 
