@@ -50,8 +50,6 @@
     "@graphql-codegen/cli": "2.6.2",
     "@graphql-codegen/introspection": "2.1.1",
     "@graphql-codegen/typescript": "2.4.5",
-    "@graphql-codegen/typescript-operations": "2.3.2",
-    "@graphql-codegen/typescript-react-apollo": "3.2.8",
-    "graphql-tag": "^2.0.0"
+    "@graphql-codegen/typescript-operations": "2.3.2"
   }
 }
