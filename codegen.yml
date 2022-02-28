@@ -8,3 +8,7 @@ generates:
       - 'typescript-operations'
     config:
       withHooks: false
+      strictScalars: true
+      scalars:
+        Time: 'string'
+        UUID: 'string'
