@@ -12,7 +12,7 @@
     "lint:style-fix": "stylelint \"src/**/*.scss\" --fix",
     "lint:prettier": "yarn prettier -c --ignore-path .gitignore .",
     "lint:prettier-fix": "yarn prettier -w --ignore-path .gitignore .",
-    "types": "graphql-codegen --config codegen.yml",
+    "types": "graphql-codegen --config codegen.yml && prettier -w src/graphql/graphql-types.ts",
     "clean": "rm -rf node_modules/"
   },
   "dependencies": {
