@@ -1,41 +1,41 @@
 import React from 'react';
 
-import {
-  getDishes,
-  selectSelectedDish,
-  useAppDispatch,
-  useAppSelector,
-} from '../store';
+type Props = {
+  name: string;
+  id: string;
+};
 
-export const DishInfo = () => {
-  const dish = useAppSelector(selectSelectedDish);
-  const dispatch = useAppDispatch();
-
+export const DishInfo = ({ id, name }: Props) => {
+  // const dish = useAppSelector(selectSelectedDish);
   return (
     <div>
       <button
-        onClick={() =>
-          dispatch(getDishes({ id: '2032eec9-1b3e-42aa-b0a0-7215b2e844b4' }))
+        onClick={
+          () => {
+            console.log('dummy');
+          }
+          // dispatch(getDishes({ id: '2032eec9-1b3e-42aa-b0a0-7215b2e844b4' }))
         }
       >
         Get Seelachs
       </button>
       <button
-        onClick={() =>
-          dispatch(getDishes({ id: '903wee79-1b3e-32aa-c0a0-kek5b2e84439' }))
+        onClick={
+          () => {
+            console.log('dummy');
+          }
+          // dispatch(getDishes({ id: '903wee79-1b3e-32aa-c0a0-kek5b2e84439' }))
         }
       >
         Get Pommes
       </button>
       <p>
-        {dish.id
-          ? 'Selected Dish: ' + dish.name + 'has allergies:'
-          : 'No dish selected'}
+        {id ? 'Selected Dish: ' + name + 'has allergies:' : 'No dish selected'}
       </p>
       <ul>
-        {dish.allergies.map((elem) => (
+        {/* {allergies.map((elem) => (
           <li key={elem.abbreviation}>{elem.abbreviation} </li>
-        ))}
+        ))} */}
       </ul>
     </div>
   );
