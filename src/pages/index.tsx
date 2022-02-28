@@ -2,6 +2,7 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 
 import Navigation from '../components/navigation';
+import TodayOverview from '../components/today-overview/';
 import styles from '../styles/pages/index.module.scss';
 
 const Home: NextPage = () => {
@@ -12,7 +13,7 @@ const Home: NextPage = () => {
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <Navigation />
-      <main></main>
+      <TodayOverview />
     </div>
   );
 };
