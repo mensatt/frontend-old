@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import navigationSlice from './actions/navigation';
+import todaysDishesSlice from './actions/todays-dishes';
 
 export const store = configureStore({
   reducer: {
+    todaysDishes: todaysDishesSlice,
     navigation: navigationSlice,
   },
 });
