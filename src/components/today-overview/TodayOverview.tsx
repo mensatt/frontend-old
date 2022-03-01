@@ -7,6 +7,8 @@ import {
   useAppSelector,
 } from '../../store';
 import { getDishesOfDate } from '../../store/actions/todays-dishes/getDIshesOfDate';
+import Dish from '../dish/';
+import styles from './TodayOverview.module.scss';
 
 const TodayOverview = () => {
   const todaysDishes = useAppSelector(selectTodaysDishes);
@@ -25,10 +27,10 @@ const TodayOverview = () => {
   }, [dispatch, weekday]);
 
   const content = todaysDishes.map((elem) => {
-    return <div key={elem.dish.id}>{elem.dish.name}</div>;
+    return <Dish name={elem.dish.name} key={elem.id} />;
   });
   return (
-    <div>
+    <div className={styles.container}>
       {todaysDishes.length > 0
         ? content
         : 'Es scheint als gäbe es heute nix zu Essen :('}

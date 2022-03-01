@@ -14,4 +14,8 @@ module.exports = withPWA({
     skipWaiting: true,
     disable: process.env.NODE_ENV === 'development',
   },
+  images: {
+    // TODO: Rremove/Replace once proper backend URL is available
+    domains: ['picsum.photos'],
+  },
 });
