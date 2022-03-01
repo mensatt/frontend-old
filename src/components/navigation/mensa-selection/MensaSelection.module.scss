@@ -5,7 +5,7 @@
   gap: 3pt;
   justify-content: center;
   width: fit-content;
-  height: $height-header-element;
+  height: $header-element-height;
   padding: 3pt 20pt;
   margin-left: auto;
   overflow: hidden;
@@ -13,5 +13,5 @@
   font-size: 12pt;
   font-weight: 400;
   background-color: $bg-lighter;
-  border-radius: $br-header-element;
+  border-radius: $header-element-br;
 }

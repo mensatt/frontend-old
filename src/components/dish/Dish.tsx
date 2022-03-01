@@ -25,21 +25,17 @@ const Dish = ({ name }: Props) => {
   ));
   return (
     <div className={styles.content}>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-        }}
-      >
+      <div className={styles.image}>
         <Image
           src={'https://picsum.photos/1400/600'}
           alt={'placeholder'}
-          width={1400}
-          height={600}
+          // width={100}
+          // height={600}
+          layout={'fill'}
         />
       </div>
       <h2>{name}</h2>
-      <h2>Kommentare:</h2>
+      <h3>Kommentare:</h3>
       {comments}
     </div>
   );

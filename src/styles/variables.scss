@@ -38,7 +38,20 @@ $color-regular: var(--color-regular);
 $color-major: var(--color-major);
 $color-header: var(--color-header);
 
+//// FONTS
+
+$font-header: 'Montserrat', sans-serif;
+$font-major: 'Montserrat', sans-serif;
+$font-regular: 'Montserrat', sans-serif;
+$font-minor: 'Montserrat', sans-serif;
+
 //// SPACING / SIZES
 
-$height-header-element: 40pt;
-$br-header-element: 999pt;
+$header-element-height: 40pt;
+$header-element-br: 999pt;
+
+$main-content-margin: 10pt;
+$main-content-padding: 16pt;
+$main-content-br: 10pt;
+
+$card-item-br: 5pt;

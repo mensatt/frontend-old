@@ -1,7 +1,28 @@
 .content {
-  padding: 3%;
-  margin-right: 10px;
-  margin-left: 10px;
-  background-color: #f7f7f7;
-  border-radius: 10px;
+  padding: $main-content-padding;
+  background-color: $bg-lighter;
+  border-radius: $main-content-br;
+  position: relative;
+
+  h2 {
+    font-family: $font-major;
+  }
+}
+
+.image {
+  border-radius: $card-item-br;
+  overflow: hidden;
+  width: 100% !important;
+  height: 200pt !important;
+  position: relative !important;
+
+  img {
+    object-fit: cover;
+  }
+
+  @supports(aspect-ratio: 1) {
+    height: unset !important;
+    // TODO pick an aspect ratio
+    aspect-ratio: 21 / 9 !important;
+  }
 }
