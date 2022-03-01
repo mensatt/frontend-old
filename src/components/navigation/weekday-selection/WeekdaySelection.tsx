@@ -6,7 +6,7 @@ import {
   setWeekday,
   useAppDispatch,
   useAppSelector,
-} from '../../store';
+} from '../../../store';
 
 import Weekday from './Weekday';
 import styles from './WeekdaySelection.module.scss';
