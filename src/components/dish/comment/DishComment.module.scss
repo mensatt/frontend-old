@@ -1,7 +1,13 @@
 .comment {
-  color: #494949;
+  color: $color-minor;
+  font-size: 11pt;
+  margin: 3pt 0 0 0;
 }
 
 .author {
-  font-weight: 1000;
+  font-family: $font-header;
+}
+
+.text {
+  font-family: $font-regular;
 }

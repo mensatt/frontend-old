@@ -40,10 +40,10 @@ $color-header: var(--color-header);
 
 //// FONTS
 
-$font-header: 'Montserrat', sans-serif;
-$font-major: 'Montserrat', sans-serif;
-$font-regular: 'Montserrat', sans-serif;
-$font-minor: 'Montserrat', sans-serif;
+$font-header: 'Montserrat 900', 'Roboto', sans-serif;
+$font-major: 'Montserrat 800', 'Roboto', sans-serif;
+$font-regular: 'Montserrat 400', 'Roboto', sans-serif;
+$font-minor: 'Montserrat 400', 'Roboto', sans-serif;
 
 //// SPACING / SIZES
 
@@ -55,3 +55,4 @@ $main-content-padding: 16pt;
 $main-content-br: 10pt;
 
 $card-item-br: 5pt;
+$card-item-padding: 6pt;
