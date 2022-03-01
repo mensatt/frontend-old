@@ -3,11 +3,11 @@
   display: inline-flex !important;
   gap: 3pt;
   width: fit-content;
-  height: $height-header-element;
+  height: $header-element-height;
   padding: 3pt;
   overflow: hidden;
   background-color: $bg-lighter;
-  border-radius: $br-header-element;
+  border-radius: $header-element-br;
 
   button {
     display: flex;
@@ -18,7 +18,7 @@
     cursor: pointer;
     background-color: $bg-lighter;
     border: none;
-    border-radius: $br-header-element;
+    border-radius: $header-element-br;
     outline: none;
     transition: background-color 0.1s ease-out;
 
