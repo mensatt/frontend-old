@@ -5,7 +5,17 @@
   position: relative;
 
   h2 {
-    font-family: $font-major;
+    font-family: $font-header;
+    color: $color-header;
+    font-size: 18pt;
+    margin: $main-content-padding 0;
+  }
+
+  h3 {
+    font-family: $font-header;
+    color: $color-major;
+    font-size: 14pt;
+    margin: 0 0 $card-item-padding 0;
   }
 }
 
@@ -24,5 +34,22 @@
     height: unset !important;
     // TODO pick an aspect ratio
     aspect-ratio: 21 / 9 !important;
+  }
+}
+
+button.all-comments {
+  all: unset;
+  margin-top: $main-content-padding;
+  padding: $card-item-padding $card-item-padding*2;
+  background-color: $bg-light;
+  border-radius: $card-item-br;
+  font-family: $font-major;
+  color: $color-major;
+  font-size: 10pt;
+  cursor: pointer;
+  transition: background-color .1s ease;
+
+  &:hover {
+    background-color: $bg-darker;
   }
 }

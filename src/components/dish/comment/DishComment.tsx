@@ -10,7 +10,7 @@ const DishComment = ({ author, text }: Props) => {
   return (
     <p className={styles.comment}>
       <span className={styles.author}>{author}: </span>
-      {text}
+      <span className={styles.text}>{text}</span>
     </p>
   );
 };

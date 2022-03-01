@@ -11,5 +11,18 @@
     font-weight: 800;
     text-align: center;
     text-transform: uppercase;
+
+    &::before {
+      content: '';
+      width: 24pt;
+      height: 24pt;
+      display: inline;
+      position: absolute;
+      transform: translateX(-130%);
+      background-image: url('/static/img/logo.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
   }
 }
