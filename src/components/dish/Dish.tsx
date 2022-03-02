@@ -10,9 +10,9 @@ type Props = {
 
 const dummyComments: Array<CommentProps> = [
   { author: 'Lorem', text: 'Lorem ipsum dolor sit amet!' },
-  { author: 'Lorem', text: 'Lorem ipsum dolor sit amet!' },
-  { author: 'Lorem', text: 'Lorem ipsum dolor sit amet!' },
-  { author: 'Lorem', text: 'Lorem ipsum dolor sit amet!' },
+  { author: 'ipsum', text: 'Lorem ipsum dolor sit amet!' },
+  { author: 'dolor', text: 'Lorem ipsum dolor sit amet!' },
+  { author: 'sit', text: 'Lorem ipsum dolor sit amet!' },
 ];
 
 const Dish = ({ name }: Props) => {
