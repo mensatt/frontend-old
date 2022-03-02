@@ -1,12 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+
+import { useAppDispatch } from '../..';
+import apolloClient from '../../../apolloClient';
 import {
   GetDishInfo,
   GetDishInfoVariables,
 } from '../../../graphql/graphql-types';
-import { getDishInfo } from './queries.gql';
+
 import { setSelectedDish } from './';
-import { useAppDispatch } from '../..';
-import apolloClient from '../../../apolloClient';
+import { getDishInfo } from './queries.gql';
 
 export const getDish = createAsyncThunk(
   'dishes/get',

@@ -1,7 +1,8 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
-import styles from '../styles/pages/index.module.scss';
+
 import Navigation from '../components/navigation';
+import styles from '../styles/pages/index.module.scss';
 
 const Home: NextPage = () => {
   return (

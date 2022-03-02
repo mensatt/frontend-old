@@ -3,5 +3,8 @@
   "tabWidth": 2,
   "semi": true,
   "endOfLine": "lf",
-  "trailingComma": "all"
+  "trailingComma": "all",
+  "importOrder": ["^[a-zA-Z-/]*$", "^@.*$", "^\\.\\..*", "^.*"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

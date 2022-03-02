@@ -1,8 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../../store';
 import dayjs from 'dayjs';
-import weekday from 'dayjs/plugin/weekday';
 import 'dayjs/locale/de';
+import weekday from 'dayjs/plugin/weekday';
+
+import { createSlice } from '@reduxjs/toolkit';
+
+import { RootState } from '../../store';
+
 dayjs.extend(weekday);
 dayjs.locale('de');
 

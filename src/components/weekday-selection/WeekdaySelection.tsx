@@ -1,13 +1,15 @@
-import React, { useMemo } from 'react';
 import dayjs from 'dayjs';
-import Weekday from './Weekday';
-import styles from './WeekdaySelection.module.scss';
+import React, { useMemo } from 'react';
+
 import {
   selectNavigation,
   setWeekday,
   useAppDispatch,
   useAppSelector,
 } from '../../store';
+
+import Weekday from './Weekday';
+import styles from './WeekdaySelection.module.scss';
 
 type Props = {
   className?: string;
