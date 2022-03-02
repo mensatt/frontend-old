@@ -18,7 +18,7 @@ export const dishesSlice = createSlice({
   reducers: {
     setSelectedDish: (
       state: DishesState,
-      action: PayloadAction<DishesState>
+      action: PayloadAction<DishesState>,
     ) => {
       state.id = action.payload.id;
       state.allergies = action.payload.allergies;
