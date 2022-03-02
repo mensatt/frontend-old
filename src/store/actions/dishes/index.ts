@@ -1,7 +1,10 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Reducer } from 'react';
+
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+
 import { GetDishInfo_dish } from '../../../graphql/graphql-types';
 import type { RootState } from '../../store';
+
 export { getDish as getDishes } from './getDish';
 
 type DishesState = Omit<GetDishInfo_dish, '__typename'>;

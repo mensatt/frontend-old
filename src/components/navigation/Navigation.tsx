@@ -1,6 +1,8 @@
 import React from 'react';
+
 import MensaSelection from '../mensa-selection';
 import WeekdaySelection from '../weekday-selection/';
+
 import styles from './Navigation.module.scss';
 
 const Navigation = () => {

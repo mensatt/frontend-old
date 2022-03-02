@@ -1,10 +1,10 @@
 import React from 'react';
 
 import {
-  useAppSelector,
-  useAppDispatch,
-  selectSelectedDish,
   getDishes,
+  selectSelectedDish,
+  useAppDispatch,
+  useAppSelector,
 } from '../store';
 
 export const DishInfo = () => {
