@@ -10,7 +10,6 @@ import {
 export const getDishesOfDate = createAsyncThunk(
   'dishes/get',
   async ({ date }: GetOccurrenceByDateQueryVariables, { dispatch }) => {
-    console.log(date);
     const result = await apolloClient.query<GetOccurrenceByDateQuery>({
       query: getOccurrenceByDate,
       variables: {
