@@ -20,5 +20,5 @@ export const getDish = createAsyncThunk(
     if (result.data.dish != null) {
       dispatch(setSelectedDish(result.data.dish));
     }
-  }
+  },
 );
