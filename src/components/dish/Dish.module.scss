@@ -1,36 +1,36 @@
 .content {
+  position: relative;
   padding: $main-content-padding;
   background-color: $bg-lighter;
   border-radius: $main-content-br;
-  position: relative;
 
   h2 {
-    font-family: $font-header;
-    color: $color-header;
-    font-size: 18pt;
     margin: $main-content-padding 0;
+    font-family: $font-header;
+    font-size: 18pt;
+    color: $color-header;
   }
 
   h3 {
-    font-family: $font-header;
-    color: $color-major;
-    font-size: 14pt;
     margin: 0 0 $card-item-padding 0;
+    font-family: $font-header;
+    font-size: 14pt;
+    color: $color-major;
   }
 }
 
 .image {
-  border-radius: $card-item-br;
-  overflow: hidden;
+  position: relative !important;
   width: 100% !important;
   height: 200pt !important;
-  position: relative !important;
+  overflow: hidden;
+  border-radius: $card-item-br;
 
   img {
     object-fit: cover;
   }
 
-  @supports(aspect-ratio: 1) {
+  @supports (aspect-ratio: 1) {
     height: unset !important;
     // TODO pick an aspect ratio
     aspect-ratio: 21 / 9 !important;
@@ -39,15 +39,15 @@
 
 button.all-comments {
   all: unset;
+  padding: $card-item-padding $card-item-padding * 2;
   margin-top: $main-content-padding;
-  padding: $card-item-padding $card-item-padding*2;
+  font-family: $font-major;
+  font-size: 10pt;
+  color: $color-major;
+  cursor: pointer;
   background-color: $bg-light;
   border-radius: $card-item-br;
-  font-family: $font-major;
-  color: $color-major;
-  font-size: 10pt;
-  cursor: pointer;
-  transition: background-color .1s ease;
+  transition: background-color 0.1s ease;
 
   &:hover {
     background-color: $bg-darker;
