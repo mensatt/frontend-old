@@ -1,8 +1,9 @@
-import React from 'react';
 import Image from 'next/image';
+import React from 'react';
+
 import styles from './Dish.module.scss';
-import { Props as CommentProps } from './comment/DishComment';
 import DishComment from './comment';
+import { Props as CommentProps } from './comment/DishComment';
 
 type Props = {
   name: string;

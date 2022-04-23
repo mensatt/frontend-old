@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import React, { useEffect } from 'react';
+
 import {
   selectNavigation,
   selectTodaysDishes,
@@ -8,6 +9,7 @@ import {
 } from '../../store';
 import { getDishesOfDate } from '../../store/actions/todays-dishes/getDIshesOfDate';
 import Dish from '../dish/';
+
 import styles from './TodayOverview.module.scss';
 
 const TodayOverview = () => {
@@ -20,7 +22,7 @@ const TodayOverview = () => {
     dispatch(
       getDishesOfDate({
         date: thisWeeksMonday.add(weekday, 'day').toISOString(),
-      })
+      }),
     );
     // Note: Not adding thisWeeksMonday here as it would cause an endless loop
     // eslint-disable-next-line react-hooks/exhaustive-deps

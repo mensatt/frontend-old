@@ -1,4 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+
 import { GetOccurrenceByDateQuery } from '../../../graphql/graphql-types';
 import type { RootState } from '../../store';
 
@@ -12,7 +13,7 @@ export const todaysDishesSlice = createSlice({
   reducers: {
     setTodaysDishes: (
       _: TodaysDishesState,
-      action: PayloadAction<TodaysDishesState>
+      action: PayloadAction<TodaysDishesState>,
     ) => action.payload,
   },
 });

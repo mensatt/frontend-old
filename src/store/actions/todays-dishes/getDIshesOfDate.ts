@@ -1,11 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getOccurrenceByDate } from './queries.gql';
-import { setTodaysDishes } from '.';
+
 import apolloClient from '../../../apolloClient';
 import {
   GetOccurrenceByDateQuery,
   GetOccurrenceByDateQueryVariables,
 } from '../../../graphql/graphql-types';
+
+import { setTodaysDishes } from '.';
+import { getOccurrenceByDate } from './queries.gql';
 
 export const getDishesOfDate = createAsyncThunk(
   'dishes/get',
@@ -17,5 +19,5 @@ export const getDishesOfDate = createAsyncThunk(
       },
     });
     dispatch(setTodaysDishes(result.data.getOccurrencesByDate));
-  }
+  },
 );
