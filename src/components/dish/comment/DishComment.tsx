@@ -1,4 +1,5 @@
 import React from 'react';
+
 import styles from './DishComment.module.scss';
 
 export type Props = {
