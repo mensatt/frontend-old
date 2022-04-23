@@ -53,9 +53,11 @@ export type Occurrence = {
   date: Scalars['Time'];
   dish: Dish;
   id: Scalars['UUID'];
+  images: Array<Image>;
   priceGuest: Scalars['Int'];
   priceStaff: Scalars['Int'];
   priceStudent: Scalars['Int'];
+  reviews: Array<Review>;
   sideDishes: Array<Dish>;
   tags: Array<Tag>;
 };
