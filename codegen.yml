@@ -1,5 +1,5 @@
 overwrite: true
-schema: 'http://localhost:4000/v1/graphql'
+schema: 'https://api.mensatt.de/v1/graphql'
 documents: 'src/**/*.gql.ts'
 generates:
   src/graphql/graphql-types.ts:
