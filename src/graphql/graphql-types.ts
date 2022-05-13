@@ -72,14 +72,10 @@ export type Query = {
   __typename?: 'Query';
   getAllDishes: Array<Dish>;
   getAllImages: Array<Image>;
+  getAllOccurrences: Array<Occurrence>;
   getAllReviews: Array<Review>;
   getAllTags: Array<Tag>;
-  getImagesForOccurrence: Array<Image>;
   getOccurrencesByDate: Array<Occurrence>;
-};
-
-export type QueryGetImagesForOccurrenceArgs = {
-  occurrence: Scalars['UUID'];
 };
 
 export type QueryGetOccurrencesByDateArgs = {
@@ -112,7 +108,7 @@ export type Tag = {
 
 export type TagInput = {
   description: Scalars['String'];
-  isAllergy: Scalars['Boolean'];
+  isAllergy?: InputMaybe<Scalars['Boolean']>;
   key: Scalars['String'];
   name: Scalars['String'];
   priority?: InputMaybe<Priority>;
