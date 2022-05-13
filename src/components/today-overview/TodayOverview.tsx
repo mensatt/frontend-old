@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import React, { useEffect } from 'react';
+import { selectError } from 'src/store/actions/error';
 
 import {
   selectNavigation,
@@ -16,6 +17,7 @@ const TodayOverview = () => {
   const todaysDishes = useAppSelector(selectTodaysDishes);
   const thisWeeksMonday = dayjs().weekday(0);
   const { weekday } = useAppSelector(selectNavigation);
+  const { message: errorMessage } = useAppSelector(selectError);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -31,11 +33,15 @@ const TodayOverview = () => {
   const content = todaysDishes.map((elem) => {
     return <Dish name={elem.dish.name} key={elem.id} />;
   });
+
+  const contentWithMessage =
+    todaysDishes.length > 0
+      ? content
+      : 'Es scheint als gäbe es heute nix zu Essen :(';
+
   return (
     <div className={styles.container}>
-      {todaysDishes.length > 0
-        ? content
-        : 'Es scheint als gäbe es heute nix zu Essen :('}
+      {errorMessage ? errorMessage : contentWithMessage}
     </div>
   );
 };
