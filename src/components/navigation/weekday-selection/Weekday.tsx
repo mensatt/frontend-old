@@ -1,7 +1,8 @@
 import dayjs from 'dayjs';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import styles from './WeekdaySelection.module.scss';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   date: dayjs.Dayjs;
@@ -9,34 +10,26 @@ type Props = {
   onClick: () => void;
 };
 
-const getDisplayText = (date: dayjs.Dayjs) => {
-  // TODO: Check if this is sth that dayjs can do
-  switch (date.weekday()) {
-    case 0:
-      return 'Mo';
-    case 1:
-      return 'Di';
-    case 2:
-      return 'Mi';
-    case 3:
-      return 'Do';
-    case 4:
-      return 'Fr';
-  }
-};
-
-const getDisplayDate = (date: dayjs.Dayjs) => {
-  return date.date() < 10 ? '0' + date.date() : date.date();
-};
-
 const Weekday = ({ date, selected, onClick }: Props) => {
+  const { i18n } = useTranslation();
+
+  const dayOfWeek = useMemo(
+    () => date.locale(i18n.language).format('dd'),
+    [date, i18n.language],
+  );
+
+  const twoCharDate = useMemo(
+    () => date.locale(i18n.language).format('DD'),
+    [date, i18n.language],
+  );
+
   return (
     <button
       className={selected ? styles.selected : undefined}
       onClick={onClick}
     >
-      <span className={styles.dow}> {getDisplayText(date)} </span>
-      <span className={styles.date}> {getDisplayDate(date)} </span>
+      <span className={styles.dow}> {dayOfWeek} </span>
+      <span className={styles.date}> {twoCharDate} </span>
     </button>
   );
 };
