@@ -3,6 +3,7 @@ import Head from 'next/head';
 
 import Navigation from '../components/navigation';
 import TodayOverview from '../components/today-overview/';
+import '../services/i18n';
 import styles from '../styles/pages/index.module.scss';
 
 const Home: NextPage = () => {
