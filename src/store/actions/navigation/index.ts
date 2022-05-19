@@ -1,20 +1,13 @@
-import dayjs from 'dayjs';
-import 'dayjs/locale/de';
-import weekday from 'dayjs/plugin/weekday';
-
 import { createSlice } from '@reduxjs/toolkit';
 
 import { RootState } from '../../store';
-
-dayjs.extend(weekday);
-dayjs.locale('de');
 
 type NavigationState = {
   weekday: number;
 };
 
 const initialState: NavigationState = {
-  weekday: dayjs().weekday(),
+  weekday: 0,
 };
 
 export const navigationSlice = createSlice({
