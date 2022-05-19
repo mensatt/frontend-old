@@ -23,7 +23,6 @@ dayjs.extend(updateLocale);
 dayjs.updateLocale('en', {
   weekStart: 1,
 });
-dayjs.locale('de');
 
 const WeekdaySelection = ({ className }: Props) => {
   const thisWeeksMonday = dayjs().weekday(0);
