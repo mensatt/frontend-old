@@ -12,6 +12,7 @@ import { getDishesOfDate } from '../../store/actions/todays-dishes/getDIshesOfDa
 import Dish from '../dish/';
 
 import styles from './TodayOverview.module.scss';
+import { useTranslation } from 'react-i18next';
 
 const TodayOverview = () => {
   const todaysDishes = useAppSelector(selectTodaysDishes);
@@ -19,6 +20,7 @@ const TodayOverview = () => {
   const navigation = useAppSelector(selectNavigation);
   const error = useAppSelector(selectError);
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(
@@ -34,10 +36,7 @@ const TodayOverview = () => {
     return <Dish name={elem.dish.name} key={elem.id} />;
   });
 
-  const contentWithMessage =
-    todaysDishes.length > 0
-      ? content
-      : 'Es scheint als gäbe es heute nix zu Essen :(';
+  const contentWithMessage = todaysDishes.length > 0 ? content : t('noFoodMsg');
 
   return (
     <div className={styles.container}>
