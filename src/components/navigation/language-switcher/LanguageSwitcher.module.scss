@@ -5,23 +5,29 @@
 .button {
   display: block;
   cursor: pointer;
+
+  & > * {
+    display: block;
+    width: 20pt;
+    height: 20pt;
+  }
 }
 
 .dropdown {
   position: absolute;
   top: 20pt;
   right: 0;
-  width: min-content;
-  height: min-content;
-  overflow: hidden;
-  background-color: $bg-lighter;
-  box-shadow: 0 4px 7px #00000033;
-  border: 1px solid $bg-dark;
   display: flex;
   flex-direction: column;
-  padding: 2pt;
   gap: 2pt;
-  border-radius: $card-item-br;
+  width: min-content;
+  height: min-content;
+  padding: 2pt;
+  overflow: hidden;
+  background-color: $bg-lighter;
+  border: 1px solid $bg-dark;
+  border-radius: $card-item-br + 2pt;
+  box-shadow: 0 4px 7px #00000033;
 }
 
 .dropdownHidden {
@@ -29,12 +35,24 @@
 }
 
 .dropdownOption {
+  display: inline-flex;
+  gap: $card-item-padding;
+  align-items: center;
+  padding: $card-item-padding $card-item-padding * 2;
   cursor: pointer;
-  display: block;
-  padding: $card-item-padding $card-item-padding*2;
   border-radius: $card-item-br;
 
   &:hover {
     background-color: $bg-light;
+  }
+
+  div {
+    display: inline-block;
+    width: 20pt;
+    height: 20pt;
+  }
+
+  span {
+    display: inline-block;
   }
 }

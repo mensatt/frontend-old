@@ -31,8 +31,8 @@
   box-sizing: border-box;
   display: inline-flex !important;
   gap: 20pt;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: fit-content;
   height: $header-element-height;
   padding: 3pt 20pt;
@@ -45,9 +45,9 @@
 }
 
 .divider {
+  display: inline-block;
   width: 1px;
   height: 15pt;
-  display: inline-block;
   margin: 0 -5pt;
   background-color: $bg-darker;
 }

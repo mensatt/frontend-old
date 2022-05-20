@@ -1,8 +1,7 @@
 import React from 'react';
 
-import LanguageSwitcher from './language-switcher';
-
 import styles from './Navigation.module.scss';
+import LanguageSwitcher from './language-switcher';
 import MensaSelection from './mensa-selection';
 import WeekdaySelection from './weekday-selection';
 
