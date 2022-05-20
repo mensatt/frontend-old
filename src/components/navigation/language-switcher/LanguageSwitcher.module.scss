@@ -1,0 +1,40 @@
+.container {
+  position: relative;
+}
+
+.button {
+  display: block;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: absolute;
+  top: 20pt;
+  right: 0;
+  width: min-content;
+  height: min-content;
+  overflow: hidden;
+  background-color: $bg-lighter;
+  box-shadow: 0 4px 7px #00000033;
+  border: 1px solid $bg-dark;
+  display: flex;
+  flex-direction: column;
+  padding: 2pt;
+  gap: 2pt;
+  border-radius: $card-item-br;
+}
+
+.dropdownHidden {
+  display: none;
+}
+
+.dropdownOption {
+  cursor: pointer;
+  display: block;
+  padding: $card-item-padding $card-item-padding*2;
+  border-radius: $card-item-br;
+
+  &:hover {
+    background-color: $bg-light;
+  }
+}
