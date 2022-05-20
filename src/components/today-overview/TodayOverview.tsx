@@ -16,19 +16,19 @@ import styles from './TodayOverview.module.scss';
 const TodayOverview = () => {
   const todaysDishes = useAppSelector(selectTodaysDishes);
   const thisWeeksMonday = dayjs().weekday(0);
-  const { weekday } = useAppSelector(selectNavigation);
-  const { message: errorMessage } = useAppSelector(selectError);
+  const navigation = useAppSelector(selectNavigation);
+  const error = useAppSelector(selectError);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(
       getDishesOfDate({
-        date: thisWeeksMonday.add(weekday, 'day').toISOString(),
+        date: thisWeeksMonday.add(navigation.weekday, 'day').toISOString(),
       }),
     );
     // Note: Not adding thisWeeksMonday here as it would cause an endless loop
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, weekday]);
+  }, [dispatch, navigation.weekday]);
 
   const content = todaysDishes.map((elem) => {
     return <Dish name={elem.dish.name} key={elem.id} />;
@@ -41,7 +41,7 @@ const TodayOverview = () => {
 
   return (
     <div className={styles.container}>
-      {errorMessage ? errorMessage : contentWithMessage}
+      {error.message ? error.message : contentWithMessage}
     </div>
   );
 };
