@@ -1,11 +1,10 @@
 import { NextPage } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
 
 import Navigation from '../components/navigation';
 import TodayOverview from '../components/today-overview/';
 import styles from '../styles/pages/index.module.scss';
-
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Home: NextPage = () => {
   return (
