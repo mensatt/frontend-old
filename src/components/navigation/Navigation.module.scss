@@ -26,3 +26,28 @@
     }
   }
 }
+
+.settings {
+  box-sizing: border-box;
+  display: inline-flex !important;
+  gap: 20pt;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: $header-element-height;
+  padding: 3pt 20pt;
+  margin-left: auto;
+  font-family: Arial, sans-serif;
+  font-size: 12pt;
+  font-weight: 400;
+  background-color: $bg-lighter;
+  border-radius: $header-element-br;
+}
+
+.divider {
+  width: 1px;
+  height: 15pt;
+  display: inline-block;
+  margin: 0 -5pt;
+  background-color: $bg-darker;
+}

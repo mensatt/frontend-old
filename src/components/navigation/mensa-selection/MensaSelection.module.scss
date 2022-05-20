@@ -1,17 +1,3 @@
 .content {
   box-sizing: border-box;
-  display: inline-flex !important;
-  flex-direction: column;
-  gap: 3pt;
-  justify-content: center;
-  width: fit-content;
-  height: $header-element-height;
-  padding: 3pt 20pt;
-  margin-left: auto;
-  overflow: hidden;
-  font-family: Arial, sans-serif;
-  font-size: 12pt;
-  font-weight: 400;
-  background-color: $bg-lighter;
-  border-radius: $header-element-br;
 }

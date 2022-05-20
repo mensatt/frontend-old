@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LanguageSwitcher from '../language-switcher';
+import LanguageSwitcher from './language-switcher';
 
 import styles from './Navigation.module.scss';
 import MensaSelection from './mensa-selection';
@@ -11,8 +11,11 @@ const Navigation = () => {
     <nav className={styles.content}>
       <WeekdaySelection />
       <h1>Mensatt</h1>
-      <MensaSelection />
-      <LanguageSwitcher />
+      <div className={styles.settings}>
+        <MensaSelection />
+        <div className={styles.divider} />
+        <LanguageSwitcher />
+      </div>
     </nav>
   );
 };
