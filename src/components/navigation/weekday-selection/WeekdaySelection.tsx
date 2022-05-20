@@ -17,7 +17,7 @@ type Props = {
 
 const WeekdaySelection = ({ className }: Props) => {
   const thisWeeksMonday = dayjs().weekday(0);
-  const { weekday } = useAppSelector(selectNavigation);
+  const navigation = useAppSelector(selectNavigation);
   const dispatch = useAppDispatch();
 
   const week = useMemo(() => {
@@ -26,12 +26,12 @@ const WeekdaySelection = ({ className }: Props) => {
         <Weekday
           key={elem}
           date={thisWeeksMonday.add(elem, 'day')}
-          selected={elem === weekday}
+          selected={elem === navigation.weekday}
           onClick={() => dispatch(setWeekday(elem))}
         />
       );
     });
-  }, [dispatch, thisWeeksMonday, weekday]);
+  }, [dispatch, navigation.weekday, thisWeeksMonday]);
   return <div className={className + ' ' + styles.container}>{week}</div>;
 };
 
