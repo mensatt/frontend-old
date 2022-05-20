@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { useTranslation } from 'next-i18next';
 import React, { useEffect } from 'react';
 import { selectError } from 'src/store/actions/error';
 
@@ -12,7 +13,6 @@ import { getDishesOfDate } from '../../store/actions/todays-dishes/getDIshesOfDa
 import Dish from '../dish/';
 
 import styles from './TodayOverview.module.scss';
-import { useTranslation } from 'next-i18next';
 
 const TodayOverview = () => {
   const todaysDishes = useAppSelector(selectTodaysDishes);

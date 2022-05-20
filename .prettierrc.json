@@ -4,7 +4,7 @@
   "semi": true,
   "endOfLine": "lf",
   "trailingComma": "all",
-  "importOrder": ["^[a-zA-Z-/]*$", "^@.*$", "^\\.\\..*", "^.*"],
+  "importOrder": ["^[a-zA-Z0-9-/]*$", "^@.*$", "^\\.\\..*", "^.*"],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true
 }
