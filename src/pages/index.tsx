@@ -3,8 +3,9 @@ import Head from 'next/head';
 
 import Navigation from '../components/navigation';
 import TodayOverview from '../components/today-overview/';
-import '../services/i18n';
 import styles from '../styles/pages/index.module.scss';
+
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Home: NextPage = () => {
   return (
@@ -18,5 +19,15 @@ const Home: NextPage = () => {
     </div>
   );
 };
+
+// TODO: This is a workaround, find a more suiting typing in the future
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+      // Will be passed to the page component as props
+    },
+  };
+}
 
 export default Home;

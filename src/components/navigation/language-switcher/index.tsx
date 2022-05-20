@@ -1,9 +1,10 @@
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
 import Icon from '../../util/Icon';
 
 import styles from './LanguageSwitcher.module.scss';
-import { useTranslation } from 'react-i18next';
 
 const languages = [
   { id: 'de', name: 'Deutsch', icon: 'flag_de' },
@@ -11,28 +12,19 @@ const languages = [
 ] as const;
 
 const LanguageSwitcher = () => {
-  const { i18n } = useTranslation();
+  const { locale } = useRouter();
+  const lang = languages.find((lang) => lang.id === locale) ?? languages[0];
 
   const [active, setActive] = useState(false);
   const toggleActive = () => setActive(!active);
 
-  const selectLanguage = (name: string) => {
-    i18n.changeLanguage(name);
-    setActive(false);
-  };
-
-  const lang =
-    languages.find((lang) => lang.id === i18n.language) ?? languages[0];
-
   const options = languages.map((lang) => (
-    <div
-      className={styles.dropdownOption}
-      key={lang.id}
-      onClick={() => selectLanguage(lang.id)}
-    >
-      <Icon name={lang.icon} />
-      <span>{lang.name}</span>
-    </div>
+    <Link href="/" locale={lang.id} key={lang.id}>
+      <div className={styles.dropdownOption}>
+        <Icon name={lang.icon} />
+        <span>{lang.name}</span>
+      </div>
+    </Link>
   ));
 
   return (

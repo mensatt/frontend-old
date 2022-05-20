@@ -12,7 +12,7 @@ import { getDishesOfDate } from '../../store/actions/todays-dishes/getDIshesOfDa
 import Dish from '../dish/';
 
 import styles from './TodayOverview.module.scss';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 const TodayOverview = () => {
   const todaysDishes = useAppSelector(selectTodaysDishes);
@@ -20,7 +20,7 @@ const TodayOverview = () => {
   const navigation = useAppSelector(selectNavigation);
   const error = useAppSelector(selectError);
   const dispatch = useAppDispatch();
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
 
   useEffect(() => {
     dispatch(
