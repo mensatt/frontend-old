@@ -10,9 +10,6 @@ type Props = {
   name: keyof typeof icons;
 };
 
-const Icon = ({ name }: Props) => {
-  // return
-  return <div className="icon">{icons[name]}</div>;
-};
+const Icon = ({ name }: Props) => <div className="icon">{icons[name]}</div>;
 
 export default Icon;
