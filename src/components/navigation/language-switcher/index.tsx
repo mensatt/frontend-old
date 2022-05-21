@@ -20,7 +20,13 @@ const LanguageSwitcher = () => {
 
   const options = languages.map((lang) => (
     <Link href="/" locale={lang.id} key={lang.id}>
-      <div className={styles.dropdownOption}>
+      <div
+        className={styles.dropdownOption}
+        onClick={() =>
+          (document.cookie =
+            'NEXT_LOCALE=' + lang.id + ';max-age=' + 315360000 + ';path=/')
+        }
+      >
         <Icon name={lang.icon} />
         <span>{lang.name}</span>
       </div>
