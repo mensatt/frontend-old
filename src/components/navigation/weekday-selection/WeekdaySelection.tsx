@@ -1,8 +1,5 @@
-import dayjs from 'dayjs';
-import 'dayjs/locale/de';
-import updateLocale from 'dayjs/plugin/updateLocale';
-import weekday from 'dayjs/plugin/weekday';
 import React, { useEffect, useMemo } from 'react';
+import { afterFriday, currentWeekday, startOfWeek } from 'src/util/';
 
 import {
   selectNavigation,
@@ -18,33 +15,28 @@ type Props = {
   className?: string;
 };
 
-dayjs.extend(weekday);
-dayjs.extend(updateLocale);
-dayjs.updateLocale('en', {
-  weekStart: 1,
-});
-
 const WeekdaySelection = ({ className }: Props) => {
-  const thisWeeksMonday = dayjs().weekday(0);
   const navigation = useAppSelector(selectNavigation);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(setWeekday(dayjs().weekday()));
-  });
+    dispatch(setWeekday(afterFriday ? 0 : currentWeekday));
+    // Disabling here because we only want to execute on initial page load
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const week = useMemo(() => {
     return [0, 1, 2, 3, 4].map((elem) => {
       return (
         <Weekday
           key={elem}
-          date={thisWeeksMonday.add(elem, 'day')}
+          date={startOfWeek.add(elem, 'day')}
           selected={elem === navigation.weekday}
           onClick={() => dispatch(setWeekday(elem))}
         />
       );
     });
-  }, [dispatch, navigation.weekday, thisWeeksMonday]);
+  }, [dispatch, navigation.weekday]);
   return <div className={className + ' ' + styles.container}>{week}</div>;
 };
 
