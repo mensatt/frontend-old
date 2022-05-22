@@ -24,7 +24,11 @@ const LanguageSwitcher = () => {
         className={styles.dropdownOption}
         onClick={() =>
           (document.cookie =
-            'NEXT_LOCALE=' + lang.id + ';max-age=' + 315360000 + ';path=/')
+            'NEXT_LOCALE=' +
+            lang.id +
+            ';max-age=' +
+            315360000 +
+            ';path=/;SameSite=Strict')
         }
       >
         <Icon name={lang.icon} />
