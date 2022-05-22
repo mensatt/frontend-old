@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import 'dayjs/locale/de';
 import updateLocale from 'dayjs/plugin/updateLocale';
 import weekday from 'dayjs/plugin/weekday';
 
