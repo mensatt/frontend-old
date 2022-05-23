@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { Provider } from 'react-redux';
 import Footer from 'src/components/footer';
+import Navigation from 'src/components/navigation';
 
 import { store } from '../store';
 import '../styles/globals.scss';
@@ -16,7 +17,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <div id="styling" className="theme-TODO">
         <div className={'container'}>
+          <Navigation />
           <Component {...pageProps} />
+          <Footer />
         </div>
       </div>
     </Provider>
