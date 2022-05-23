@@ -12,14 +12,14 @@ const languages = [
 ] as const;
 
 const LanguageSwitcher = () => {
-  const { locale } = useRouter();
+  const { locale, pathname } = useRouter();
   const lang = languages.find((lang) => lang.id === locale) ?? languages[0];
 
   const [active, setActive] = useState(false);
   const toggleActive = () => setActive(!active);
 
   const options = languages.map((lang) => (
-    <Link href="/" locale={lang.id} key={lang.id}>
+    <Link href={pathname} locale={lang.id} key={lang.id}>
       <div
         className={styles.dropdownOption}
         onClick={() =>
