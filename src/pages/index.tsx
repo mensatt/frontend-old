@@ -1,17 +1,12 @@
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Head from 'next/head';
+import Navigation from 'src/components/navigation';
 
-import Navigation from '../components/navigation';
 import TodayOverview from '../components/today-overview/';
 
 const Home: NextPage = () => {
   return (
     <>
-      <Head>
-        <title>Mensatt</title>
-        {/* <link rel="icon" href="/favicon.ico" /> */}
-      </Head>
       <Navigation />
       <TodayOverview />
     </>
