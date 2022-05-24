@@ -1,0 +1,25 @@
+.button {
+  box-sizing: border-box;
+  display: inline-flex;
+  gap: 7pt;
+  align-items: center;
+  justify-content: center;
+  height: $header-element-height;
+  padding: 3pt 20pt;
+  font-family: Arial, sans-serif;
+  font-size: 12pt;
+  font-weight: 400;
+  cursor: pointer;
+  background-color: $bg-lighter;
+  border-radius: $header-element-br;
+  transition: background-color 0.1s ease;
+
+  &:hover {
+    background-color: $bg-light;
+  }
+
+  *[class='icon'] {
+    width: 12pt;
+    height: 12pt;
+  }
+}
