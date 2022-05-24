@@ -1,0 +1,31 @@
+.footer {  
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  color: white;
+  background-color: #00000066;
+  padding: $main-content-padding;
+  display: flex;
+  justify-content: space-between;
+
+  p {
+    display: inline-block;
+    text-align: right;
+    margin: 0;
+  }
+}
+
+.links {
+  display: flex;
+  gap: $main-content-padding;
+  justify-content: center;
+
+  a {
+    font-weight: 600;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
