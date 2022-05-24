@@ -1,5 +1,7 @@
 {
   "noFoodMsg": "Looks like there is nothing to eat today :(",
   "back": "Back",
-  "imageDescription": "Picture of {{name}} by {{author}}"
+  "imageDescription": "Picture of {{name}} by {{author}}",
+  "commentHeading": "Comments",
+  "showAllComments": "Show all comments"
 }
