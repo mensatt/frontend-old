@@ -18,19 +18,16 @@ const LanguageSwitcher = () => {
   const [active, setActive] = useState(false);
   const toggleActive = () => setActive(!active);
 
+  const setLanguage = (id: string) => {
+    document.cookie = `NEXT_LOCALE=${id};max-age=${315360000};path=/;SameSite=Strict`;
+    setActive(false);
+  }
+
   const options = languages.map((lang) => (
     <Link href={pathname} locale={lang.id} key={lang.id}>
       <div
         className={styles.dropdownOption}
-        onClick={() => {
-          document.cookie =
-            'NEXT_LOCALE=' +
-            lang.id +
-            ';max-age=' +
-            315360000 +
-            ';path=/;SameSite=Strict';
-          toggleActive();
-        }}
+        onClick={() => setLanguage(lang.id)}
       >
         <Icon name={lang.icon} />
         <span>{lang.name}</span>
@@ -44,9 +41,10 @@ const LanguageSwitcher = () => {
         <Icon name={lang.icon} />
       </div>
       <div
-        className={
-          styles.dropdown + ' ' + (!active ? styles.dropdownHidden : '')
-        }
+        className={[
+          styles.dropdown,
+          (active ? '' : styles.dropdownHidden)
+        ].join(' ')}
       >
         {options}
       </div>
