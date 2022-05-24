@@ -1,4 +1,5 @@
 {
   "noFoodMsg": "Es scheint als gäbe es heute nix zum Essen :(",
-  "back": "Zurück"
+  "back": "Zurück",
+  "imageDescription": "Bild zeigt {{name}} aufgenommen von {{author}}"
 }
