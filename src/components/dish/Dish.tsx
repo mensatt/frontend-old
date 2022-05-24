@@ -37,11 +37,9 @@ const Dish = ({ name }: Props) => {
         />
       </div>
       <h2>{name}</h2>
-      <h3>Kommentare</h3>
+      <h3>{t('commentHeading')}</h3>
       {comments}
-      <button className={styles['all-comments']}>
-        Alle Kommentare Anzeigen
-      </button>
+      <button className={styles['all-comments']}>{t('showAllComments')}</button>
     </div>
   );
 };
