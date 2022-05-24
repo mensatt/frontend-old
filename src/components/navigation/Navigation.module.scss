@@ -1,10 +1,12 @@
 .content {
   display: grid;
+  grid-template-areas: 'nav-left nav-center nav-right';
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   margin: 20pt 0;
 
   h1 {
+    grid-area: nav-center;
     margin: 0;
     font-family: Arial, sans-serif;
     font-size: 18pt;
@@ -27,9 +29,14 @@
   }
 }
 
+.navaction {
+  grid-area: nav-left;
+}
+
 .settings {
   box-sizing: border-box;
   display: inline-flex !important;
+  grid-area: nav-right;
   gap: 20pt;
   align-items: center;
   justify-content: center;
