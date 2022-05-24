@@ -21,7 +21,7 @@ const LanguageSwitcher = () => {
   const setLanguage = (id: string) => {
     document.cookie = `NEXT_LOCALE=${id};max-age=${315360000};path=/;SameSite=Strict`;
     setActive(false);
-  }
+  };
 
   const options = languages.map((lang) => (
     <Link href={pathname} locale={lang.id} key={lang.id}>
@@ -41,10 +41,9 @@ const LanguageSwitcher = () => {
         <Icon name={lang.icon} />
       </div>
       <div
-        className={[
-          styles.dropdown,
-          (active ? '' : styles.dropdownHidden)
-        ].join(' ')}
+        className={[styles.dropdown, active ? '' : styles.dropdownHidden].join(
+          ' ',
+        )}
       >
         {options}
       </div>
