@@ -1,0 +1,16 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  border: 2px solid black;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 8px 4px;
+  border-bottom: 1px solid black;
+}
+
+.row:last-child {
+  border-bottom: 0px;
+}
