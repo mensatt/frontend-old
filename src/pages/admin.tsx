@@ -1,8 +1,13 @@
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import AdminNavigation from 'src/components/admin-navigation';
 
 const AdminPage: NextPage = () => {
-  return <></>;
+  return (
+    <>
+      <AdminNavigation />
+    </>
+  );
 };
 
 export default AdminPage;

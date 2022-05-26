@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import adminNavSlice from './actions/admin-nav';
 import errorSlice from './actions/error';
 import navigationSlice from './actions/navigation';
 import todaysDishesSlice from './actions/todays-dishes';
@@ -9,6 +10,7 @@ export const store = configureStore({
     todaysDishes: todaysDishesSlice,
     navigation: navigationSlice,
     error: errorSlice,
+    adminNav: adminNavSlice,
   },
 });
 
