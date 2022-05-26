@@ -11,6 +11,7 @@ const Footer = () => {
     <footer className={styles.footer}>
       <p>{t('disclaimer')}</p>
       <div className={styles.links}>
+        <Link href={'/admin'}>{t('admin-link-text')}</Link>
         <Link href={'/contact'}>{t('contact-link-text')}</Link>
         <Link href={'/privacy'}>{t('privacy-link-text')}</Link>
       </div>
