@@ -1,6 +1,5 @@
 import React from 'react';
-import { useAppDispatch } from 'src/store';
-import { Categories, setActiveIndex } from 'src/store/actions/admin-nav';
+import { Categories, setActiveIndex, useAppDispatch } from 'src/store';
 
 const AdminNavigation = () => {
   const dispatch = useAppDispatch();

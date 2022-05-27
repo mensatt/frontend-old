@@ -3,6 +3,9 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { GetOccurrenceByDateQuery } from '../../../graphql/graphql-types';
 import type { RootState } from '../../store';
 
+export * from './queries.gql';
+export * from './getDishesOfDate';
+
 type TodaysDishesState = GetOccurrenceByDateQuery['getOccurrencesByDate'];
 
 const initialState: TodaysDishesState = [];

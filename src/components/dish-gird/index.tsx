@@ -1,12 +1,14 @@
 import dayjs from 'dayjs';
 import React, { useMemo } from 'react';
 import { ReviewStatus } from 'src/graphql/graphql-types';
-import { SortOrder, useAppDispatch, useAppSelector } from 'src/store';
 import {
+  SortOrder,
   addOccurrence,
   selectOccurrencesSortedByName,
   setOccurrenceSortOrder,
-} from 'src/store/actions/admin-page';
+  useAppDispatch,
+  useAppSelector,
+} from 'src/store';
 
 import styles from './DishGrid.module.scss';
 import DishGridEntry from './DishGridEntry';
