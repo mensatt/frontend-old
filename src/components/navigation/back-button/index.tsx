@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 
-import Icon from '../../util/Icon';
+import Icon from '../../icon/';
 
 import styles from './BackButton.module.scss';
 
