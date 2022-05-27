@@ -1,17 +1,11 @@
 import { NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 const Contact: NextPage = () => {
   const { t } = useTranslation('privacy');
-  const { locale } = useRouter();
   return (
     <>
-      <Link href={'/'} lang={locale}>
-        {'<- Back'}
-      </Link>
       <h2>{t('heading')}</h2>
       <p>{t('privacy-text')}</p>
     </>
