@@ -4,6 +4,7 @@ import { ReviewStatus } from 'src/graphql/graphql-types';
 import {
   SortOrder,
   addOccurrence,
+  selectOccurrenceOrderType,
   selectOccurrencesSortedByName,
   setOccurrenceSortOrder,
   useAppDispatch,
@@ -16,6 +17,7 @@ import DishGridEntry from './DishGridEntry';
 const DishGrid = () => {
   const dispatch = useAppDispatch();
   const occurrences = useAppSelector(selectOccurrencesSortedByName);
+  const sortOrder = useAppSelector(selectOccurrenceOrderType);
   const dishes = useMemo(
     () =>
       occurrences.map((elem) => (
@@ -34,22 +36,24 @@ const DishGrid = () => {
       {/* TODO: Add special styling for header row */}
       <div className={styles.row}>
         <div>
-          <button
-            onClick={() => dispatch(setOccurrenceSortOrder(SortOrder.Asc))}
+          <p
+            onClick={() => {
+              switch (sortOrder) {
+                case SortOrder.None:
+                  dispatch(setOccurrenceSortOrder(SortOrder.Asc));
+                  break;
+                case SortOrder.Asc:
+                  dispatch(setOccurrenceSortOrder(SortOrder.Desc));
+                  break;
+                case SortOrder.Desc:
+                  dispatch(setOccurrenceSortOrder(SortOrder.None));
+                  break;
+              }
+            }}
           >
-            Sort asc
-          </button>
-          <button
-            onClick={() => dispatch(setOccurrenceSortOrder(SortOrder.Desc))}
-          >
-            Sort desc
-          </button>
-          <button
-            onClick={() => dispatch(setOccurrenceSortOrder(SortOrder.None))}
-          >
-            Sort none
-          </button>
-          <p>Display Name</p>
+            {'Display Name' +
+              (sortOrder !== SortOrder.None ? ' (' + sortOrder + ')' : '')}
+          </p>
         </div>
         <p>Source Name</p>
         <p>Status</p>
