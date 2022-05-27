@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import React, { useMemo } from 'react';
 import { ReviewStatus } from 'src/graphql/graphql-types';
-import { useAppDispatch, useAppSelector } from 'src/store';
+import { SortOrder, useAppDispatch, useAppSelector } from 'src/store';
 import {
   addOccurrence,
   selectOccurrencesSortedByName,
@@ -32,13 +32,19 @@ const DishGrid = () => {
       {/* TODO: Add special styling for header row */}
       <div className={styles.row}>
         <div>
-          <button onClick={() => dispatch(setOccurrenceSortOrder('asc'))}>
+          <button
+            onClick={() => dispatch(setOccurrenceSortOrder(SortOrder.Asc))}
+          >
             Sort asc
           </button>
-          <button onClick={() => dispatch(setOccurrenceSortOrder('desc'))}>
+          <button
+            onClick={() => dispatch(setOccurrenceSortOrder(SortOrder.Desc))}
+          >
             Sort desc
           </button>
-          <button onClick={() => dispatch(setOccurrenceSortOrder('none'))}>
+          <button
+            onClick={() => dispatch(setOccurrenceSortOrder(SortOrder.None))}
+          >
             Sort none
           </button>
           <p>Display Name</p>
