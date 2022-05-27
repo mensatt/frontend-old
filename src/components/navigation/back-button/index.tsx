@@ -7,12 +7,16 @@ import Icon from '../../util/Icon';
 
 import styles from './BackButton.module.scss';
 
-const BackButton = () => {
+type Props = {
+  url?: string;
+};
+
+const BackButton = ({ url }: Props) => {
   const { t } = useTranslation('contact');
   const { locale } = useRouter();
 
   return (
-    <Link href={'/'} lang={locale}>
+    <Link href={url ?? '/'} lang={locale}>
       <div className={styles.button}>
         <Icon name="arrow_left" />
         <p>{t('back')}</p>

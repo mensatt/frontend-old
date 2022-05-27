@@ -6,22 +6,25 @@ import LanguageSwitcher from './language-switcher';
 import MensaSelection from './mensa-selection';
 import WeekdaySelection from './weekday-selection';
 
-export type NavigaitonDisplayOptions = {
-  action: 'weekday-selection' | 'back-button';
-  brand: boolean;
-  mensa: boolean;
-  language: boolean;
+export type NavigationDisplayOptions = {
+  action: 'weekday-selection' | 'back-button' | 'none';
+  /** optional
+   * if action is back-button: button url
+   */
+  actionData?: string;
+  showBrand: boolean;
+  showMensa: boolean;
+  showLanguage: boolean;
 };
 
 type Props = {
-  opts: NavigaitonDisplayOptions;
+  opts: NavigationDisplayOptions;
 };
 
 const Navigation = ({ opts }: Props) => {
-  const settingsItems = [
-    opts.mensa ? <MensaSelection /> : null,
-    opts.language ? <LanguageSwitcher /> : null,
-  ].filter((i) => !!i) as JSX.Element[];
+  const settingsItems = [];
+  if (opts.showMensa) settingsItems.push(<MensaSelection />);
+  if (opts.showLanguage) settingsItems.push(<LanguageSwitcher />);
 
   // insert divider divs between each item in the list
   const settingsRendered = settingsItems
@@ -29,16 +32,19 @@ const Navigation = ({ opts }: Props) => {
       item,
       <div className={styles.divider} key={index} />,
     ])
-    .flat()
     .slice(0, -1);
 
   return (
     <nav className={styles.content}>
       <div className={styles.navaction}>
         {opts.action === 'weekday-selection' ? <WeekdaySelection /> : ''}
-        {opts.action === 'back-button' ? <BackButton /> : ''}
+        {opts.action === 'back-button' ? (
+          <BackButton url={opts.actionData} />
+        ) : (
+          ''
+        )}
       </div>
-      {opts.brand ? <h1>Mensatt</h1> : ''}
+      {opts.showBrand && <h1>Mensatt</h1>}
       <div className={styles.settings}>{settingsRendered}</div>
     </nav>
   );

@@ -5,29 +5,29 @@ import { Provider } from 'react-redux';
 import Footer from 'src/components/footer';
 import Navigation from 'src/components/navigation';
 
-import { NavigaitonDisplayOptions } from '../components/navigation/Navigation';
+import { NavigationDisplayOptions } from '../components/navigation/Navigation';
 import { store } from '../store';
 import '../styles/globals.scss';
 
 type Features = {
-  nav: NavigaitonDisplayOptions;
+  nav: NavigationDisplayOptions;
 };
 
 const layoutFeatures: Record<string, Features> = {
   index: {
     nav: {
       action: 'weekday-selection',
-      brand: true,
-      mensa: true,
-      language: true,
+      showBrand: true,
+      showMensa: true,
+      showLanguage: true,
     },
   },
   default: {
     nav: {
       action: 'back-button',
-      brand: true,
-      mensa: false,
-      language: true,
+      showBrand: true,
+      showMensa: false,
+      showLanguage: true,
     },
   },
 };
