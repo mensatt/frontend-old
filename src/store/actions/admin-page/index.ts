@@ -1,12 +1,16 @@
-import { Occurrence, ReviewStatus } from 'src/graphql/graphql-types';
+import { Occurrence } from 'src/graphql/graphql-types';
 import { RootState } from 'src/store';
 // NOTE: Importing from `src/store/types` instead of `src/store` as reexporting the enum does not seem to work
 import { SortOrder, WithSorting } from 'src/store/types';
 
-import { createSelector, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSelector, createSlice } from '@reduxjs/toolkit';
+
+export * from './getAdminPanelOccurrences';
+export * from './queries.gql';
 
 // TODO: This is a workaround until a proper query is available
 type DemoOccurrence = {
+  id: Occurrence['id'];
   dish: {
     name: Occurrence['dish']['name'];
     sourceName: Occurrence['dish']['name'];
@@ -21,33 +25,7 @@ type AdminPageState = {
 
 const initialState: AdminPageState = {
   occurrences: {
-    // TODO: This array should be empty initially. This is a workaround until there is support from the backend
-    data: [
-      {
-        dish: {
-          name: 'Suppe',
-          sourceName: 'Suhppeh',
-        },
-        date: '',
-        reviewStatus: ReviewStatus.Approved,
-      },
-      {
-        dish: {
-          name: 'Nudeln',
-          sourceName: 'Nuhdeln',
-        },
-        date: '',
-        reviewStatus: ReviewStatus.Updated,
-      },
-      {
-        dish: {
-          name: 'Pommes',
-          sourceName: 'Poms',
-        },
-        date: '',
-        reviewStatus: ReviewStatus.AwaitingApproval,
-      },
-    ],
+    data: [],
     sortOrder: SortOrder.None,
     sortBy: 'dish.name',
   },
@@ -57,13 +35,17 @@ export const adminPageSlice = createSlice({
   name: 'adminNav',
   initialState: initialState,
   reducers: {
-    setOccurrences: (state, action) => {
+    setOccurrences: (
+      state,
+      action: PayloadAction<AdminPageState['occurrences']['data']>,
+    ) => {
+      state.occurrences.data = [];
       state.occurrences.data = action.payload;
     },
-    addOccurrence: (state, action: { payload: DemoOccurrence }) => {
+    addOccurrence: (state, action: PayloadAction<DemoOccurrence>) => {
       state.occurrences.data.push(action.payload);
     },
-    setOccurrenceSortOrder: (state, action: { payload: SortOrder }) => {
+    setOccurrenceSortOrder: (state, action: PayloadAction<SortOrder>) => {
       state.occurrences.sortOrder = action.payload;
     },
   },

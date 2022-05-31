@@ -1,15 +1,15 @@
-import dayjs from 'dayjs';
-import React, { useMemo } from 'react';
-import { ReviewStatus } from 'src/graphql/graphql-types';
+import React, { useEffect, useMemo } from 'react';
 import {
   SortOrder,
-  addOccurrence,
+  selectNavigation,
   selectOccurrenceOrderType,
   selectOccurrencesSortedByName,
   setOccurrenceSortOrder,
   useAppDispatch,
   useAppSelector,
 } from 'src/store';
+import { getAdminPanelOccurrences } from 'src/store';
+import { startOfWeek } from 'src/util';
 
 import styles from './DishGrid.module.scss';
 import DishGridEntry from './DishGridEntry';
@@ -18,11 +18,21 @@ const DishGrid = () => {
   const dispatch = useAppDispatch();
   const occurrences = useAppSelector(selectOccurrencesSortedByName);
   const sortOrder = useAppSelector(selectOccurrenceOrderType);
+  const navigation = useAppSelector(selectNavigation);
+
+  useEffect(() => {
+    dispatch(
+      getAdminPanelOccurrences({
+        date: startOfWeek.add(navigation.weekday, 'day').toISOString(),
+      }),
+    );
+  }, [dispatch, navigation.weekday]);
+
   const dishes = useMemo(
     () =>
       occurrences.map((elem) => (
         <DishGridEntry
-          key={elem.dish.name}
+          key={elem.id}
           displayName={elem.dish.name}
           sourceName={elem.dish.sourceName}
           status={elem.reviewStatus}
@@ -40,12 +50,12 @@ const DishGrid = () => {
             onClick={() => {
               switch (sortOrder) {
                 case SortOrder.None:
-                  dispatch(setOccurrenceSortOrder(SortOrder.Asc));
-                  break;
-                case SortOrder.Asc:
                   dispatch(setOccurrenceSortOrder(SortOrder.Desc));
                   break;
                 case SortOrder.Desc:
+                  dispatch(setOccurrenceSortOrder(SortOrder.Asc));
+                  break;
+                case SortOrder.Asc:
                   dispatch(setOccurrenceSortOrder(SortOrder.None));
                   break;
               }
@@ -59,7 +69,7 @@ const DishGrid = () => {
         <p>Status</p>
       </div>
       {dishes}
-      <button
+      {/* <button
         onClick={() =>
           dispatch(
             addOccurrence({
@@ -71,7 +81,7 @@ const DishGrid = () => {
         }
       >
         Add occurrence
-      </button>
+      </button> */}
     </div>
   );
 };
