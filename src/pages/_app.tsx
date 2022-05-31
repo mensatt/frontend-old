@@ -1,6 +1,7 @@
 import { appWithTranslation } from 'next-i18next';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { Provider } from 'react-redux';
 import Footer from 'src/components/footer';
 import Navigation from 'src/components/navigation';
@@ -34,7 +35,9 @@ const layoutFeatures: Record<string, Features> = {
   },
 };
 
-function MyApp({ Component, pageProps, router }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+
   /*
    * normalizedPath only contains the letters of the current path and in lower case
    *
