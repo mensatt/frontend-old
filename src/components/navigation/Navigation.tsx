@@ -1,17 +1,11 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import styles from './Navigation.module.scss';
-import BackButton from './back-button';
 import LanguageSwitcher from './language-switcher';
 import MensaSelection from './mensa-selection';
-import WeekdaySelection from './weekday-selection';
 
 export type NavigationDisplayOptions = {
-  action: 'weekday-selection' | 'back-button' | 'none';
-  /** optional
-   * if action is back-button: button url
-   */
-  actionData?: string;
+  topLeftComp: ReactNode;
   showBrand: boolean;
   showMensa: boolean;
   showLanguage: boolean;
@@ -36,14 +30,7 @@ const Navigation = ({ opts }: Props) => {
 
   return (
     <nav className={styles.content}>
-      <div className={styles.navaction}>
-        {opts.action === 'weekday-selection' ? <WeekdaySelection /> : ''}
-        {opts.action === 'back-button' ? (
-          <BackButton url={opts.actionData} />
-        ) : (
-          ''
-        )}
-      </div>
+      <div className={styles.navaction}>{opts.topLeftComp}</div>
       {opts.showBrand && <h1>Mensatt</h1>}
       <div className={styles.settings}>{settingsRendered}</div>
     </nav>
