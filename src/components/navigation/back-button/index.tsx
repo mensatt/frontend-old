@@ -12,7 +12,7 @@ type Props = {
 };
 
 const BackButton = ({ url }: Props) => {
-  const { t } = useTranslation('contact');
+  const { t } = useTranslation('common');
   const { locale } = useRouter();
 
   return (

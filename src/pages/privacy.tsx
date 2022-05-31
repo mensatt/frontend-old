@@ -18,7 +18,11 @@ export default Contact;
 export async function getStaticProps({ locale }: { locale: string }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['privacy', 'footer'])),
+      ...(await serverSideTranslations(locale, [
+        'common',
+        'privacy',
+        'footer',
+      ])),
       // Will be passed to the page component as props
     },
   };
