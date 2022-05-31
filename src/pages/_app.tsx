@@ -4,6 +4,8 @@ import Head from 'next/head';
 import { Provider } from 'react-redux';
 import Footer from 'src/components/footer';
 import Navigation from 'src/components/navigation';
+import BackButton from 'src/components/navigation/back-button';
+import WeekdaySelection from 'src/components/navigation/weekday-selection';
 
 import { NavigationDisplayOptions } from '../components/navigation/Navigation';
 import { store } from '../store';
@@ -16,7 +18,7 @@ type Features = {
 const layoutFeatures: Record<string, Features> = {
   index: {
     nav: {
-      action: 'weekday-selection',
+      topLeftComp: <WeekdaySelection />,
       showBrand: true,
       showMensa: true,
       showLanguage: true,
@@ -24,7 +26,7 @@ const layoutFeatures: Record<string, Features> = {
   },
   default: {
     nav: {
-      action: 'back-button',
+      topLeftComp: <BackButton url="/" />,
       showBrand: true,
       showMensa: false,
       showLanguage: true,
