@@ -2,6 +2,7 @@ import { appWithTranslation } from 'next-i18next';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { useMemo } from 'react';
 import { Provider } from 'react-redux';
 import Footer from 'src/components/footer';
 import Navigation from 'src/components/navigation';
@@ -45,11 +46,14 @@ function MyApp({ Component, pageProps }: AppProps) {
    * /privacy -> privacy
    * /acCOuNt/edIT/ -> account/edit
    */
-  const normalizedPath =
-    router.pathname
-      .toLowerCase()
-      .replace(/[^a-z\/]/g, '')
-      .replace(/^\/|\/$/g, '') || 'index';
+  const normalizedPath = useMemo(
+    () =>
+      router.pathname
+        .toLowerCase()
+        .replace(/[^a-z\/]/g, '')
+        .replace(/^\/|\/$/g, '') || 'index',
+    [router.pathname],
+  );
 
   const layout = layoutFeatures[normalizedPath] || layoutFeatures.default;
   const navOpts = layout.nav;
