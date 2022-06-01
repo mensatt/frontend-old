@@ -277,6 +277,13 @@ export type User = {
   id: Scalars['UUID'];
 };
 
+export type GetTokenQueryVariables = Exact<{
+  email: Scalars['String'];
+  password: Scalars['String'];
+}>;
+
+export type GetTokenQuery = { __typename?: 'Query'; login: string };
+
 export type GetOccurrenceForAdminPanelQueryVariables = Exact<{
   date: Scalars['Time'];
 }>;
