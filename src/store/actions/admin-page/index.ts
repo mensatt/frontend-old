@@ -12,6 +12,7 @@ export * from './queries.gql';
 type DemoOccurrence = {
   id: Occurrence['id'];
   dish: {
+    id: Occurrence['dish']['id'];
     name: Occurrence['dish']['name'];
     sourceName: Occurrence['dish']['name'];
   };

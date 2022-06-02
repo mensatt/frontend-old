@@ -36,6 +36,9 @@ const DishGrid = () => {
           displayName={elem.dish.name}
           sourceName={elem.dish.sourceName}
           status={elem.reviewStatus}
+          occurrenceUUID={elem.id}
+          dishUUID={elem.dish.id}
+          date={elem.date}
         />
       )),
     [occurrences],
