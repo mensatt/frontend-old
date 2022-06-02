@@ -7,7 +7,6 @@ import {
 } from '../../../graphql/graphql-types';
 import { setError } from '../error';
 
-import { setToken } from '.';
 import { getToken } from './queries.gql';
 
 export const login = createAsyncThunk(
@@ -21,10 +20,9 @@ export const login = createAsyncThunk(
           password: password,
         },
       });
-      dispatch(setToken(result.data?.login));
+      localStorage.setItem('token', result.data?.login);
     } catch (e) {
       console.error(e);
-      dispatch(setToken(''));
       dispatch(setError(e));
     }
   },
