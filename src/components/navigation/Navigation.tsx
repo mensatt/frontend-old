@@ -17,8 +17,9 @@ type Props = {
 
 const Navigation = ({ opts }: Props) => {
   const settingsItems = [];
-  if (opts.showMensa) settingsItems.push(<MensaSelection />);
-  if (opts.showLanguage) settingsItems.push(<LanguageSwitcher />);
+  if (opts.showMensa) settingsItems.push(<MensaSelection key={'showMensa'} />);
+  if (opts.showLanguage)
+    settingsItems.push(<LanguageSwitcher key={'showLanguage'} />);
 
   // insert divider divs between each item in the list
   const settingsRendered = settingsItems
