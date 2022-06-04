@@ -22,6 +22,7 @@ const TodayOverview = () => {
   const { t } = useTranslation('common');
 
   useEffect(() => {
+    if (navigation.weekday === -1) return;
     dispatch(
       getDishesOfDate({
         date: startOfWeek.add(navigation.weekday, 'day').toISOString(),

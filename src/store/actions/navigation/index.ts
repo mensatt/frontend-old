@@ -16,7 +16,7 @@ type NavigationState = {
 };
 
 const initialState: NavigationState = {
-  weekday: 0,
+  weekday: -1,
   activeMensaIdx: 0,
   mensas: [
     {
