@@ -40,10 +40,13 @@ export const adminNavSlice = createSlice({
     setActiveIndex: (state, action: { payload: Categories }) => {
       state.activeCategoryIdx = action.payload;
     },
+    setToken: (state, action: { payload: string }) => {
+      state.token = action.payload;
+    },
   },
 });
 
-export const { setActiveIndex } = adminNavSlice.actions;
+export const { setActiveIndex, setToken } = adminNavSlice.actions;
 
 export const selectAdminNav = (state: RootState) => state.adminNav;
 

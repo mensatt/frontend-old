@@ -1,19 +1,13 @@
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import AdminNavigation from 'src/components/admin-navigation';
 import DishGrid from 'src/components/dish-gird';
-import {
-  Categories,
-  login,
-  selectAdminNav,
-  useAppDispatch,
-  useAppSelector,
-} from 'src/store';
+import Login from 'src/components/login/Login';
+import { Categories, selectAdminNav, useAppSelector } from 'src/store';
 
 const AdminPage: NextPage = () => {
   const adminNav = useAppSelector(selectAdminNav);
-  const dispatch = useAppDispatch();
 
   const selectedComponent = useMemo(() => {
     switch (adminNav.activeCategoryIdx) {
@@ -22,31 +16,17 @@ const AdminPage: NextPage = () => {
     }
   }, [adminNav.activeCategoryIdx]);
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  return (
-    <>
-      <AdminNavigation />
-      <input onChange={(event) => setEmail(event.target.value)} value={email} />
-      <input
-        onChange={(event) => setPassword(event.target.value)}
-        value={password}
-        type="password"
-      />
-      <button
-        onClick={() => {
-          setEmail('');
-          setPassword('');
-          dispatch(login({ email: email, password: password }));
-        }}
-      >
-        Get Token
-      </button>
-
-      {selectedComponent}
-    </>
+  const adminPageContent = useMemo(
+    () => (
+      <>
+        <AdminNavigation />
+        {selectedComponent}
+      </>
+    ),
+    [selectedComponent],
   );
+
+  return adminNav.token ? adminPageContent : <Login />;
 };
 
 export default AdminPage;

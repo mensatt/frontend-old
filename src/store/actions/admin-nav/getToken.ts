@@ -1,3 +1,5 @@
+import { setToken } from 'src/store';
+
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import apolloClient from '../../../apolloClient';
@@ -21,6 +23,7 @@ export const login = createAsyncThunk(
         },
       });
       localStorage.setItem('token', result.data?.login);
+      dispatch(setToken(result.data?.login));
     } catch (e) {
       console.error(e);
       dispatch(setError(e));
