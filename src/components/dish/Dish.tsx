@@ -1,9 +1,9 @@
+import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
 import React from 'react';
 
 import styles from './Dish.module.scss';
 import DishComment from './comment';
-import { Props as CommentProps } from './comment/DishComment';
 
 type Props = {
   dish: {
@@ -18,26 +18,14 @@ type Props = {
   };
 };
 
-const dummyComments: Array<CommentProps> = [
-  { author: 'Lorem', text: 'Lorem ipsum dolor sit amet!' },
-  { author: 'ipsum', text: 'Lorem ipsum dolor sit amet!' },
-  { author: 'dolor', text: 'Lorem ipsum dolor sit amet!' },
-  { author: 'sit', text: 'Lorem ipsum dolor sit amet!' },
-];
-
 const Dish = ({ dish }: Props) => {
-  dish.reviews.forEach(console.log);
+  const { t } = useTranslation('common');
+
   let comments = dish.reviews.map((elem) => (
     <DishComment key={elem.id} author={elem.displayName} text={elem.text} />
   ));
   if (comments.length < 1) {
-    comments = dummyComments.map((elem) => (
-      <DishComment
-        key={elem.author + elem.text}
-        author={elem.author}
-        text={elem.text}
-      />
-    ));
+    comments = t('noCommentMsg');
   }
   return (
     <div className={styles.content}>
@@ -51,10 +39,10 @@ const Dish = ({ dish }: Props) => {
         />
       </div>
       <h2>{dish.name}</h2>
-      <h3>Kommentare</h3>
-      {comments}
+      <h3>{t('commentTitle')}</h3>
+      <div>{comments}</div>
       <button className={styles['all-comments']}>
-        Alle Kommentare Anzeigen
+        {t('allCommentsButton')}
       </button>
     </div>
   );

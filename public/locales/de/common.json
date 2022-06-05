@@ -1,4 +1,7 @@
 {
   "noFoodMsg": "Es scheint als gäbe es heute nix zum Essen :(",
+  "commentTitle": "Kommentare",
+  "noCommentMsg": "Erzähl doch mal, wie's geschmeckt hat!",
+  "allCommentsButton": "Alle Kommentare Anzeigen",
   "back": "Zurück"
 }
