@@ -19,7 +19,7 @@ const AdminPage: NextPage = () => {
   // Redirect a user to the login page if he has no token
   useEffect(() => {
     if (!token) {
-      router.push('/login');
+      router.push('/login?redirect=/admin');
     }
   }, [token, router]);
 
