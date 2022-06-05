@@ -6,7 +6,16 @@ import DishComment from './comment';
 import { Props as CommentProps } from './comment/DishComment';
 
 type Props = {
-  name: string;
+  dish: {
+    name: string;
+    id: string;
+    reviews: Array<{
+      id: string;
+      displayName: string;
+      text: string;
+      date: string;
+    }>;
+  };
 };
 
 const dummyComments: Array<CommentProps> = [
@@ -16,14 +25,20 @@ const dummyComments: Array<CommentProps> = [
   { author: 'sit', text: 'Lorem ipsum dolor sit amet!' },
 ];
 
-const Dish = ({ name }: Props) => {
-  const comments = dummyComments.map((elem) => (
-    <DishComment
-      key={elem.author + elem.text}
-      author={elem.author}
-      text={elem.text}
-    />
+const Dish = ({ dish }: Props) => {
+  dish.reviews.forEach(console.log);
+  let comments = dish.reviews.map((elem) => (
+    <DishComment key={elem.id} author={elem.displayName} text={elem.text} />
   ));
+  if (comments.length < 1) {
+    comments = dummyComments.map((elem) => (
+      <DishComment
+        key={elem.author + elem.text}
+        author={elem.author}
+        text={elem.text}
+      />
+    ));
+  }
   return (
     <div className={styles.content}>
       <div className={styles.image}>
@@ -35,7 +50,7 @@ const Dish = ({ name }: Props) => {
           layout={'fill'}
         />
       </div>
-      <h2>{name}</h2>
+      <h2>{dish.name}</h2>
       <h3>Kommentare</h3>
       {comments}
       <button className={styles['all-comments']}>

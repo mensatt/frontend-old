@@ -7,6 +7,12 @@ export const getOccurrenceByDate = gql`
       dish {
         id
         name
+        reviews {
+          id
+          displayName
+          text
+          createdAt
+        }
       }
       sideDishes {
         id
