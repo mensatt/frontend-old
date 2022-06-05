@@ -21,14 +21,14 @@ const Navigation = ({ opts }: Props) => {
     if (opts.showMensa) array.push(<MensaSelection key={'showMensa'} />);
     if (opts.showLanguage)
       array.push(<LanguageSwitcher key={'showLanguage'} />);
+
     // insert divider divs between each item in the list
-    array
+    return array
       .flatMap((item, index) => [
         item,
         <div className={styles.divider} key={index} />,
       ])
       .slice(0, -1);
-    return array;
   }, [opts.showLanguage, opts.showMensa]);
 
   return (
