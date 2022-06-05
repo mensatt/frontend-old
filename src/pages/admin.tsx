@@ -4,10 +4,16 @@ import { useMemo } from 'react';
 import AdminNavigation from 'src/components/admin-navigation';
 import DishGrid from 'src/components/dish-gird';
 import Login from 'src/components/login/Login';
-import { Categories, selectAdminNav, useAppSelector } from 'src/store';
+import {
+  Categories,
+  selectAdminNav,
+  selectToken,
+  useAppSelector,
+} from 'src/store';
 
 const AdminPage: NextPage = () => {
   const adminNav = useAppSelector(selectAdminNav);
+  const token = useAppSelector(selectToken);
 
   const selectedComponent = useMemo(() => {
     switch (adminNav.activeCategoryIdx) {
@@ -26,7 +32,7 @@ const AdminPage: NextPage = () => {
     [selectedComponent],
   );
 
-  return adminNav.token ? adminPageContent : <Login />;
+  return token ? adminPageContent : <Login />;
 };
 
 export default AdminPage;

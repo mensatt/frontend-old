@@ -2,9 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { RootState } from '../../store';
 
-export * from './queries.gql';
-export * from './getToken';
-
 export enum Categories {
   Occurrences = 0,
   Pictures = 1,
@@ -14,7 +11,6 @@ export enum Categories {
 type AdminNavState = {
   categories: Array<{ name: string }>;
   activeCategoryIdx: Categories;
-  token: string;
 };
 
 const initialState: AdminNavState = {
@@ -30,7 +26,6 @@ const initialState: AdminNavState = {
     },
   ],
   activeCategoryIdx: Categories.Occurrences,
-  token: '',
 };
 
 export const adminNavSlice = createSlice({
@@ -40,13 +35,10 @@ export const adminNavSlice = createSlice({
     setActiveIndex: (state, action: { payload: Categories }) => {
       state.activeCategoryIdx = action.payload;
     },
-    setToken: (state, action: { payload: string }) => {
-      state.token = action.payload;
-    },
   },
 });
 
-export const { setActiveIndex, setToken } = adminNavSlice.actions;
+export const { setActiveIndex } = adminNavSlice.actions;
 
 export const selectAdminNav = (state: RootState) => state.adminNav;
 
