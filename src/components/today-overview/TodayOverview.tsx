@@ -31,7 +31,7 @@ const TodayOverview = () => {
   }, [dispatch, navigation.weekday]);
 
   const content = todaysDishes.map((elem) => {
-    return <Dish name={elem.dish.name} key={elem.id} />;
+    return <Dish dish={elem.dish} key={elem.id} />;
   });
 
   const contentWithMessage = todaysDishes.length > 0 ? content : t('noFoodMsg');

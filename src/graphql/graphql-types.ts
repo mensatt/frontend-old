@@ -118,6 +118,9 @@ export type TagInput = {
 export type GetOccurrenceByDateQueryVariables = Exact<{
   date: Scalars['Time'];
 }>;
+export type GetReviewsByDishQueryVariables = Exact<{
+  id: Scalars['UUID'];
+}>;
 
 export type GetOccurrenceByDateQuery = {
   __typename?: 'Query';
@@ -128,12 +131,37 @@ export type GetOccurrenceByDateQuery = {
     priceStudent: number;
     priceStaff: number;
     priceGuest: number;
-    dish: { __typename?: 'Dish'; id: string; name: string };
+    dish: {
+      name: string;
+      id: string;
+      reviews: Array<{
+        id: string;
+        displayName: string;
+        text: string;
+        date: string;
+      }>;
+    };
     sideDishes: Array<{ __typename?: 'Dish'; id: string; name: string }>;
     tags: Array<{
       __typename?: 'Tag';
       shortName?: string | null;
       priority?: Priority | null;
     }>;
+  }>;
+};
+export type GetReviewsByDishQuery = {
+  __typename?: 'Query';
+  getReviewsByDish: Array<{
+    __typename?: 'Review';
+    id: string;
+    occurrance: { __typename?: 'Occurance'; date: string };
+    displayName: string;
+    stars: number;
+    text: string;
+    upVotes: number;
+    downvotes: number;
+    createdAt: string;
+    updatedAt: string;
+    acceptedAt: string;
   }>;
 };
