@@ -14,8 +14,6 @@ import { setReviewStatus } from './mutations.gql';
 export const updateReviewStatus = createAsyncThunk(
   'adminPage/updateReviewStatus',
   async (variables: SetReviewStatusMutationVariables, { dispatch }) => {
-    console.log(variables);
-
     try {
       await apolloClient.mutate<SetReviewStatusMutation>({
         mutation: setReviewStatus,
