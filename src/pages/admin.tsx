@@ -1,9 +1,9 @@
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useMemo } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useMemo } from 'react';
 import AdminNavigation from 'src/components/admin-navigation';
 import DishGrid from 'src/components/dish-gird';
-import Login from 'src/components/login/Login';
 import {
   Categories,
   selectAdminNav,
@@ -14,6 +14,14 @@ import {
 const AdminPage: NextPage = () => {
   const adminNav = useAppSelector(selectAdminNav);
   const token = useAppSelector(selectToken);
+  const router = useRouter();
+
+  // Redirect a user to the login page if he has no token
+  useEffect(() => {
+    if (!token) {
+      router.push('/login');
+    }
+  }, [token, router]);
 
   const selectedComponent = useMemo(() => {
     switch (adminNav.activeCategoryIdx) {
@@ -32,7 +40,7 @@ const AdminPage: NextPage = () => {
     [selectedComponent],
   );
 
-  return token ? adminPageContent : <Login />;
+  return token ? adminPageContent : <></>;
 };
 
 export default AdminPage;
