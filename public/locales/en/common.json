@@ -3,5 +3,6 @@
   "back": "Back",
   "imageDescription": "Picture of {{name}} by {{author}}",
   "commentHeading": "Comments",
+  "noCommentMsg": "Tell us how you liked this!",
   "showAllComments": "Show all comments"
 }
