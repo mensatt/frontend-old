@@ -21,20 +21,20 @@ const LanguageSwitcher = () => {
   };
 
   const display = (
-    <div className={styles.button} tabIndex={0}>
+    <button className={styles.button} tabIndex={0}>
       <Icon name={lang.icon} />
-    </div>
+    </button>
   );
 
   const options = languages.map((lang) => (
     <Link href={pathname} locale={lang.id} key={lang.id} tabIndex={0}>
-      <div
+      <button
         className={styles.dropdownOption}
         onClick={() => setLanguage(lang.id)}
       >
         <Icon name={lang.icon} />
         <span>{lang.name}</span>
-      </div>
+      </button>
     </Link>
   ));
 

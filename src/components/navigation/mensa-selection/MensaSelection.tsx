@@ -45,17 +45,17 @@ const MensaSelection = ({ className }: Props) => {
   );
 
   const display = activeMensa && (
-    <div className={className + ' ' + styles.button} tabIndex={0}>
+    <button className={className + ' ' + styles.button} tabIndex={0}>
       <p>{activeMensa.name}</p>
-    </div>
+    </button>
   );
 
   const options =
     data &&
     data.mensas.map((mensa, idx) => (
-      <div key={mensa.url} onClick={() => onMensaClick(idx)} tabIndex={0}>
+      <button key={mensa.url} onClick={() => onMensaClick(idx)} tabIndex={0}>
         <span>{mensa.name}</span>
-      </div>
+      </button>
     ));
 
   return (
