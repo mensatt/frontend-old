@@ -3,14 +3,15 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useMemo } from 'react';
-import { Provider } from 'react-redux';
+import apolloClient from 'src/apollo/client';
 import Footer from 'src/components/footer';
 import Navigation from 'src/components/navigation';
 import BackButton from 'src/components/navigation/back-button';
 import WeekdaySelection from 'src/components/navigation/weekday-selection';
 
+import { ApolloProvider } from '@apollo/client';
+
 import { NavigationDisplayOptions } from '../components/navigation/Navigation';
-import { store } from '../store';
 import '../styles/globals.scss';
 
 type Features = {
@@ -59,7 +60,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const navOpts = layout.nav;
 
   return (
-    <Provider store={store}>
+    <ApolloProvider client={apolloClient}>
       <Head>
         <title>Mensatt</title>
         {/* <link rel="icon" href="/favicon.ico" /> */}
@@ -71,7 +72,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Footer />
         </div>
       </div>
-    </Provider>
+    </ApolloProvider>
   );
 }
 

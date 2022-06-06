@@ -1,44 +1,48 @@
 import { useTranslation } from 'next-i18next';
-import React, { useEffect } from 'react';
-import { selectError } from 'src/store/actions/error';
+import React from 'react';
+import {
+  GET_NAVIGATION,
+  GET_OCCURRENCES_BY_DATE,
+  Navigation,
+} from 'src/apollo';
+import {
+  GetOccurrenceByDateQuery,
+  GetOccurrenceByDateQueryVariables,
+} from 'src/graphql/graphql-types';
 import { startOfWeek } from 'src/util';
 
-import {
-  selectNavigation,
-  selectTodaysDishes,
-  useAppDispatch,
-  useAppSelector,
-} from '../../store';
-import { getDishesOfDate } from '../../store/actions/todays-dishes/getDIshesOfDate';
+import { useQuery } from '@apollo/client';
+
 import Dish from '../dish/';
 
 import styles from './TodayOverview.module.scss';
 
 const TodayOverview = () => {
-  const todaysDishes = useAppSelector(selectTodaysDishes);
-  const navigation = useAppSelector(selectNavigation);
-  const error = useAppSelector(selectError);
-  const dispatch = useAppDispatch();
   const { t } = useTranslation('common');
-
-  useEffect(() => {
-    if (navigation.weekday === -1) return;
-    dispatch(
-      getDishesOfDate({
-        date: startOfWeek.add(navigation.weekday, 'day').toISOString(),
-      }),
-    );
-  }, [dispatch, navigation.weekday]);
-
-  const content = todaysDishes.map((elem) => {
-    return <Dish name={elem.dish.name} key={elem.id} />;
+  const { data: navData } = useQuery<Navigation>(GET_NAVIGATION);
+  const { loading, data, error } = useQuery<
+    GetOccurrenceByDateQuery,
+    GetOccurrenceByDateQueryVariables
+  >(GET_OCCURRENCES_BY_DATE, {
+    variables: {
+      date: startOfWeek
+        .add(navData ? navData.selectedWeekday : 0, 'day')
+        .toISOString(),
+    },
   });
 
-  const contentWithMessage = todaysDishes.length > 0 ? content : t('noFoodMsg');
+  const content =
+    data &&
+    data.getOccurrencesByDate.map((elem) => {
+      return <Dish name={elem.dish.name} key={elem.id} />;
+    });
+
+  const contentWithMessage =
+    data && data.getOccurrencesByDate.length > 0 ? content : t('noFoodMsg');
 
   return (
     <div className={styles.container}>
-      {error.message ? error.message : contentWithMessage}
+      {loading ? 'Loading...' : error ? error.message : contentWithMessage}
     </div>
   );
 };

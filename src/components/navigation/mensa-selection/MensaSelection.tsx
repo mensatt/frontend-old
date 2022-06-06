@@ -1,10 +1,7 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
-import {
-  selectNavigation,
-  setActiveMensaIdx,
-  useAppDispatch,
-  useAppSelector,
-} from 'src/store';
+import { GET_NAVIGATION, Navigation, activeMensaIdxVar } from 'src/apollo';
+
+import { useQuery } from '@apollo/client';
 
 import styles from './MensaSelection.module.scss';
 
@@ -13,38 +10,41 @@ type Props = {
 };
 
 const MensaSelection = ({ className }: Props) => {
-  const dispatch = useAppDispatch();
-  const navigation = useAppSelector(selectNavigation);
-  const { activeMensaIdx, mensas } = navigation;
+  const { data } = useQuery<Navigation>(GET_NAVIGATION);
 
   useEffect(() => {
+    if (!data) return;
     if (typeof window !== 'undefined') {
       // Read localStorage item if present
-      const cookeMensaIdx = mensas.findIndex(
+      const cookeMensaIdx = data.mensas.findIndex(
         (elem) => elem.url === localStorage.getItem('backendURL'),
       );
-      // Dispatching is needed to get the information to the component below
-      if (cookeMensaIdx != -1) dispatch(setActiveMensaIdx(cookeMensaIdx));
+      // Setting the value a second time is needed to get the information to the component below
+      if (cookeMensaIdx != -1) activeMensaIdxVar(cookeMensaIdx);
     }
-  }, [dispatch, mensas]);
+  }, [data]);
 
   const onMensaClick = useCallback(() => {
+    if (!data) return;
     if (typeof window !== 'undefined') {
       // On client, set localStorage item
-      localStorage.setItem('backendURL', mensas[(activeMensaIdx + 1) % 2].url);
+      localStorage.setItem(
+        'backendURL',
+        data.mensas[(data.activeMensaIdx + 1) % 2].url,
+      );
       // Reloading is needed to "apply" change (Apollo would cache otherwise)
       location.reload();
     }
-  }, [activeMensaIdx, mensas]);
+  }, [data]);
 
   const activeMensa = useMemo(
-    () => mensas[activeMensaIdx],
-    [activeMensaIdx, mensas],
+    () => data && data.mensas[data.activeMensaIdx],
+    [data],
   );
 
   return (
     <div className={className + ' ' + styles.content}>
-      <p onClick={onMensaClick}>{activeMensa.name}</p>
+      {activeMensa && <p onClick={onMensaClick}>{activeMensa.name}</p>}
     </div>
   );
 };
