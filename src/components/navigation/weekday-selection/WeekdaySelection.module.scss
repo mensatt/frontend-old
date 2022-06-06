@@ -26,6 +26,10 @@
       background-color: $bg-light;
     }
 
+    &:focus-visible {
+      outline: 2px solid $color-blue !important;
+    }
+
     span {
       transition: color 0.1s ease-out;
 
@@ -49,6 +53,10 @@
 
       span {
         color: $bg-lighter;
+      }
+
+      &:focus-visible {
+        outline: 2px solid black !important;
       }
     }
   }

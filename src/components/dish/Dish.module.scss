@@ -37,7 +37,7 @@
   }
 }
 
-button.all-comments {
+button.allComments {
   all: unset;
   padding: $card-item-padding $card-item-padding * 2;
   margin-top: $main-content-padding;
@@ -51,5 +51,9 @@ button.all-comments {
 
   &:hover {
     background-color: $bg-darker;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-blue !important;
   }
 }
