@@ -29,11 +29,11 @@ const LanguageSwitcher = () => {
   const options = languages.map((lang) => (
     <Link href={pathname} locale={lang.id} key={lang.id} tabIndex={0}>
       <button
-        className={styles.dropdownOption}
+        className={styles.popupButton}
         onClick={() => setLanguage(lang.id)}
       >
         <Icon name={lang.icon} />
-        <span>{lang.name}</span>
+        {lang.name}
       </button>
     </Link>
   ));

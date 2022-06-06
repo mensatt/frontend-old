@@ -19,3 +19,22 @@
     outline: 2px solid $color-blue !important;
   }
 }
+
+.popupButton {
+  display: flex;
+  align-items: center;
+  padding: 6pt 12pt;
+  cursor: pointer;
+  background-color: $bg-lighter;
+  border: none;
+  border-radius: 5pt;
+  transition: background-color 0.1s ease-out;
+
+  &:hover {
+    background-color: $bg-light;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-blue !important;
+  }
+}
