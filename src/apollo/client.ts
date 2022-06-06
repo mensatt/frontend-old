@@ -1,10 +1,6 @@
-import {
-  ApolloClient,
-  ApolloLink,
-  HttpLink,
-  InMemoryCache,
-  concat,
-} from '@apollo/client';
+import { ApolloClient, ApolloLink, HttpLink, concat } from '@apollo/client';
+
+import { cache } from './cache';
 
 const authMiddleware = new ApolloLink((operation, forward) => {
   // TODO: Add Auth
@@ -23,7 +19,7 @@ const authMiddleware = new ApolloLink((operation, forward) => {
 
 const apolloClient = new ApolloClient({
   link: concat(authMiddleware, new HttpLink()),
-  cache: new InMemoryCache({ addTypename: false, resultCaching: false }),
+  cache: cache,
 });
 
 export default apolloClient;
