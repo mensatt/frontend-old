@@ -7,11 +7,7 @@ import { useQuery } from '@apollo/client';
 
 import styles from './MensaSelection.module.scss';
 
-type Props = {
-  className?: string;
-};
-
-const MensaSelection = ({ className }: Props) => {
+const MensaSelection = () => {
   const { data } = useQuery<Navigation>(GET_NAVIGATION);
 
   useEffect(() => {
@@ -45,7 +41,7 @@ const MensaSelection = ({ className }: Props) => {
   );
 
   const display = activeMensa && (
-    <button className={className + ' ' + styles.button} tabIndex={0}>
+    <button className={styles.button} tabIndex={0}>
       <p>{activeMensa.name}</p>
     </button>
   );
@@ -53,8 +49,13 @@ const MensaSelection = ({ className }: Props) => {
   const options =
     data &&
     data.mensas.map((mensa, idx) => (
-      <button key={mensa.url} onClick={() => onMensaClick(idx)} tabIndex={0}>
-        <span>{mensa.name}</span>
+      <button
+        className={styles.popupButton}
+        key={mensa.url}
+        onClick={() => onMensaClick(idx)}
+        tabIndex={0}
+      >
+        {mensa.name}
       </button>
     ));
 
