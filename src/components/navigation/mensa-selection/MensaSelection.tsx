@@ -45,7 +45,7 @@ const MensaSelection = ({ className }: Props) => {
   );
 
   const display = activeMensa && (
-    <div className={className + ' ' + styles.button}>
+    <div className={className + ' ' + styles.button} tabIndex={0}>
       <p>{activeMensa.name}</p>
     </div>
   );
@@ -53,7 +53,7 @@ const MensaSelection = ({ className }: Props) => {
   const options =
     data &&
     data.mensas.map((mensa, idx) => (
-      <div key={mensa.url} onClick={() => onMensaClick(idx)}>
+      <div key={mensa.url} onClick={() => onMensaClick(idx)} tabIndex={0}>
         <span>{mensa.name}</span>
       </div>
     ));
