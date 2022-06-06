@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { login, selectToken, useAppDispatch, useAppSelector } from 'src/store';
 
 const LoginPage: NextPage = () => {
@@ -13,18 +13,27 @@ const LoginPage: NextPage = () => {
   const token = useAppSelector(selectToken);
 
   const router = useRouter();
-  const { redirect } = router.query;
+  const { redirectURL } = router.query;
 
-  // Redirect a user back where he came from (or to /) if he has a token
-  useEffect(() => {
-    if (token) {
-      if (typeof redirect === 'string') {
-        router.push(redirect);
-      } else {
-        router.push('/');
-      }
+  const redirectToParamOrRoot = useCallback(() => {
+    if (typeof redirectURL === 'string') {
+      router.push(redirectURL);
+    } else {
+      router.push('/');
     }
-  }, [token, router, redirect]);
+  }, [redirectURL, router]);
+
+  // Redirect a user back where he came from (or to / if the argument is no string) if he has a token
+  // This is only run one time on page load
+  useEffect(() => {
+    if (token) redirectToParamOrRoot();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // This redirect in this useEffect is (only) run once the login token was successfully acquired
+  useEffect(() => {
+    if (token) redirectToParamOrRoot();
+  }, [redirectToParamOrRoot, redirectURL, token]);
 
   return !token ? (
     <>

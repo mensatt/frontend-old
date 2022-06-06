@@ -8,6 +8,7 @@ import Footer from 'src/components/footer';
 import Navigation from 'src/components/navigation';
 import BackButton from 'src/components/navigation/back-button';
 import WeekdaySelection from 'src/components/navigation/weekday-selection';
+import { RouteGuard } from 'src/hocs/route-guard';
 
 import { NavigationDisplayOptions } from '../components/navigation/Navigation';
 import { store } from '../store';
@@ -67,7 +68,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <div id="styling" className="theme-TODO">
         <div className={'container'}>
           <Navigation opts={navOpts} />
-          <Component {...pageProps} />
+          <RouteGuard>
+            <Component {...pageProps} />
+          </RouteGuard>
           <Footer />
         </div>
       </div>
