@@ -1,8 +1,8 @@
 {
-  "noFoodMsg": "Es scheint als gäbe es heute nix zum Essen :(",
+  "noFoodMsg": "Es scheint, als gäbe es heute nichts zu Essen :(",
   "commentTitle": "Kommentare",
-  "noCommentMsg": "Erzähl doch mal, wie's geschmeckt hat!",
-  "allCommentsButton": "Alle Kommentare Anzeigen",
+  "noCommentMsg": "Erzähl doch mal, wie es dir geschmeckt hat!",
+  "allCommentsButton": "Alle Kommentare anzeigen",
   "back": "Zurück",
   "imageDescription": "Bild zeigt {{name}} aufgenommen von {{author}}"
 }
