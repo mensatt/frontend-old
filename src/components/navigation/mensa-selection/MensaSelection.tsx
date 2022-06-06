@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
+import Popup from 'reactjs-popup';
 import { activeMensaIdxVar } from 'src/apollo';
 import { GET_NAVIGATION, Navigation } from 'src/graphql/queries';
 
@@ -25,28 +26,48 @@ const MensaSelection = ({ className }: Props) => {
     }
   }, [data]);
 
-  const onMensaClick = useCallback(() => {
-    if (!data) return;
-    if (typeof window !== 'undefined') {
-      // On client, set localStorage item
-      localStorage.setItem(
-        'backendURL',
-        data.mensas[(data.activeMensaIdx + 1) % 2].url,
-      );
-      // Reloading is needed to "apply" change (Apollo would cache otherwise)
-      location.reload();
-    }
-  }, [data]);
+  const onMensaClick = useCallback(
+    (idx: number) => {
+      if (!data) return;
+      if (typeof window !== 'undefined') {
+        // On client, set localStorage item
+        localStorage.setItem('backendURL', data.mensas[idx].url);
+        // Reloading is needed to "apply" change (Apollo would cache otherwise)
+        location.reload();
+      }
+    },
+    [data],
+  );
 
   const activeMensa = useMemo(
     () => data && data.mensas[data.activeMensaIdx],
     [data],
   );
 
-  return (
-    <div className={className + ' ' + styles.content}>
-      {activeMensa && <p onClick={onMensaClick}>{activeMensa.name}</p>}
+  const display = activeMensa && (
+    <div className={className + ' ' + styles.button}>
+      <p>{activeMensa.name}</p>
     </div>
+  );
+
+  const options =
+    data &&
+    data.mensas.map((mensa, idx) => (
+      <div key={mensa.url} onClick={() => onMensaClick(idx)}>
+        <span>{mensa.name}</span>
+      </div>
+    ));
+
+  return (
+    <Popup
+      trigger={display}
+      position={['bottom center', 'bottom right']}
+      closeOnDocumentClick
+      on="click"
+      arrow={false}
+    >
+      {options}
+    </Popup>
   );
 };
 export default MensaSelection;

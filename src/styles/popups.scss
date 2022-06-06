@@ -1,0 +1,54 @@
+.popup-content {
+}
+
+.popup-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+//
+
+[role='tooltip'].popup-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2pt;
+  width: min-content;
+  min-width: 150px;
+  height: min-content;
+  padding: 2pt;
+  overflow: hidden;
+  background-color: $bg-lighter;
+  border: 1px solid $bg-dark;
+  border-radius: $card-item-br + 2pt;
+  box-shadow: 0 4px 7px #00000033;
+
+  & > div {
+    display: inline-flex;
+    gap: $card-item-padding;
+    align-items: center;
+    padding: $card-item-padding $card-item-padding * 2;
+    cursor: pointer;
+    border-radius: $card-item-br;
+
+    &:hover {
+      background-color: $bg-light;
+    }
+
+    div {
+      display: inline-block;
+      width: 20pt;
+      height: 20pt;
+    }
+
+    span {
+      display: inline-block;
+    }
+  }
+}
+
+.popup-arrow {
+  color: transparent;
+}
+
+[data-popup='tooltip'].popup-overlay {
+  background: transparent;
+}

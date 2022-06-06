@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React from 'react';
+import Popup from 'reactjs-popup';
 
 import Icon from '../../util/Icon';
 
@@ -15,13 +16,15 @@ const LanguageSwitcher = () => {
   const { locale, pathname } = useRouter();
   const lang = languages.find((lang) => lang.id === locale) ?? languages[0];
 
-  const [active, setActive] = useState(false);
-  const toggleActive = () => setActive(!active);
-
   const setLanguage = (id: string) => {
     document.cookie = `NEXT_LOCALE=${id};max-age=${315360000};path=/;SameSite=Strict`;
-    setActive(false);
   };
+
+  const display = (
+    <div className={styles.button}>
+      <Icon name={lang.icon} />
+    </div>
+  );
 
   const options = languages.map((lang) => (
     <Link href={pathname} locale={lang.id} key={lang.id}>
@@ -36,18 +39,15 @@ const LanguageSwitcher = () => {
   ));
 
   return (
-    <div className={styles.container}>
-      <div className={styles.button} onClick={toggleActive}>
-        <Icon name={lang.icon} />
-      </div>
-      <div
-        className={[styles.dropdown, active ? '' : styles.dropdownHidden].join(
-          ' ',
-        )}
-      >
-        {options}
-      </div>
-    </div>
+    <Popup
+      trigger={display}
+      position={['bottom center', 'bottom right']}
+      closeOnDocumentClick
+      on="click"
+      arrow={false}
+    >
+      {options}
+    </Popup>
   );
 };
 
