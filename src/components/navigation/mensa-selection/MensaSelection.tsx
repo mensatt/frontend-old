@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
-import { GET_NAVIGATION, Navigation, activeMensaIdxVar } from 'src/apollo';
+import { activeMensaIdxVar } from 'src/apollo';
+import { GET_NAVIGATION, Navigation } from 'src/graphql/queries';
 
 import { useQuery } from '@apollo/client';
 

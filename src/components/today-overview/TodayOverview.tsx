@@ -1,14 +1,14 @@
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import {
-  GET_NAVIGATION,
-  GET_OCCURRENCES_BY_DATE,
-  Navigation,
-} from 'src/apollo';
-import {
   GetOccurrenceByDateQuery,
   GetOccurrenceByDateQueryVariables,
 } from 'src/graphql/graphql-types';
+import {
+  GET_NAVIGATION,
+  GET_OCCURRENCES_BY_DATE,
+  Navigation,
+} from 'src/graphql/queries';
 import { startOfWeek } from 'src/util';
 
 import { useQuery } from '@apollo/client';

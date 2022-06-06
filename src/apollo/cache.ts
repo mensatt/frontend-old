@@ -1,6 +1,6 @@
-import { InMemoryCache, makeVar } from '@apollo/client';
+import { Navigation } from 'src/graphql/queries';
 
-import { Navigation } from './queries';
+import { InMemoryCache, makeVar } from '@apollo/client';
 
 export const cache = new InMemoryCache({
   addTypename: false,
