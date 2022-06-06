@@ -65,12 +65,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>Mensatt</title>
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
-      <div id="styling" className="theme-TODO">
-        <div className={'container'}>
-          <Navigation opts={navOpts} />
-          <Component {...pageProps} />
-          <Footer />
-        </div>
+      <div className={'container'}>
+        <Navigation opts={navOpts} />
+        <Component {...pageProps} />
+        <Footer />
       </div>
     </ApolloProvider>
   );

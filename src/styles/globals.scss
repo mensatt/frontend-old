@@ -1,4 +1,5 @@
 @import '~@styles/fonts.scss';
+@import '~@styles/popups.scss';
 
 html,
 body {
@@ -25,7 +26,7 @@ a {
 
 /* THEMING */
 
-#styling {
+body {
   @media (prefers-color-scheme: dark) {
     & * {
       @include theme-dark();
@@ -39,13 +40,13 @@ a {
   }
 }
 
-#styling.theme-light {
+body.theme-light {
   & * {
     @include theme-light();
   }
 }
 
-#styling.theme-dark {
+body.theme-dark {
   & * {
     @include theme-dark();
   }
