@@ -1,6 +1,5 @@
 import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
-import React from 'react';
 
 import styles from './Dish.module.scss';
 import DishComment from './comment';
@@ -32,7 +31,7 @@ const Dish = ({ dish }: Props) => {
       <div className={styles.image}>
         <Image
           src={'https://picsum.photos/1400/600'}
-          alt={'placeholder'}
+          alt={t('imageDescription', { name: name, author: 'John Doe' })}
           // width={100}
           // height={600}
           layout={'fill'}
