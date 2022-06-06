@@ -6,11 +6,11 @@ export const GET_OCCURRENCES_BY_DATE = gql`
       id
       dish {
         id
-        name
+        nameDe
       }
       sideDishes {
         id
-        name
+        nameDe
       }
       date
       priceStudent

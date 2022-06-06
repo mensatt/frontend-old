@@ -20,10 +20,91 @@ export type Scalars = {
   UUID: string;
 };
 
+export type AddSideDishToOccurrenceInput = {
+  dish: Scalars['UUID'];
+  occurrence: Scalars['UUID'];
+};
+
+export type AddTagToOccurrenceInput = {
+  occurrence: Scalars['UUID'];
+  tag: Scalars['String'];
+};
+
+export type CreateDishAliasInput = {
+  aliasName: Scalars['String'];
+  dish: Scalars['UUID'];
+  normalizedAliasName: Scalars['String'];
+};
+
+export type CreateDishInput = {
+  nameDe: Scalars['String'];
+  nameEn: Scalars['String'];
+};
+
+export type CreateOccurrenceInput = {
+  carbohydrates?: InputMaybe<Scalars['Int']>;
+  date: Scalars['Time'];
+  dish: Scalars['UUID'];
+  fat?: InputMaybe<Scalars['Int']>;
+  fiber?: InputMaybe<Scalars['Int']>;
+  kcal?: InputMaybe<Scalars['Int']>;
+  kj?: InputMaybe<Scalars['Int']>;
+  location: Scalars['UUID'];
+  priceGuest?: InputMaybe<Scalars['Int']>;
+  priceStaff?: InputMaybe<Scalars['Int']>;
+  priceStudent?: InputMaybe<Scalars['Int']>;
+  protein?: InputMaybe<Scalars['Int']>;
+  reviewStatus: ReviewStatus;
+  salt?: InputMaybe<Scalars['Int']>;
+  saturatedFat?: InputMaybe<Scalars['Int']>;
+  sideDishes?: InputMaybe<Array<Scalars['UUID']>>;
+  sugar?: InputMaybe<Scalars['Int']>;
+  tags?: InputMaybe<Array<Scalars['String']>>;
+};
+
+export type CreateReviewInput = {
+  displayName: Scalars['String'];
+  occurrence: Scalars['UUID'];
+  stars: Scalars['Int'];
+  text?: InputMaybe<Scalars['String']>;
+};
+
+export type CreateTagInput = {
+  description: Scalars['String'];
+  isAllergy?: InputMaybe<Scalars['Boolean']>;
+  key: Scalars['String'];
+  name: Scalars['String'];
+  priority?: InputMaybe<Priority>;
+  shortName?: InputMaybe<Scalars['String']>;
+};
+
+export type DeleteDishAliasInput = {
+  alias: Scalars['String'];
+};
+
+export type DeleteOccurrenceInput = {
+  id: Scalars['UUID'];
+};
+
+export type DeleteReviewInput = {
+  id: Scalars['UUID'];
+};
+
 export type Dish = {
   __typename?: 'Dish';
+  aliases: Array<Scalars['String']>;
   id: Scalars['UUID'];
-  name: Scalars['String'];
+  images: Array<Image>;
+  nameDe: Scalars['String'];
+  nameEn: Scalars['String'];
+  reviews: Array<Review>;
+};
+
+export type DishAlias = {
+  __typename?: 'DishAlias';
+  aliasName: Scalars['String'];
+  dish: Scalars['UUID'];
+  normalizedAliasName: Scalars['String'];
 };
 
 export type Image = {
@@ -39,27 +120,132 @@ export type Image = {
   updatedAt: Scalars['Time'];
 };
 
+export type Location = {
+  __typename?: 'Location';
+  id: Scalars['UUID'];
+  locationId: Scalars['Int'];
+  name: Scalars['String'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
+  addSideDishToOccurrence: OccurrenceSideDish;
+  addTagToOccurrence: OccurrenceTag;
+  createDish: Dish;
+  createDishAlias: DishAlias;
+  createOccurrence: Occurrence;
+  createReview: Review;
   createTag: Tag;
+  deleteDishAlias: DishAlias;
+  deleteOccurrence: Occurrence;
+  deleteReview: Review;
+  removeSideDishFromOccurrence: OccurrenceSideDish;
+  removeTagFromOccurrence: OccurrenceTag;
+  updateDish: Dish;
+  updateDishAlias: DishAlias;
+  updateOccurrence: Occurrence;
+  updateReview: Review;
+};
+
+export type MutationAddSideDishToOccurrenceArgs = {
+  input: AddSideDishToOccurrenceInput;
+};
+
+export type MutationAddTagToOccurrenceArgs = {
+  input: AddTagToOccurrenceInput;
+};
+
+export type MutationCreateDishArgs = {
+  input: CreateDishInput;
+};
+
+export type MutationCreateDishAliasArgs = {
+  input: CreateDishAliasInput;
+};
+
+export type MutationCreateOccurrenceArgs = {
+  input: CreateOccurrenceInput;
+};
+
+export type MutationCreateReviewArgs = {
+  input: CreateReviewInput;
 };
 
 export type MutationCreateTagArgs = {
-  tag: TagInput;
+  input: CreateTagInput;
+};
+
+export type MutationDeleteDishAliasArgs = {
+  input: DeleteDishAliasInput;
+};
+
+export type MutationDeleteOccurrenceArgs = {
+  input: DeleteOccurrenceInput;
+};
+
+export type MutationDeleteReviewArgs = {
+  input: DeleteReviewInput;
+};
+
+export type MutationRemoveSideDishFromOccurrenceArgs = {
+  input: RemoveSideDishFromOccurrenceInput;
+};
+
+export type MutationRemoveTagFromOccurrenceArgs = {
+  input: RemoveTagFromOccurrenceInput;
+};
+
+export type MutationUpdateDishArgs = {
+  input: UpdateDishInput;
+};
+
+export type MutationUpdateDishAliasArgs = {
+  input: UpdateDishAliasInput;
+};
+
+export type MutationUpdateOccurrenceArgs = {
+  input: UpdateOccurrenceInput;
+};
+
+export type MutationUpdateReviewArgs = {
+  input: UpdateReviewInput;
 };
 
 export type Occurrence = {
   __typename?: 'Occurrence';
+  carbohydrates?: Maybe<Scalars['Int']>;
   date: Scalars['Time'];
   dish: Dish;
+  fat?: Maybe<Scalars['Int']>;
+  fiber?: Maybe<Scalars['Int']>;
   id: Scalars['UUID'];
   images: Array<Image>;
-  priceGuest: Scalars['Int'];
-  priceStaff: Scalars['Int'];
-  priceStudent: Scalars['Int'];
+  kcal?: Maybe<Scalars['Int']>;
+  kj?: Maybe<Scalars['Int']>;
+  location: Location;
+  priceGuest?: Maybe<Scalars['Int']>;
+  priceStaff?: Maybe<Scalars['Int']>;
+  priceStudent?: Maybe<Scalars['Int']>;
+  protein?: Maybe<Scalars['Int']>;
+  reviewStatus: ReviewStatus;
   reviews: Array<Review>;
+  salt?: Maybe<Scalars['Int']>;
+  saturatedFat?: Maybe<Scalars['Int']>;
   sideDishes: Array<Dish>;
+  sugar?: Maybe<Scalars['Int']>;
   tags: Array<Tag>;
+};
+
+export type OccurrenceSideDish = {
+  __typename?: 'OccurrenceSideDish';
+  dish: Dish;
+  occurrence: Occurrence;
+};
+
+export type OccurrenceTag = {
+  __typename?: 'OccurrenceTag';
+  occurrence: Occurrence;
+  tag: Tag;
 };
 
 export enum Priority {
@@ -72,14 +258,43 @@ export type Query = {
   __typename?: 'Query';
   getAllDishes: Array<Dish>;
   getAllImages: Array<Image>;
+  getAllLocations: Array<Location>;
   getAllOccurrences: Array<Occurrence>;
   getAllReviews: Array<Review>;
   getAllTags: Array<Tag>;
+  getCurrentUser?: Maybe<User>;
+  getLocationById: Location;
+  getOccurrencesAfterInclusiveDate: Array<Occurrence>;
   getOccurrencesByDate: Array<Occurrence>;
+  getVcsBuildInfo?: Maybe<VcsBuildInfo>;
+  login: Scalars['String'];
+};
+
+export type QueryGetLocationByIdArgs = {
+  id: Scalars['UUID'];
+};
+
+export type QueryGetOccurrencesAfterInclusiveDateArgs = {
+  start: Scalars['Time'];
 };
 
 export type QueryGetOccurrencesByDateArgs = {
   date: Scalars['Time'];
+};
+
+export type QueryLoginArgs = {
+  email: Scalars['String'];
+  password: Scalars['String'];
+};
+
+export type RemoveSideDishFromOccurrenceInput = {
+  dish: Scalars['UUID'];
+  occurrence: Scalars['UUID'];
+};
+
+export type RemoveTagFromOccurrenceInput = {
+  occurrence: Scalars['UUID'];
+  tag: Scalars['String'];
 };
 
 export type Review = {
@@ -96,6 +311,14 @@ export type Review = {
   updatedAt: Scalars['Time'];
 };
 
+export enum ReviewStatus {
+  Approved = 'APPROVED',
+  AwaitingApproval = 'AWAITING_APPROVAL',
+  Confirmed = 'CONFIRMED',
+  PendingDeletion = 'PENDING_DELETION',
+  Updated = 'UPDATED',
+}
+
 export type Tag = {
   __typename?: 'Tag';
   description: Scalars['String'];
@@ -106,13 +329,58 @@ export type Tag = {
   shortName?: Maybe<Scalars['String']>;
 };
 
-export type TagInput = {
-  description: Scalars['String'];
-  isAllergy?: InputMaybe<Scalars['Boolean']>;
-  key: Scalars['String'];
-  name: Scalars['String'];
-  priority?: InputMaybe<Priority>;
-  shortName?: InputMaybe<Scalars['String']>;
+export type UpdateDishAliasInput = {
+  aliasName: Scalars['String'];
+  dish?: InputMaybe<Scalars['UUID']>;
+  newAliasName?: InputMaybe<Scalars['String']>;
+  normalizedAliasName?: InputMaybe<Scalars['String']>;
+};
+
+export type UpdateDishInput = {
+  id: Scalars['UUID'];
+  nameDe?: InputMaybe<Scalars['String']>;
+  nameEn?: InputMaybe<Scalars['String']>;
+};
+
+export type UpdateOccurrenceInput = {
+  carbohydrates?: InputMaybe<Scalars['Int']>;
+  date?: InputMaybe<Scalars['Time']>;
+  dish?: InputMaybe<Scalars['UUID']>;
+  fat?: InputMaybe<Scalars['Int']>;
+  fiber?: InputMaybe<Scalars['Int']>;
+  id: Scalars['UUID'];
+  kcal?: InputMaybe<Scalars['Int']>;
+  kj?: InputMaybe<Scalars['Int']>;
+  priceGuest?: InputMaybe<Scalars['Int']>;
+  priceStaff?: InputMaybe<Scalars['Int']>;
+  priceStudent?: InputMaybe<Scalars['Int']>;
+  protein?: InputMaybe<Scalars['Int']>;
+  reviewStatus?: InputMaybe<ReviewStatus>;
+  salt?: InputMaybe<Scalars['Int']>;
+  saturatedFat?: InputMaybe<Scalars['Int']>;
+  sugar?: InputMaybe<Scalars['Int']>;
+};
+
+export type UpdateReviewInput = {
+  acceptedAt?: InputMaybe<Scalars['Time']>;
+  displayName?: InputMaybe<Scalars['String']>;
+  id: Scalars['UUID'];
+  occurrence?: InputMaybe<Scalars['UUID']>;
+  stars?: InputMaybe<Scalars['Int']>;
+  text?: InputMaybe<Scalars['String']>;
+};
+
+export type User = {
+  __typename?: 'User';
+  email: Scalars['String'];
+  id: Scalars['UUID'];
+};
+
+export type VcsBuildInfo = {
+  __typename?: 'VcsBuildInfo';
+  commit: Scalars['String'];
+  commitTime: Scalars['String'];
+  modified: Scalars['String'];
 };
 
 export type GetOccurrenceByDateQueryVariables = Exact<{
@@ -125,11 +393,11 @@ export type GetOccurrenceByDateQuery = {
     __typename?: 'Occurrence';
     id: string;
     date: string;
-    priceStudent: number;
-    priceStaff: number;
-    priceGuest: number;
-    dish: { __typename?: 'Dish'; id: string; name: string };
-    sideDishes: Array<{ __typename?: 'Dish'; id: string; name: string }>;
+    priceStudent?: number | null;
+    priceStaff?: number | null;
+    priceGuest?: number | null;
+    dish: { __typename?: 'Dish'; id: string; nameDe: string };
+    sideDishes: Array<{ __typename?: 'Dish'; id: string; nameDe: string }>;
     tags: Array<{
       __typename?: 'Tag';
       shortName?: string | null;

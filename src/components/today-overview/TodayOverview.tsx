@@ -34,7 +34,7 @@ const TodayOverview = () => {
   const content =
     data &&
     data.getOccurrencesByDate.map((elem) => {
-      return <Dish name={elem.dish.name} key={elem.id} />;
+      return <Dish name={elem.dish.nameDe} key={elem.id} />;
     });
 
   const contentWithMessage =
