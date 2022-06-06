@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo } from 'react';
-import { GET_NAVIGATION, Navigation, selectedWeekdayVar } from 'src/apollo';
+import { selectedWeekdayVar } from 'src/apollo';
+import { GET_NAVIGATION, Navigation } from 'src/graphql/queries';
 import { afterFriday, currentWeekday, startOfWeek } from 'src/util/';
 
 import { useQuery } from '@apollo/client';
