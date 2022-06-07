@@ -30,30 +30,3 @@
     height: 20pt;
   }
 }
-
-.popupButton {
-  display: flex;
-  gap: 6pt;
-  align-items: center;
-  padding: 6pt 12pt;
-  cursor: pointer;
-  background-color: $bg-lighter;
-  border: none;
-  border-radius: 5pt;
-  outline: none;
-  transition: background-color 0.1s ease-out;
-
-  &:hover {
-    background-color: $bg-light;
-  }
-
-  &:focus-visible {
-    outline: 2px solid $color-blue !important;
-  }
-
-  & > * {
-    display: block;
-    width: 20pt;
-    height: 20pt;
-  }
-}
