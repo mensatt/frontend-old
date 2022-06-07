@@ -33,7 +33,7 @@ const LanguageSwitcher = () => {
         onClick={() => setLanguage(lang.id)}
       >
         <Icon name={lang.icon} />
-        {lang.name}
+        <span>{lang.name}</span>
       </button>
     </Link>
   ));
