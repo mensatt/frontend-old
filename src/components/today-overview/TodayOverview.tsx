@@ -42,7 +42,7 @@ const TodayOverview = () => {
 
   return (
     <div className={styles.container}>
-      {loading && 'Loading...'}
+      {loading && t('loading')}
       {error && error.message}
       {!loading && !error && contentWithMessage}
     </div>
