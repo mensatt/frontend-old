@@ -388,6 +388,13 @@ export type VcsBuildInfo = {
   modified: Scalars['String'];
 };
 
+export type LoginUserMutationVariables = Exact<{
+  email: Scalars['String'];
+  password: Scalars['String'];
+}>;
+
+export type LoginUserMutation = { __typename?: 'Mutation'; loginUser: string };
+
 export type GetOccurrencesByDateQueryVariables = Exact<{
   date: Scalars['Date'];
 }>;

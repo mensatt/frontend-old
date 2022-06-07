@@ -23,6 +23,11 @@ export const cache = new InMemoryCache({
             return mensasVar();
           },
         },
+        isLoggedIn: {
+          read() {
+            return isLoggedInVar();
+          },
+        },
       },
     },
   },
@@ -42,3 +47,7 @@ export const mensasVar = makeVar<Navigation['mensas']>([
 ]);
 
 export const activeMensaIdxVar = makeVar<Navigation['activeMensaIdx']>(0);
+
+export const isLoggedInVar = makeVar<Navigation['isLoggedIn']>(
+  typeof window !== 'undefined' ? !!localStorage.getItem('token') : false,
+);

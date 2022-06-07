@@ -11,6 +11,7 @@ export type Navigation = {
   selectedWeekday: number;
   activeMensaIdx: number;
   mensas: Mensa[];
+  isLoggedIn: boolean;
 };
 
 export const GET_NAVIGATION = gql`
@@ -18,5 +19,6 @@ export const GET_NAVIGATION = gql`
     selectedWeekday @client
     activeMensaIdx @client
     mensas @client
+    isLoggedIn @client
   }
 `;

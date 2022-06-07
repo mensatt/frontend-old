@@ -1,0 +1,11 @@
+{
+  "loginError": "Fehler während des Einloggens",
+  "chooseUsername": "Wähle einen Benutzernamen",
+  "yourEmail": "Deine E-Mail Adresse",
+  "yourPassword": "Dein Paswort",
+  "choosePassword": "Wähle ein sicheres Passwort",
+  "login": "Anmelden",
+  "register": "Account erstellen",
+  "switchToRegister": "Noch keinen Account?",
+  "switchToLogin": "Bereits registriert?"
+}
