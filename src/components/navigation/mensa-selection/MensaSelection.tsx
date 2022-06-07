@@ -49,12 +49,7 @@ const MensaSelection = () => {
   const options =
     data &&
     data.mensas.map((mensa, idx) => (
-      <button
-        className={styles.popupButton}
-        key={mensa.url}
-        onClick={() => onMensaClick(idx)}
-        tabIndex={0}
-      >
+      <button key={mensa.url} onClick={() => onMensaClick(idx)} tabIndex={0}>
         {mensa.name}
       </button>
     ));

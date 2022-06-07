@@ -21,12 +21,14 @@
   border-radius: $card-item-br + 2pt;
   box-shadow: 0 4px 7px #00000033;
 
-  & > div {
+  & > button {
     display: inline-flex;
     gap: $card-item-padding;
     align-items: center;
     padding: $card-item-padding $card-item-padding * 2;
     cursor: pointer;
+    background-color: $bg-lighter;
+    border: none;
     border-radius: $card-item-br;
 
     &:hover {
