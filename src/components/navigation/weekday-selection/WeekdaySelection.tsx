@@ -8,11 +8,7 @@ import { useQuery } from '@apollo/client';
 import Weekday from './Weekday';
 import styles from './WeekdaySelection.module.scss';
 
-type Props = {
-  className?: string;
-};
-
-const WeekdaySelection = ({ className }: Props) => {
+const WeekdaySelection = () => {
   const { data } = useQuery<Navigation>(GET_NAVIGATION);
 
   useEffect(() => {
@@ -37,7 +33,7 @@ const WeekdaySelection = ({ className }: Props) => {
     [data],
   );
 
-  return <div className={className + ' ' + styles.container}>{week}</div>;
+  return <div className={styles.container}>{week}</div>;
 };
 
 export default WeekdaySelection;
