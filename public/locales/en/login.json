@@ -1,0 +1,11 @@
+{
+  "loginError": "There was an error when trying to log you in",
+  "chooseUsername": "Choose a username",
+  "yourEmail": "Your email address",
+  "yourPassword": "Your password",
+  "choosePassword": "Choose a secure password",
+  "login": "Log in",
+  "register": "Register",
+  "switchToRegister": "Need to create an account?",
+  "switchToLogin": "Already have an account?"
+}
