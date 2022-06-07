@@ -3,5 +3,6 @@
   "back": "Back",
   "imageDescription": "Picture of {{name}} by {{author}}",
   "commentHeading": "Comments",
-  "showAllComments": "Show all comments"
+  "showAllComments": "Show all comments",
+  "loading": "Loading..."
 }
