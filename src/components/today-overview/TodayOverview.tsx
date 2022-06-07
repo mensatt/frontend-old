@@ -29,6 +29,7 @@ const TodayOverview = () => {
         .add(navData ? navData.selectedWeekday : 0, 'day')
         .format('YYYY-MM-DD'),
     },
+    skip: navData && navData.selectedWeekday < 0,
   });
 
   const content =
