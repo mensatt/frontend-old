@@ -2,7 +2,7 @@ import { NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { isLoggedInVar } from 'src/apollo';
 import {
   LoginUserMutation,
@@ -20,7 +20,13 @@ const signupEnabled = false;
 // https://www.howtographql.com/react-apollo/5-authentication/
 const Login: NextPage = () => {
   const { t } = useTranslation('login');
+
   const router = useRouter();
+  const redirectURL = useMemo(() => {
+    const { redirectURL } = router.query;
+    return typeof redirectURL === 'string' ? redirectURL : '/';
+  }, [router.query]);
+
   const [formState, setFormState] = useState({
     login: true,
     email: '',
@@ -35,17 +41,15 @@ const Login: NextPage = () => {
     onCompleted: ({ loginUser }) => {
       localStorage.setItem('token', loginUser);
       isLoggedInVar(true);
-      router.push('/');
+      router.push(redirectURL);
     },
   });
 
   const { data } = useQuery<Navigation>(GET_NAVIGATION);
 
   useEffect(() => {
-    if (data && data.isLoggedIn) {
-      router.push('/');
-    }
-  }, [data, router]);
+    if (data && data.isLoggedIn) router.push(redirectURL);
+  }, [data, redirectURL, router]);
 
   return (
     <div>

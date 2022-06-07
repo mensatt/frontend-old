@@ -8,6 +8,7 @@ import Footer from 'src/components/footer';
 import Navigation from 'src/components/navigation';
 import BackButton from 'src/components/navigation/back-button';
 import WeekdaySelection from 'src/components/navigation/weekday-selection';
+import RouteGuard from 'src/hocs/route-guard/RouteGuard';
 
 import { ApolloProvider } from '@apollo/client';
 
@@ -67,7 +68,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <div className={'container'}>
         <Navigation opts={navOpts} />
-        <Component {...pageProps} />
+        <RouteGuard>
+          <Component {...pageProps} />
+        </RouteGuard>
         <Footer />
       </div>
     </ApolloProvider>
