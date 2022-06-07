@@ -10,5 +10,6 @@ generates:
       withHooks: false
       strictScalars: true
       scalars:
-        Time: 'string'
+        Timestamp: 'string'
         UUID: 'string'
+        Date: 'string'
