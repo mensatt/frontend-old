@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React, { useEffect, useMemo } from 'react';
 import { selectedWeekdayVar } from 'src/apollo';
 import { GET_NAVIGATION, Navigation } from 'src/graphql/queries';
@@ -10,12 +11,25 @@ import styles from './WeekdaySelection.module.scss';
 
 const WeekdaySelection = () => {
   const { data } = useQuery<Navigation>(GET_NAVIGATION);
+  const router = useRouter();
 
   useEffect(() => {
-    selectedWeekdayVar(afterFriday ? 0 : currentWeekday);
-    // Disabling here because we only want to execute on initial page load
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    // Skip execution until router is ready
+    // This is done to avoid undefined query params
+    // Also see: https://stackoverflow.com/a/66162437
+    if (!router.isReady) return;
+
+    // Get and parse the weekday from URL
+    const { weekday: weekdayUrl } = router.query;
+    const weekdayUrlParsed =
+      typeof weekdayUrl === 'string' ? parseInt(weekdayUrl) : -1;
+
+    const nextOpenWeekday = afterFriday ? 0 : currentWeekday;
+    const weekdayToSet =
+      weekdayUrlParsed >= 0 ? weekdayUrlParsed : nextOpenWeekday;
+
+    selectedWeekdayVar(weekdayToSet);
+  }, [router]);
 
   const week = useMemo(
     () =>
@@ -26,11 +40,17 @@ const WeekdaySelection = () => {
             key={elem}
             date={startOfWeek.add(elem, 'day')}
             selected={elem === data.selectedWeekday}
-            onClick={() => selectedWeekdayVar(elem)}
+            onClick={() => {
+              router.push({
+                pathname: router.pathname,
+                query: { weekday: elem },
+              });
+              selectedWeekdayVar(elem);
+            }}
           />
         );
       }),
-    [data],
+    [data, router],
   );
 
   return <div className={styles.container}>{week}</div>;
