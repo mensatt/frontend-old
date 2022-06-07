@@ -1,8 +1,8 @@
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import {
-  GetOccurrenceByDateQuery,
-  GetOccurrenceByDateQueryVariables,
+  GetOccurrencesByDateQuery,
+  GetOccurrencesByDateQueryVariables,
 } from 'src/graphql/graphql-types';
 import {
   GET_NAVIGATION,
@@ -21,24 +21,24 @@ const TodayOverview = () => {
   const { t } = useTranslation('common');
   const { data: navData } = useQuery<Navigation>(GET_NAVIGATION);
   const { loading, data, error } = useQuery<
-    GetOccurrenceByDateQuery,
-    GetOccurrenceByDateQueryVariables
+    GetOccurrencesByDateQuery,
+    GetOccurrencesByDateQueryVariables
   >(GET_OCCURRENCES_BY_DATE, {
     variables: {
       date: startOfWeek
         .add(navData ? navData.selectedWeekday : 0, 'day')
-        .toISOString(),
+        .format('YYYY-MM-DD'),
     },
   });
 
   const content =
     data &&
-    data.getOccurrencesByDate.map((elem) => {
+    data.occurrencesByDate.map((elem) => {
       return <Dish name={elem.dish.nameDe} key={elem.id} />;
     });
 
   const contentWithMessage =
-    data && data.getOccurrencesByDate.length > 0 ? content : t('noFoodMsg');
+    data && data.occurrencesByDate.length > 0 ? content : t('noFoodMsg');
 
   return (
     <div className={styles.container}>

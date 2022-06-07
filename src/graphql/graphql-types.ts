@@ -16,7 +16,8 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  Time: string;
+  Date: string;
+  Timestamp: string;
   UUID: string;
 };
 
@@ -38,12 +39,12 @@ export type CreateDishAliasInput = {
 
 export type CreateDishInput = {
   nameDe: Scalars['String'];
-  nameEn: Scalars['String'];
+  nameEn?: InputMaybe<Scalars['String']>;
 };
 
 export type CreateOccurrenceInput = {
   carbohydrates?: InputMaybe<Scalars['Int']>;
-  date: Scalars['Time'];
+  date: Scalars['Date'];
   dish: Scalars['UUID'];
   fat?: InputMaybe<Scalars['Int']>;
   fiber?: InputMaybe<Scalars['Int']>;
@@ -96,7 +97,7 @@ export type Dish = {
   id: Scalars['UUID'];
   images: Array<Image>;
   nameDe: Scalars['String'];
-  nameEn: Scalars['String'];
+  nameEn?: Maybe<Scalars['String']>;
   reviews: Array<Review>;
 };
 
@@ -109,22 +110,27 @@ export type DishAlias = {
 
 export type Image = {
   __typename?: 'Image';
-  acceptedAt?: Maybe<Scalars['Time']>;
-  createdAt: Scalars['Time'];
+  acceptedAt?: Maybe<Scalars['Timestamp']>;
+  createdAt: Scalars['Timestamp'];
   description?: Maybe<Scalars['String']>;
   displayName: Scalars['String'];
   downVotes: Scalars['Int'];
   id: Scalars['UUID'];
   occurrence: Occurrence;
   upVotes: Scalars['Int'];
-  updatedAt: Scalars['Time'];
+  updatedAt: Scalars['Timestamp'];
 };
 
 export type Location = {
   __typename?: 'Location';
+  externalId: Scalars['Int'];
   id: Scalars['UUID'];
-  locationId: Scalars['Int'];
   name: Scalars['String'];
+};
+
+export type LoginUserInput = {
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
 
 export type Mutation = {
@@ -139,6 +145,7 @@ export type Mutation = {
   deleteDishAlias: DishAlias;
   deleteOccurrence: Occurrence;
   deleteReview: Review;
+  loginUser: Scalars['String'];
   removeSideDishFromOccurrence: OccurrenceSideDish;
   removeTagFromOccurrence: OccurrenceTag;
   updateDish: Dish;
@@ -187,6 +194,10 @@ export type MutationDeleteReviewArgs = {
   input: DeleteReviewInput;
 };
 
+export type MutationLoginUserArgs = {
+  input: LoginUserInput;
+};
+
 export type MutationRemoveSideDishFromOccurrenceArgs = {
   input: RemoveSideDishFromOccurrenceInput;
 };
@@ -214,7 +225,7 @@ export type MutationUpdateReviewArgs = {
 export type Occurrence = {
   __typename?: 'Occurrence';
   carbohydrates?: Maybe<Scalars['Int']>;
-  date: Scalars['Time'];
+  date: Scalars['Date'];
   dish: Dish;
   fat?: Maybe<Scalars['Int']>;
   fiber?: Maybe<Scalars['Int']>;
@@ -256,35 +267,29 @@ export enum Priority {
 
 export type Query = {
   __typename?: 'Query';
-  getAllDishes: Array<Dish>;
-  getAllImages: Array<Image>;
-  getAllLocations: Array<Location>;
-  getAllOccurrences: Array<Occurrence>;
-  getAllReviews: Array<Review>;
-  getAllTags: Array<Tag>;
-  getCurrentUser?: Maybe<User>;
-  getLocationById: Location;
-  getOccurrencesAfterInclusiveDate: Array<Occurrence>;
-  getOccurrencesByDate: Array<Occurrence>;
-  getVcsBuildInfo?: Maybe<VcsBuildInfo>;
-  login: Scalars['String'];
+  currentUser?: Maybe<User>;
+  dishes: Array<Dish>;
+  images: Array<Image>;
+  locationById: Location;
+  locations: Array<Location>;
+  occurrences: Array<Occurrence>;
+  occurrencesAfterInclusiveDate: Array<Occurrence>;
+  occurrencesByDate: Array<Occurrence>;
+  reviews: Array<Review>;
+  tags: Array<Tag>;
+  vcsBuildInfo?: Maybe<VcsBuildInfo>;
 };
 
-export type QueryGetLocationByIdArgs = {
+export type QueryLocationByIdArgs = {
   id: Scalars['UUID'];
 };
 
-export type QueryGetOccurrencesAfterInclusiveDateArgs = {
-  start: Scalars['Time'];
+export type QueryOccurrencesAfterInclusiveDateArgs = {
+  start: Scalars['Date'];
 };
 
-export type QueryGetOccurrencesByDateArgs = {
-  date: Scalars['Time'];
-};
-
-export type QueryLoginArgs = {
-  email: Scalars['String'];
-  password: Scalars['String'];
+export type QueryOccurrencesByDateArgs = {
+  date: Scalars['Date'];
 };
 
 export type RemoveSideDishFromOccurrenceInput = {
@@ -299,8 +304,8 @@ export type RemoveTagFromOccurrenceInput = {
 
 export type Review = {
   __typename?: 'Review';
-  acceptedAt?: Maybe<Scalars['Time']>;
-  createdAt: Scalars['Time'];
+  acceptedAt?: Maybe<Scalars['Timestamp']>;
+  createdAt: Scalars['Timestamp'];
   displayName: Scalars['String'];
   downVotes: Scalars['Int'];
   id: Scalars['UUID'];
@@ -308,7 +313,7 @@ export type Review = {
   stars: Scalars['Int'];
   text?: Maybe<Scalars['String']>;
   upVotes: Scalars['Int'];
-  updatedAt: Scalars['Time'];
+  updatedAt: Scalars['Timestamp'];
 };
 
 export enum ReviewStatus {
@@ -344,7 +349,7 @@ export type UpdateDishInput = {
 
 export type UpdateOccurrenceInput = {
   carbohydrates?: InputMaybe<Scalars['Int']>;
-  date?: InputMaybe<Scalars['Time']>;
+  date?: InputMaybe<Scalars['Date']>;
   dish?: InputMaybe<Scalars['UUID']>;
   fat?: InputMaybe<Scalars['Int']>;
   fiber?: InputMaybe<Scalars['Int']>;
@@ -362,7 +367,7 @@ export type UpdateOccurrenceInput = {
 };
 
 export type UpdateReviewInput = {
-  acceptedAt?: InputMaybe<Scalars['Time']>;
+  acceptedAt?: InputMaybe<Scalars['Timestamp']>;
   displayName?: InputMaybe<Scalars['String']>;
   id: Scalars['UUID'];
   occurrence?: InputMaybe<Scalars['UUID']>;
@@ -383,13 +388,13 @@ export type VcsBuildInfo = {
   modified: Scalars['String'];
 };
 
-export type GetOccurrenceByDateQueryVariables = Exact<{
-  date: Scalars['Time'];
+export type GetOccurrencesByDateQueryVariables = Exact<{
+  date: Scalars['Date'];
 }>;
 
-export type GetOccurrenceByDateQuery = {
+export type GetOccurrencesByDateQuery = {
   __typename?: 'Query';
-  getOccurrencesByDate: Array<{
+  occurrencesByDate: Array<{
     __typename?: 'Occurrence';
     id: string;
     date: string;
