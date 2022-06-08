@@ -13,6 +13,8 @@ import { GET_NAVIGATION, Navigation } from 'src/graphql/queries';
 
 import { useMutation, useQuery } from '@apollo/client';
 
+import styles from './page.module.scss';
+
 // Set this to true, if you whish to enable signup
 const signupEnabled = false;
 
@@ -52,64 +54,79 @@ const Login: NextPage = () => {
   }, [data, redirectURL, router]);
 
   return (
-    <div>
-      <h2>{formState.login ? t('login') : t('register')}</h2>
-      {error && <p>{t('loginError')}</p>}
-      <div>
-        {signupEnabled && !formState.login && (
+    <div className={styles.wrapper}>
+      <div className={styles.content}>
+        <h2>{formState.login ? t('login') : t('register')}</h2>
+        {error && <p className={styles.error}>{t('loginError')}</p>}
+        <div className={styles.inputs}>
+          {signupEnabled && !formState.login && (
+            <>
+              <label htmlFor="login-username">{t('chooseUsername')}</label>
+              <input
+                id="login-username"
+                value={formState.name}
+                onChange={(e) =>
+                  setFormState({
+                    ...formState,
+                    name: e.target.value,
+                  })
+                }
+                type="text"
+                placeholder={t('chooseUsernamePlaceholder')}
+              />
+            </>
+          )}
+          <label htmlFor="login-email">{t('yourEmail')}</label>
           <input
-            value={formState.name}
+            id="login-email"
+            value={formState.email}
             onChange={(e) =>
               setFormState({
                 ...formState,
-                name: e.target.value,
+                email: e.target.value,
               })
             }
-            type="text"
-            placeholder={t('chooseUsername')}
+            type="email"
+            placeholder={t('yourEmailPlaceholder')}
           />
-        )}
-        <input
-          value={formState.email}
-          onChange={(e) =>
-            setFormState({
-              ...formState,
-              email: e.target.value,
-            })
-          }
-          type="text"
-          placeholder={t('yourEmail')}
-        />
-        <input
-          value={formState.password}
-          onChange={(e) =>
-            setFormState({
-              ...formState,
-              password: e.target.value,
-            })
-          }
-          type="password"
-          placeholder={
-            formState.login ? t('yourPassword') : t('choosePassword')
-          }
-        />
-      </div>
-      <div>
-        <button onClick={() => login()} disabled={loading}>
-          {formState.login ? t('login') : t('register')}
-        </button>
-        {signupEnabled && (
-          <button
-            onClick={() =>
+          <label htmlFor="login-password">
+            {formState.login ? t('yourPassword') : t('choosePassword')}
+          </label>
+          <input
+            id="login-password"
+            value={formState.password}
+            onChange={(e) =>
               setFormState({
                 ...formState,
-                login: !formState.login,
+                password: e.target.value,
               })
             }
+            type="password"
+            placeholder="•••••••••••"
+          />
+        </div>
+        <div className={styles.buttons}>
+          <button
+            onClick={() => login()}
+            disabled={loading}
+            className={styles.buttonPrimary}
           >
-            {formState.login ? t('switchToRegister') : t('switchToLogin')}
+            {formState.login ? t('login') : t('register')}
           </button>
-        )}
+          {signupEnabled && (
+            <button
+              onClick={() =>
+                setFormState({
+                  ...formState,
+                  login: !formState.login,
+                })
+              }
+              className={styles.buttonSecondary}
+            >
+              {formState.login ? t('switchToRegister') : t('switchToLogin')}
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
