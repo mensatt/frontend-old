@@ -4,5 +4,6 @@
   "imageDescription": "Picture of {{name}} by {{author}}",
   "commentHeading": "Comments",
   "showAllComments": "Show all comments",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "logoutSuccessful": "Logout successful"
 }
