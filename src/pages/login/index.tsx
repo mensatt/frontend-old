@@ -54,7 +54,13 @@ const Login: NextPage = () => {
   }, [data, redirectURL, router]);
 
   return (
-    <div className={styles.wrapper}>
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+        if (formState.login) login();
+      }}
+      className={styles.wrapper}
+    >
       <div className={styles.content}>
         <h2>{formState.login ? t('login') : t('register')}</h2>
         {error && <p className={styles.error}>{t('loginError')}</p>}
@@ -106,15 +112,12 @@ const Login: NextPage = () => {
           />
         </div>
         <div className={styles.buttons}>
-          <button
-            onClick={() => login()}
-            disabled={loading}
-            className={styles.buttonPrimary}
-          >
+          <button disabled={loading} className={styles.buttonPrimary}>
             {formState.login ? t('login') : t('register')}
           </button>
           {signupEnabled && (
             <button
+              type="button"
               onClick={() =>
                 setFormState({
                   ...formState,
@@ -128,7 +131,7 @@ const Login: NextPage = () => {
           )}
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 
