@@ -1,0 +1,81 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  width: 100%;
+  max-width: $max-content-width;
+  padding: $main-content-padding;
+  background-color: $bg-lighter;
+  border-radius: $main-content-br;
+}
+
+.error {
+  padding: $card-item-padding * 1.5 $card-item-padding * 2;
+  margin-bottom: $main-content-padding;
+  font-family: $font-regular;
+  font-size: 11pt;
+  color: $color-red;
+  background-color: $color-red20;
+  border-radius: $card-item-br;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    margin-bottom: $card-item-padding;
+    font-family: $font-major;
+    font-size: 9pt;
+    color: $color-regular;
+    text-transform: uppercase;
+  }
+
+  input {
+    all: unset;
+    padding: $card-item-padding * 1.5 $card-item-padding * 2;
+    margin-bottom: $main-content-padding;
+    font-family: $font-regular;
+    font-size: 11pt;
+    background-color: $bg-light;
+    border-radius: $card-item-br;
+    box-shadow: 0 0 0 0px inset #00000000;
+    transition: box-shadow 0.1s ease;
+
+    &:hover {
+      box-shadow: 0 0 0 1px inset #00000022;
+    }
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $card-item-padding;
+
+  button {
+    padding: $card-item-padding * 1.5 $card-item-padding * 2;
+    font-family: $font-major;
+    font-size: 11pt;
+    cursor: pointer;
+    border: none;
+    border-radius: 999pt;
+    transition: filter 0.1s ease;
+
+    &:hover {
+      filter: brightness(0.93);
+    }
+  }
+}
+
+.buttonPrimary {
+  color: $bg-lighter;
+  background-color: $color-blue;
+}
+
+.buttonSecondary {
+  color: $color-regular;
+  background-color: $bg-dark;
+}

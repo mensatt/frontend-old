@@ -4,6 +4,8 @@
   --bg-light: #eeeeee;
   --bg-lighter: #ffffff;
   --color-blue: #55acee;
+  --color-red: #ec3960;
+  --color-red20: #ec396020;
   --color-minor: #585858;
   --color-regular: #141414;
   --color-major: #080808;
@@ -17,6 +19,8 @@
   --bg-light: #eeeeee;
   --bg-lighter: #ffffff;
   --color-blue: #55acee;
+  --color-red: #ec3960;
+  --color-red20: #ec396020;
   --color-minor: #585858;
   --color-regular: #141414;
   --color-major: #080808;
@@ -33,6 +37,8 @@ $bg-lighter: var(--bg-lighter);
 
 // theme
 $color-blue: var(--color-blue);
+$color-red: var(--color-red);
+$color-red20: var(--color-red20);
 $color-minor: var(--color-minor);
 $color-regular: var(--color-regular);
 $color-major: var(--color-major);
@@ -42,10 +48,12 @@ $color-header: var(--color-header);
 
 $font-header: 'Montserrat 900', 'Roboto', sans-serif;
 $font-major: 'Montserrat 800', 'Roboto', sans-serif;
-$font-regular: 'Montserrat 400', 'Roboto', sans-serif;
-$font-minor: 'Montserrat 400', 'Roboto', sans-serif;
+$font-regular: 'Montserrat 500', 'Roboto', sans-serif;
+$font-minor: 'Montserrat 500', 'Roboto', sans-serif;
 
 //// SPACING / SIZES
+
+$max-content-width: 350pt;
 
 $header-element-height: 40pt;
 $header-element-br: 999pt;
