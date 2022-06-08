@@ -49,5 +49,5 @@ export const mensasVar = makeVar<Navigation['mensas']>([
 export const activeMensaIdxVar = makeVar<Navigation['activeMensaIdx']>(0);
 
 export const isLoggedInVar = makeVar<Navigation['isLoggedIn']>(
-  typeof window !== 'undefined' ? !!localStorage.getItem('token') : false,
+  typeof window !== 'undefined' && !!localStorage.getItem('token'),
 );
