@@ -6,6 +6,7 @@
   "emailPlaceholder": "mail@example.com",
   "yourPassword": "Your password",
   "choosePassword": "Choose a secure password",
+  "passwordPlaceholder": "Password",
   "login": "Log in",
   "register": "Register",
   "switchToRegister": "Need to create an account?",

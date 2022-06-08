@@ -108,7 +108,7 @@ const Login: NextPage = () => {
               })
             }
             type="password"
-            placeholder="•••••••••••"
+            placeholder={t('passwordPlaceholder')}
           />
         </div>
         <div className={styles.buttons}>
