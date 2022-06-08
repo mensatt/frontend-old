@@ -1,7 +1,9 @@
 {
   "loginError": "Fehler während des Einloggens",
   "chooseUsername": "Wähle einen Benutzernamen",
+  "chooseUsernamePlaceholder": "Toast Thomas",
   "yourEmail": "Deine E-Mail Adresse",
+  "yourEmailPlaceholder": "mail@beispiel.com",
   "yourPassword": "Dein Paswort",
   "choosePassword": "Wähle ein sicheres Passwort",
   "login": "Anmelden",

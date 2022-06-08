@@ -1,7 +1,9 @@
 {
   "loginError": "There was an error when trying to log you in",
   "chooseUsername": "Choose a username",
+  "chooseUsernamePlaceholder": "Soup Stefan",
   "yourEmail": "Your email address",
+  "yourEmailPlaceholder": "mail@example.com",
   "yourPassword": "Your password",
   "choosePassword": "Choose a secure password",
   "login": "Log in",
