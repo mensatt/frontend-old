@@ -2,6 +2,7 @@ import React, { ReactNode, useMemo } from 'react';
 
 import styles from './Navigation.module.scss';
 import LanguageSwitcher from './language-switcher';
+import LogoutButton from './logout-button/LogoutButton';
 import MensaSelection from './mensa-selection';
 
 export type NavigationDisplayOptions = {
@@ -21,6 +22,7 @@ const Navigation = ({ opts }: Props) => {
     if (opts.showMensa) array.push(<MensaSelection key={'showMensa'} />);
     if (opts.showLanguage)
       array.push(<LanguageSwitcher key={'showLanguage'} />);
+    array.push(<LogoutButton key={'logout'} />);
 
     // insert divider divs between each item in the list
     return array
