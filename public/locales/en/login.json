@@ -3,7 +3,7 @@
   "chooseUsername": "Choose a username",
   "chooseUsernamePlaceholder": "Soup Stefan",
   "yourEmail": "Your email address",
-  "yourEmailPlaceholder": "mail@example.com",
+  "emailPlaceholder": "mail@example.com",
   "yourPassword": "Your password",
   "choosePassword": "Choose a secure password",
   "login": "Log in",

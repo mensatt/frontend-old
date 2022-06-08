@@ -93,7 +93,7 @@ const Login: NextPage = () => {
               })
             }
             type="email"
-            placeholder={t('yourEmailPlaceholder')}
+            placeholder={t('emailPlaceholder')}
           />
           <label htmlFor="login-password">
             {formState.login ? t('yourPassword') : t('choosePassword')}
