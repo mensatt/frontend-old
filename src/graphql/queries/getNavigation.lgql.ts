@@ -8,7 +8,7 @@ export type Mensa = {
 };
 
 export type Navigation = {
-  selectedDate: string;
+  selectedDate?: string;
   activeMensaIdx: number;
   mensas: Mensa[];
   isLoggedIn: boolean;
