@@ -12,7 +12,7 @@ const languages = [
 ] as const;
 
 const LanguageSwitcher = () => {
-  const { locale, pathname } = useRouter();
+  const { locale, asPath } = useRouter();
   const lang = languages.find((lang) => lang.id === locale) ?? languages[0];
 
   const setLanguage = (id: string) => {
@@ -26,7 +26,7 @@ const LanguageSwitcher = () => {
   );
 
   const options = languages.map((lang) => (
-    <Link href={pathname} locale={lang.id} key={lang.id} tabIndex={0}>
+    <Link href={asPath} locale={lang.id} key={lang.id} tabIndex={0}>
       <button onClick={() => setLanguage(lang.id)}>
         <Icon name={lang.icon} />
         <span>{lang.name}</span>
