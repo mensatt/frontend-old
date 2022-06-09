@@ -57,7 +57,22 @@ function MyApp({ Component, pageProps }: AppProps) {
     [router.pathname],
   );
 
-  const layout = layoutFeatures[normalizedPath] || layoutFeatures.default;
+  /*
+   * Everything before the first / from normalizedPath
+   *
+   * index -> index
+   * privacy -> privacy
+   * account/edit -> account
+   */
+  const category = useMemo(() => {
+    const idx = normalizedPath.indexOf('/');
+    return normalizedPath.substring(0, idx >= 0 ? idx : undefined);
+  }, [normalizedPath]);
+
+  const layout =
+    layoutFeatures[normalizedPath] ||
+    layoutFeatures[category] ||
+    layoutFeatures.default;
   const navOpts = layout.nav;
 
   return (
