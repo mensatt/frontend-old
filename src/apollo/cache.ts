@@ -33,7 +33,7 @@ export const cache = new InMemoryCache({
   },
 });
 
-export const selectedDateVar = makeVar<Navigation['selectedDate']>(undefined);
+export const selectedDateVar = makeVar<Navigation['selectedDate']>('');
 
 export const mensasVar = makeVar<Navigation['mensas']>([
   {
