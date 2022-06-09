@@ -9,7 +9,7 @@ import {
   GET_OCCURRENCES_BY_DATE,
   Navigation,
 } from 'src/graphql/queries';
-import { startOfWeek } from 'src/util';
+import { DATE_FORMAT } from 'src/util';
 
 import { useQuery } from '@apollo/client';
 
@@ -25,11 +25,11 @@ const TodayOverview = () => {
     GetOccurrencesByDateQueryVariables
   >(GET_OCCURRENCES_BY_DATE, {
     variables: {
-      date: startOfWeek
-        .add(navData ? navData.selectedWeekday : 0, 'day')
-        .format('YYYY-MM-DD'),
+      // We can safely cast to string (aka remove undefined) here
+      // as the query would be skipped if this is not a string
+      date: (navData && navData.selectedDate) as string,
     },
-    skip: navData && navData.selectedWeekday < 0,
+    skip: !navData || navData.selectedDate.length < DATE_FORMAT.length,
   });
 
   const content =
