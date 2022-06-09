@@ -4,13 +4,13 @@
     "plugin:@typescript-eslint/recommended",
     "prettier"
   ],
+  "plugins": ["prettier"],
   "rules": {
+    "prettier/prettier": "error",
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-explicit-any": "error",
-    "indent": ["error", 2, { "SwitchCase": 1 }],
-    "quotes": "off",
-    "@typescript-eslint/quotes": ["error", "single", { "avoidEscape": true }],
     "eol-last": ["error", "always"],
-    "prefer-const": "error"
+    "prefer-const": "error",
+    "no-useless-rename": "error"
   }
 }
