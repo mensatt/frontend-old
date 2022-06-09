@@ -9,7 +9,6 @@ import {
   GET_OCCURRENCES_BY_DATE,
   Navigation,
 } from 'src/graphql/queries';
-import { DATE_FORMAT } from 'src/util';
 
 import { useQuery } from '@apollo/client';
 
@@ -26,10 +25,10 @@ const TodayOverview = () => {
   >(GET_OCCURRENCES_BY_DATE, {
     variables: {
       // We can safely cast to string (aka remove undefined) here
-      // as the query would be skipped if this is not a string
+      // as the query would be skipped if this is undefined
       date: (navData && navData.selectedDate) as string,
     },
-    skip: !navData || navData.selectedDate.length < DATE_FORMAT.length,
+    skip: !navData || !navData.selectedDate,
   });
 
   const content =
