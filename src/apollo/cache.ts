@@ -8,9 +8,9 @@ export const cache = new InMemoryCache({
   typePolicies: {
     Query: {
       fields: {
-        selectedWeekday: {
+        selectedDate: {
           read() {
-            return selectedWeekdayVar();
+            return selectedDateVar();
           },
         },
         activeMensaIdx: {
@@ -33,7 +33,7 @@ export const cache = new InMemoryCache({
   },
 });
 
-export const selectedWeekdayVar = makeVar<Navigation['selectedWeekday']>(-1);
+export const selectedDateVar = makeVar<Navigation['selectedDate']>('');
 
 export const mensasVar = makeVar<Navigation['mensas']>([
   {

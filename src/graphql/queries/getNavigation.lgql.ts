@@ -8,7 +8,7 @@ export type Mensa = {
 };
 
 export type Navigation = {
-  selectedWeekday: number;
+  selectedDate: string;
   activeMensaIdx: number;
   mensas: Mensa[];
   isLoggedIn: boolean;
@@ -16,7 +16,7 @@ export type Navigation = {
 
 export const GET_NAVIGATION = gql`
   query GetNavigation {
-    selectedWeekday @client
+    selectedDate @client
     activeMensaIdx @client
     mensas @client
     isLoggedIn @client

@@ -1,8 +1,9 @@
+import dayjs from 'dayjs';
 import { useRouter } from 'next/router';
 import React, { useEffect, useMemo } from 'react';
-import { selectedWeekdayVar } from 'src/apollo';
+import { selectedDateVar } from 'src/apollo';
 import { GET_NAVIGATION, Navigation } from 'src/graphql/queries';
-import { afterFriday, currentWeekday, startOfWeek } from 'src/util/';
+import { DATE_FORMAT, afterFriday, currentDate, startOfWeek } from 'src/util/';
 
 import { useQuery } from '@apollo/client';
 
@@ -19,33 +20,33 @@ const WeekdaySelection = () => {
     // Also see: https://stackoverflow.com/a/66162437
     if (!router.isReady) return;
 
-    // Get and parse the weekday from URL
-    const { weekday: weekdayUrl } = router.query;
-    const weekdayUrlParsed =
-      typeof weekdayUrl === 'string' ? parseInt(weekdayUrl) : -1;
+    // Get and parse the date from URL
+    const { date: dateURL } = router.query;
+    const dateURLParsed =
+      typeof dateURL === 'string' ? dayjs(dateURL, DATE_FORMAT) : undefined;
+    const nextOpenDate = afterFriday ? startOfWeek : currentDate;
+    const dateToSet = dateURLParsed?.isValid() ? dateURLParsed : nextOpenDate;
 
-    const nextOpenWeekday = afterFriday ? 0 : currentWeekday;
-    const weekdayToSet =
-      weekdayUrlParsed >= 0 ? weekdayUrlParsed : nextOpenWeekday;
-
-    selectedWeekdayVar(weekdayToSet);
+    selectedDateVar(dateToSet.format(DATE_FORMAT));
   }, [router]);
 
   const week = useMemo(
     () =>
       data &&
       [0, 1, 2, 3, 4].map((elem) => {
+        const thisWeekdaysDate = startOfWeek.add(elem, 'day');
+        const thisWeekdaysDateString = thisWeekdaysDate.format(DATE_FORMAT);
         return (
           <Weekday
             key={elem}
-            date={startOfWeek.add(elem, 'day')}
-            selected={elem === data.selectedWeekday}
+            date={thisWeekdaysDate}
+            selected={thisWeekdaysDateString === data.selectedDate}
             onClick={() => {
               router.push({
                 pathname: router.pathname,
-                query: { weekday: elem },
+                query: { date: thisWeekdaysDateString },
               });
-              selectedWeekdayVar(elem);
+              selectedDateVar(thisWeekdaysDateString);
             }}
           />
         );
