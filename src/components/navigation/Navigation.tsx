@@ -2,7 +2,7 @@ import React, { ReactNode, useMemo } from 'react';
 
 import styles from './Navigation.module.scss';
 import LanguageSwitcher from './language-switcher';
-import LogoutButton from './logout-button/LogoutButton';
+import LogoutButton from './logout-button/';
 import MensaSelection from './mensa-selection';
 
 export type NavigationDisplayOptions = {
