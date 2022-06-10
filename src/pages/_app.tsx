@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useMemo } from 'react';
 import apolloClient from 'src/apollo/client';
+import AdminNavigation from 'src/components/admin-navigation/';
 import Footer from 'src/components/footer';
 import Navigation from 'src/components/navigation';
 import BackButton from 'src/components/navigation/back-button';
@@ -23,6 +24,15 @@ const layoutFeatures: Record<string, Features> = {
   index: {
     nav: {
       topLeftComp: <WeekdaySelection />,
+      showBrand: true,
+      showMensa: true,
+      showLanguage: true,
+      showProfile: true,
+    },
+  },
+  admin: {
+    nav: {
+      topLeftComp: <AdminNavigation />,
       showBrand: true,
       showMensa: true,
       showLanguage: true,
