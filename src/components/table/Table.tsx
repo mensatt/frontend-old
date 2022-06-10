@@ -20,22 +20,22 @@ export const determineNextSortOrder = (curr: SortOrder) => {
   }
 };
 
-export type GridHeaderRow = {
+export type TableHeaderRow = {
   fieldName: string;
   displayName: string;
   nonSortable?: boolean;
 };
 
-export type GridDataRow = {
+export type TableDataRow = {
   [key: string]: string;
 };
 
-export type GridProps = {
-  headerRow: GridHeaderRow[];
-  dataRows: GridDataRow[];
+export type TableProps = {
+  headerRow: TableHeaderRow[];
+  dataRows: TableDataRow[];
 };
 
-const Table = ({ headerRow, dataRows }: GridProps) => {
+const Table = ({ headerRow, dataRows }: TableProps) => {
   const { t } = useTranslation('common');
   const columnAmount = headerRow.length;
   const [sortState, setSortState] = useState({
