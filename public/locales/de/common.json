@@ -5,5 +5,9 @@
   "commentHeading": "Kommentare",
   "showAllComments": "Alle Kommentare anzeigen",
   "loading": "Lädt...",
-  "logoutSuccessful": "Logout erfolgreich"
+  "logoutSuccessful": "Logout erfolgreich",
+  "sortOrderAsc": "aufsteigend",
+  "sortOrderDesc": "absteigend",
+  "sortOrderAscShort": "aufst",
+  "sortOrderDescShort": "abst"
 }

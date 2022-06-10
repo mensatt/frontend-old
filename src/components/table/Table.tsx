@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import React, { useMemo, useState } from 'react';
 
 import styles from './Table.module.scss';
@@ -35,6 +36,7 @@ export type GridProps = {
 };
 
 const Table = ({ headerRow, dataRows }: GridProps) => {
+  const { t } = useTranslation('common');
   const columnAmount = headerRow.length;
   const [sortState, setSortState] = useState({
     sortKey: '',
@@ -75,11 +77,15 @@ const Table = ({ headerRow, dataRows }: GridProps) => {
               ? sortState.sortOrder
               : SortOrder.NONE;
 
-          // Text indicating sort direction that is displayed next to the column name
-          const sortOrderText =
+          const sortOrderLocalized =
             currColSortState !== SortOrder.NONE
-              ? ` (${sortState.sortOrder})`
+              ? t('sortOrder' + sortState.sortOrder + 'Short')
               : '';
+
+          // Text indicating sort direction that is displayed next to the column name
+          const sortOrderText = sortOrderLocalized
+            ? ` (${sortOrderLocalized})`
+            : '';
 
           return (
             <div
@@ -101,7 +107,7 @@ const Table = ({ headerRow, dataRows }: GridProps) => {
         })}
       </div>
     ),
-    [columnAmount, headerRow, sortState],
+    [columnAmount, headerRow, sortState.sortKey, sortState.sortOrder, t],
   );
 
   const rows = useMemo(
