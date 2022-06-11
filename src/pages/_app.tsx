@@ -32,7 +32,14 @@ const layoutFeatures: Record<string, Features> = {
   },
   admin: {
     nav: {
-      topLeftComp: <AdminNavigation />,
+      topLeftComp: (
+        // Note: Currently the weekday selection is needed on admin pages
+        // because it sets the selectedDate (which is used for queries)
+        <>
+          <WeekdaySelection />
+          <AdminNavigation />
+        </>
+      ),
       showBrand: true,
       showMensa: true,
       showLanguage: true,
