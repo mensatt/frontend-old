@@ -395,6 +395,37 @@ export type LoginUserMutationVariables = Exact<{
 
 export type LoginUserMutation = { __typename?: 'Mutation'; loginUser: string };
 
+export type SetReviewStatusMutationVariables = Exact<{
+  id: Scalars['UUID'];
+  status: ReviewStatus;
+}>;
+
+export type SetReviewStatusMutation = {
+  __typename?: 'Mutation';
+  updateOccurrence: {
+    __typename?: 'Occurrence';
+    id: string;
+    reviewStatus: ReviewStatus;
+    date: string;
+    dish: { __typename?: 'Dish'; nameDe: string };
+  };
+};
+
+export type GetAdminPanelOccurrencesQueryVariables = Exact<{
+  date: Scalars['Date'];
+}>;
+
+export type GetAdminPanelOccurrencesQuery = {
+  __typename?: 'Query';
+  occurrencesAfterInclusiveDate: Array<{
+    __typename?: 'Occurrence';
+    id: string;
+    reviewStatus: ReviewStatus;
+    date: string;
+    dish: { __typename?: 'Dish'; nameDe: string };
+  }>;
+};
+
 export type GetOccurrencesByDateQueryVariables = Exact<{
   date: Scalars['Date'];
 }>;
