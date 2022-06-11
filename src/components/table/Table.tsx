@@ -1,5 +1,5 @@
 import { useTranslation } from 'next-i18next';
-import React, { useMemo, useState } from 'react';
+import React, { ReactNode, useMemo, useState } from 'react';
 
 import styles from './Table.module.scss';
 
@@ -26,8 +26,18 @@ export type TableHeaderRow = {
   nonSortable?: boolean;
 };
 
+export type ReactNodeWithValue = {
+  node: ReactNode;
+  value: string | number;
+};
+
+export type StrOrNumWithOptVal = {
+  node: string | number;
+  value?: string | number;
+};
+
 export type TableDataRow = {
-  [key: string]: string;
+  [key: string]: string | number | ReactNodeWithValue;
 };
 
 export type TableProps = {
@@ -50,9 +60,40 @@ const Table = ({ headerRow, dataRows }: TableProps) => {
     // We have to clone the array as sort and reverse operate in place
     const dataCopy = [...dataRows];
 
-    const sortedAsc = dataCopy.sort((rowA, rowB) =>
-      rowA[sortState.sortKey] > rowB[sortState.sortKey] ? 1 : -1,
-    );
+    const sortedAsc = dataCopy.sort((rowA, rowB) => {
+      const cellA = rowA[sortState.sortKey];
+      const cellAIsStrOrNum =
+        typeof cellA === 'string' || typeof cellA === 'number';
+      const cellAIsNodeWithVal =
+        typeof (cellA as ReactNodeWithValue).value !== 'undefined';
+
+      const cellB = rowB[sortState.sortKey];
+      const cellBIsStrOrNum =
+        typeof cellB === 'string' || typeof cellB === 'number';
+      const cellBIsNodeWithVal =
+        typeof (cellB as ReactNodeWithValue).value !== 'undefined';
+
+      // If both cells have a value property use that to compare
+      if (cellAIsNodeWithVal && cellBIsNodeWithVal)
+        return (cellA as ReactNodeWithValue).value >
+          (cellB as ReactNodeWithValue).value
+          ? 1
+          : -1;
+
+      // If both cells are strings or numbers compare them "normally"
+      if (cellAIsStrOrNum && cellBIsStrOrNum) return cellA > cellB ? 1 : -1;
+
+      // If one cell has a value property and the other is a string or number compare
+      // the value prop to the value of the other cell
+      if (cellAIsStrOrNum && cellBIsNodeWithVal)
+        return cellA > (cellB as ReactNodeWithValue).value ? 1 : -1;
+      if (cellAIsNodeWithVal && cellBIsStrOrNum)
+        return (cellA as ReactNodeWithValue).value > cellB ? 1 : -1;
+
+      // If none of the cases mentioned above is true no useful comparison can be made
+      // => Consider both cells equal
+      return 0;
+    });
 
     return sortState.sortOrder === SortOrder.ASC
       ? sortedAsc
@@ -119,9 +160,14 @@ const Table = ({ headerRow, dataRows }: TableProps) => {
           // Dynamically set CSS based on amount of columns
           style={{ gridTemplateColumns: `repeat(${columnAmount}, 1fr)` }}
         >
-          {headerRow.map((col) => (
-            <div key={col.fieldName}>{row[col.fieldName]}</div>
-          ))}
+          {headerRow.map((col) => {
+            const cell = row[col.fieldName];
+            const isStrOrNum =
+              typeof cell === 'string' || typeof cell === 'number';
+
+            if (isStrOrNum) return <div key={col.fieldName}>{cell}</div>;
+            return <div key={col.fieldName}>{cell.node}</div>;
+          })}
         </div>
       )),
     [columnAmount, headerRow, sortedData],
