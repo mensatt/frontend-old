@@ -1,24 +1,22 @@
-import { ApolloClient, ApolloLink, HttpLink, concat } from '@apollo/client';
+import { ApolloClient, HttpLink } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 
 import { cache } from './cache';
 
-const authMiddleware = new ApolloLink((operation, forward) => {
-  // TODO: Add Auth
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  operation.setContext(({ headers = {} }) => ({
-    // headers: {
-    //   ...headers,
-    //   authorization: localStorage.getItem('token') || null,
-    // },
+const authMiddleware = setContext((_, { headers }) => {
+  const token = localStorage.getItem('token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
     uri:
       localStorage.getItem('backendURL') || 'https://api.mensatt.de/v1/graphql',
-  }));
-
-  return forward(operation);
+  };
 });
 
 const apolloClient = new ApolloClient({
-  link: concat(authMiddleware, new HttpLink()),
+  link: authMiddleware.concat(new HttpLink()),
   cache: cache,
 });
 
