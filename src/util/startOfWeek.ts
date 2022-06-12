@@ -1,10 +1,12 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/de';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 import updateLocale from 'dayjs/plugin/updateLocale';
 import weekday from 'dayjs/plugin/weekday';
 
 dayjs.extend(weekday);
 dayjs.extend(updateLocale);
+dayjs.extend(customParseFormat);
 dayjs.updateLocale('en', {
   weekStart: 1,
 });

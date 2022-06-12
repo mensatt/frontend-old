@@ -23,7 +23,9 @@ const WeekdaySelection = () => {
     // Get and parse the date from URL
     const { date: dateURL } = router.query;
     const dateURLParsed =
-      typeof dateURL === 'string' ? dayjs(dateURL, DATE_FORMAT) : undefined;
+      typeof dateURL === 'string'
+        ? dayjs(dateURL, DATE_FORMAT, true)
+        : undefined;
     const nextOpenDate = afterFriday ? startOfWeek : currentDate;
     const dateToSet = dateURLParsed?.isValid() ? dateURLParsed : nextOpenDate;
 
