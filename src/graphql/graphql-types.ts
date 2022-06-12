@@ -408,7 +408,12 @@ export type GetOccurrencesByDateQuery = {
     priceStudent?: number | null;
     priceStaff?: number | null;
     priceGuest?: number | null;
-    dish: { __typename?: 'Dish'; id: string; nameDe: string };
+    dish: {
+      __typename?: 'Dish';
+      id: string;
+      nameDe: string;
+      nameEn?: string | null;
+    };
     sideDishes: Array<{ __typename?: 'Dish'; id: string; nameDe: string }>;
     tags: Array<{
       __typename?: 'Tag';

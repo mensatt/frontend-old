@@ -7,6 +7,7 @@ export const GET_OCCURRENCES_BY_DATE = gql`
       dish {
         id
         nameDe
+        nameEn
       }
       sideDishes {
         id
