@@ -44,7 +44,7 @@ const TodayOverview = () => {
     data.occurrencesByDate.map(({ dish: { nameDe, nameEn }, id }) => {
       // Fallback to german value if no english value is present
       return (
-        <Dish name={locale == 'en' ? nameEn ?? nameDe : nameDe} key={id} />
+        <Dish name={locale === 'en' ? nameEn ?? nameDe : nameDe} key={id} />
       );
     });
 
