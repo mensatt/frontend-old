@@ -1,5 +1,6 @@
 import { useTranslation } from 'next-i18next';
-import React from 'react';
+import { useRouter } from 'next/router';
+import React, { useMemo } from 'react';
 import {
   GetOccurrencesByDateQuery,
   GetOccurrencesByDateQueryVariables,
@@ -18,6 +19,12 @@ import Dish from '../dish/';
 import styles from './TodayOverview.module.scss';
 
 const TodayOverview = () => {
+  const { locale: routerLocale } = useRouter();
+  const locale = useMemo(
+    () => (routerLocale ? routerLocale : 'de'),
+    [routerLocale],
+  );
+
   const { t } = useTranslation('common');
   const { data: navData } = useQuery<Navigation>(GET_NAVIGATION);
   const { loading, data, error } = useQuery<
@@ -34,8 +41,11 @@ const TodayOverview = () => {
 
   const content =
     data &&
-    data.occurrencesByDate.map((elem) => {
-      return <Dish name={elem.dish.nameDe} key={elem.id} />;
+    data.occurrencesByDate.map(({ dish: { nameDe, nameEn }, id }) => {
+      // Fallback to german value if no english value is present
+      return (
+        <Dish name={locale == 'en' ? nameEn ?? nameDe : nameDe} key={id} />
+      );
     });
 
   const contentWithMessage =
