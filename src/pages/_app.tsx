@@ -101,9 +101,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <div className={'app-container'}>
-        <Navigation opts={navOpts} />
         <div className={'page-content'}>
           <RouteGuard>
+            <Navigation opts={navOpts} />
             <Component {...pageProps} />
           </RouteGuard>
         </div>
