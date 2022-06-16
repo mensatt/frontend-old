@@ -1,3 +1,3 @@
-import LogoutButton from './ProfileButton';
+import ProfileButton from './ProfileButton';
 
-export default LogoutButton;
+export default ProfileButton;
