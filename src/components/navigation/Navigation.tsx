@@ -2,8 +2,8 @@ import React, { ReactNode, useMemo } from 'react';
 
 import styles from './Navigation.module.scss';
 import LanguageSwitcher from './language-switcher';
-import ProfileButton from './profile-button';
 import MensaSelection from './mensa-selection';
+import ProfileButton from './profile-button';
 
 export type NavigationDisplayOptions = {
   topLeftComp: ReactNode;
@@ -20,12 +20,10 @@ type Props = {
 const Navigation = ({ opts }: Props) => {
   const settingsRendered = useMemo(() => {
     const array = [];
-    if (opts.showMensa)
-      array.push(<MensaSelection key={'showMensa'} />);
+    if (opts.showMensa) array.push(<MensaSelection key={'showMensa'} />);
     if (opts.showLanguage)
       array.push(<LanguageSwitcher key={'showLanguage'} />);
-    if (opts.showProfile)
-      array.push(<ProfileButton key={'logout'} />);
+    if (opts.showProfile) array.push(<ProfileButton key={'logout'} />);
 
     // insert divider divs between each item in the list
     return array

@@ -7,9 +7,9 @@ import { GET_NAVIGATION, Navigation } from 'src/graphql/queries';
 
 import { useLazyQuery } from '@apollo/client';
 
-import styles from './LogoutButton.module.scss';
+import styles from './ProfileButton.module.scss';
 
-const LogoutButton = () => {
+const ProfileButton = () => {
   const { t } = useTranslation('common');
   const [getNavigation, { data }] = useLazyQuery<Navigation>(GET_NAVIGATION);
 
@@ -51,4 +51,4 @@ const LogoutButton = () => {
   );
 };
 
-export default LogoutButton;
+export default ProfileButton;
