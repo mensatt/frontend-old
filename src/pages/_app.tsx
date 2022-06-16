@@ -26,6 +26,7 @@ const layoutFeatures: Record<string, Features> = {
       showBrand: true,
       showMensa: true,
       showLanguage: true,
+      showProfile: true,
     },
   },
   default: {
@@ -34,6 +35,7 @@ const layoutFeatures: Record<string, Features> = {
       showBrand: true,
       showMensa: false,
       showLanguage: true,
+      showProfile: true,
     },
   },
 };
@@ -81,11 +83,13 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>Mensatt</title>
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
-      <div className={'container'}>
+      <div className={'app-container'}>
         <Navigation opts={navOpts} />
-        <RouteGuard>
-          <Component {...pageProps} />
-        </RouteGuard>
+        <div className={'page-content'}>
+          <RouteGuard>
+            <Component {...pageProps} />
+          </RouteGuard>
+        </div>
         <Footer />
       </div>
     </ApolloProvider>
