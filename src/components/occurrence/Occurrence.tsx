@@ -46,7 +46,7 @@ const Occurrence = ({ occurrence }: Props) => {
 
   const prices = useMemo(
     () => (
-      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <div className={styles.priceWrapper}>
         <OccurrencePrice
           priceCents={occurrence.priceStudent}
           size="md"
