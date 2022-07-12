@@ -1,6 +1,8 @@
 import React, { useMemo } from 'react';
 import { GetOccurrencesByDateQuery } from 'src/graphql/graphql-types';
 
+import styles from './OccurrencePrice.module.scss';
+
 type Props = {
   // Note: Assuming all prices have the same type
   priceCents: GetOccurrencesByDateQuery['occurrencesByDate'][number]['priceStudent'];
@@ -16,20 +18,21 @@ const OccurrencePrice = ({ priceCents, size = 'sm', label }: Props) => {
   return (
     <div style={{ marginRight: '2%' }}>
       <h3
-        style={{
-          marginBottom: 0,
-          fontSize: size === 'md' ? 25 : 15,
-          fontWeight: 'normal',
-        }}
+        className={
+          styles.price +
+          ' ' +
+          (size === 'md' ? styles.priceMediumFont : styles.priceSmallFont)
+        }
       >
         {/* TODO: Add padding (with css) before unit */}
         {price}€
       </h3>
       <p
-        style={{
-          margin: 0,
-          fontSize: size === 'md' ? 15 : 12,
-        }}
+        className={
+          styles.label +
+          ' ' +
+          (size === 'md' ? styles.labelMediumFont : styles.labelSmallFont)
+        }
       >
         {label}
       </p>
