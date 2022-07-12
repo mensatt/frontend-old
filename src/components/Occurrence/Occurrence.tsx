@@ -5,15 +5,14 @@ import { useMemo } from 'react';
 import { GetOccurrencesByDateQuery } from 'src/graphql/graphql-types';
 
 import styles from './Occurrence.module.scss';
-import OccurrenceComment from './comment';
-import { Props as CommentProps } from './comment/OccurrenceComment';
+import OccurrenceComment, { OccurrenceCommentProps } from './comment';
 import OccurrencePrice from './price';
 
 type Props = {
   occurrence: GetOccurrencesByDateQuery['occurrencesByDate'][number];
 };
 
-const dummyComments: Array<CommentProps> = [
+const dummyComments: Array<OccurrenceCommentProps> = [
   { author: 'Lorem', text: 'Lorem ipsum dolor sit amet!' },
   { author: 'ipsum', text: 'Lorem ipsum dolor sit amet!' },
   { author: 'dolor', text: 'Lorem ipsum dolor sit amet!' },

@@ -2,12 +2,12 @@ import React from 'react';
 
 import styles from './OccurrenceComment.module.scss';
 
-export type Props = {
+export type OccurrenceCommentProps = {
   author: string;
   text: string;
 };
 
-const OccurrenceComment = ({ author, text }: Props) => {
+const OccurrenceComment = ({ author, text }: OccurrenceCommentProps) => {
   return (
     <p className={styles.comment}>
       <span className={styles.author}>{author}: </span>
