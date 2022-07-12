@@ -7,6 +7,7 @@ import { GetOccurrencesByDateQuery } from 'src/graphql/graphql-types';
 import styles from './Occurrence.module.scss';
 import OccurrenceComment from './comment';
 import { Props as CommentProps } from './comment/OccurrenceComment';
+import OccurrencePrice from './price';
 
 type Props = {
   occurrence: GetOccurrencesByDateQuery['occurrencesByDate'][number];
@@ -44,6 +45,30 @@ const Occurrence = ({ occurrence }: Props) => {
     [locale, occurrence.dish.nameDe, occurrence.dish.nameEn],
   );
 
+  const prices = useMemo(
+    () => (
+      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <OccurrencePrice
+          priceCents={occurrence.priceStudent}
+          size="md"
+          label={t('priceLabelStudent')}
+          key="priceStud"
+        />
+        <OccurrencePrice
+          priceCents={occurrence.priceStaff}
+          key="priceStaff"
+          label={t('priceLabelStaff')}
+        />
+        <OccurrencePrice
+          priceCents={occurrence.priceGuest}
+          key="priceGuest"
+          label={t('priceLabelGuest')}
+        />
+      </div>
+    ),
+    [occurrence.priceGuest, occurrence.priceStaff, occurrence.priceStudent, t],
+  );
+
   return (
     <div className={styles.content}>
       <div className={styles.image}>
@@ -59,6 +84,7 @@ const Occurrence = ({ occurrence }: Props) => {
         />
       </div>
       <h2>{occurrenceName}</h2>
+      {prices}
       <h3>{t('commentHeading')}</h3>
       {comments}
       <button className={styles.allComments}>{t('showAllComments')}</button>
