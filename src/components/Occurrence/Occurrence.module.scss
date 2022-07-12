@@ -57,3 +57,8 @@ button.allComments {
     outline: 2px solid $color-blue !important;
   }
 }
+
+.priceWrapper {
+  display: flex;
+  justify-content: flex-end;
+}
