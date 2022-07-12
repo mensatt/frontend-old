@@ -4,9 +4,9 @@ import { useRouter } from 'next/router';
 import { useMemo } from 'react';
 import { GetOccurrencesByDateQuery } from 'src/graphql/graphql-types';
 
-import styles from './Dish.module.scss';
-import DishComment from './comment';
-import { Props as CommentProps } from './comment/DishComment';
+import styles from './Occurrence.module.scss';
+import OccurrenceComment from './comment';
+import { Props as CommentProps } from './comment/OccurrenceComment';
 
 type Props = {
   occurrence: GetOccurrencesByDateQuery['occurrencesByDate'][number];
@@ -19,7 +19,7 @@ const dummyComments: Array<CommentProps> = [
   { author: 'sit', text: 'Lorem ipsum dolor sit amet!' },
 ];
 
-const Dish = ({ occurrence }: Props) => {
+const Occurrence = ({ occurrence }: Props) => {
   const { t } = useTranslation('common');
   const { locale: routerLocale } = useRouter();
   const locale = useMemo(
@@ -28,7 +28,7 @@ const Dish = ({ occurrence }: Props) => {
   );
 
   const comments = dummyComments.map((elem) => (
-    <DishComment
+    <OccurrenceComment
       key={elem.author + elem.text}
       author={elem.author}
       text={elem.text}
@@ -66,4 +66,4 @@ const Dish = ({ occurrence }: Props) => {
   );
 };
 
-export default Dish;
+export default Occurrence;
