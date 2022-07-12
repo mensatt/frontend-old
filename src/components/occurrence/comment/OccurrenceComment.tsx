@@ -1,13 +1,13 @@
 import React from 'react';
 
-import styles from './DishComment.module.scss';
+import styles from './OccurrenceComment.module.scss';
 
 export type Props = {
   author: string;
   text: string;
 };
 
-const DishComment = ({ author, text }: Props) => {
+const OccurrenceComment = ({ author, text }: Props) => {
   return (
     <p className={styles.comment}>
       <span className={styles.author}>{author}: </span>
@@ -16,4 +16,4 @@ const DishComment = ({ author, text }: Props) => {
   );
 };
 
-export default DishComment;
+export default OccurrenceComment;

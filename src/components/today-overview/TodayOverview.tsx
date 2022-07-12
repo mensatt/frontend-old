@@ -13,7 +13,7 @@ import { DATE_FORMAT } from 'src/util';
 
 import { useQuery } from '@apollo/client';
 
-import Dish from '../dish/';
+import Occurrence from '../occurrence';
 
 import styles from './TodayOverview.module.scss';
 
@@ -35,7 +35,7 @@ const TodayOverview = () => {
   const content =
     data &&
     data.occurrencesByDate.map((occurrence) => (
-      <Dish occurrence={occurrence} key={occurrence.id} />
+      <Occurrence occurrence={occurrence} key={occurrence.id} />
     ));
 
   const contentWithMessage =
