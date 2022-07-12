@@ -32,7 +32,7 @@ const Navigation = ({ opts }: Props) => {
         <div className={styles.divider} key={index} />,
       ])
       .slice(0, -1);
-  }, [opts.showLanguage, opts.showMensa]);
+  }, [opts.showLanguage, opts.showMensa, opts.showProfile]);
 
   return (
     <nav className={styles.content}>
