@@ -9,5 +9,8 @@
   "sortOrderAsc": "aufsteigend",
   "sortOrderDesc": "absteigend",
   "sortOrderAscShort": "aufst",
-  "sortOrderDescShort": "abst"
+  "sortOrderDescShort": "abst",
+  "priceLabelStudent": "Studenten",
+  "priceLabelStaff": "Mitarbeiter",
+  "priceLabelGuest": "Gäste"
 }
