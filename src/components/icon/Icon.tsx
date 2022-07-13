@@ -17,13 +17,15 @@ const icons = {
 type Props<
   T extends keyof typeof icons,
   Args = Parameters<typeof icons[T]>[0],
-> = Args extends undefined ? { name: T } : { name: T; compProps: Args };
+> = Args extends undefined ? { name: T } : { name: T } & Args;
 
 const Icon = <T extends keyof typeof icons>(props: Props<T>) => {
   const icon = useMemo(() => {
-    const compProps = { compProps: {}, ...props }.compProps;
+    // compProps contains all but name
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { name, ...compProps } = props;
     const selectedIcon = icons[props.name];
-    return selectedIcon(compProps ?? {});
+    return selectedIcon(compProps);
   }, [props]);
 
   return <div className="icon">{icon}</div>;
