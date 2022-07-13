@@ -19,6 +19,7 @@ export type Scalars = {
   Date: string;
   Timestamp: string;
   UUID: string;
+  Upload: string;
 };
 
 export type AddSideDishToOccurrenceInput = {
@@ -40,6 +41,13 @@ export type CreateDishAliasInput = {
 export type CreateDishInput = {
   nameDe: Scalars['String'];
   nameEn?: InputMaybe<Scalars['String']>;
+};
+
+export type CreateImageInput = {
+  description?: InputMaybe<Scalars['String']>;
+  displayName?: InputMaybe<Scalars['String']>;
+  image: Scalars['Upload'];
+  occurrence: Scalars['UUID'];
 };
 
 export type CreateOccurrenceInput = {
@@ -83,6 +91,10 @@ export type DeleteDishAliasInput = {
   alias: Scalars['String'];
 };
 
+export type DeleteImageInput = {
+  id: Scalars['UUID'];
+};
+
 export type DeleteOccurrenceInput = {
   id: Scalars['UUID'];
 };
@@ -116,6 +128,7 @@ export type Image = {
   displayName: Scalars['String'];
   downVotes: Scalars['Int'];
   id: Scalars['UUID'];
+  imageUrl: Scalars['String'];
   occurrence: Occurrence;
   upVotes: Scalars['Int'];
   updatedAt: Scalars['Timestamp'];
@@ -139,10 +152,12 @@ export type Mutation = {
   addTagToOccurrence: OccurrenceTag;
   createDish: Dish;
   createDishAlias: DishAlias;
+  createImage: Image;
   createOccurrence: Occurrence;
   createReview: Review;
   createTag: Tag;
   deleteDishAlias: DishAlias;
+  deleteImage: Image;
   deleteOccurrence: Occurrence;
   deleteReview: Review;
   loginUser: Scalars['String'];
@@ -150,6 +165,7 @@ export type Mutation = {
   removeTagFromOccurrence: OccurrenceTag;
   updateDish: Dish;
   updateDishAlias: DishAlias;
+  updateImage: Image;
   updateOccurrence: Occurrence;
   updateReview: Review;
 };
@@ -170,6 +186,10 @@ export type MutationCreateDishAliasArgs = {
   input: CreateDishAliasInput;
 };
 
+export type MutationCreateImageArgs = {
+  input: CreateImageInput;
+};
+
 export type MutationCreateOccurrenceArgs = {
   input: CreateOccurrenceInput;
 };
@@ -184,6 +204,10 @@ export type MutationCreateTagArgs = {
 
 export type MutationDeleteDishAliasArgs = {
   input: DeleteDishAliasInput;
+};
+
+export type MutationDeleteImageArgs = {
+  input: DeleteImageInput;
 };
 
 export type MutationDeleteOccurrenceArgs = {
@@ -212,6 +236,10 @@ export type MutationUpdateDishArgs = {
 
 export type MutationUpdateDishAliasArgs = {
   input: UpdateDishAliasInput;
+};
+
+export type MutationUpdateImageArgs = {
+  input: UpdateImageInput;
 };
 
 export type MutationUpdateOccurrenceArgs = {
@@ -345,6 +373,14 @@ export type UpdateDishInput = {
   id: Scalars['UUID'];
   nameDe?: InputMaybe<Scalars['String']>;
   nameEn?: InputMaybe<Scalars['String']>;
+};
+
+export type UpdateImageInput = {
+  acceptedAt?: InputMaybe<Scalars['Timestamp']>;
+  description?: InputMaybe<Scalars['String']>;
+  displayName?: InputMaybe<Scalars['String']>;
+  id: Scalars['UUID'];
+  occurrence?: InputMaybe<Scalars['UUID']>;
 };
 
 export type UpdateOccurrenceInput = {
