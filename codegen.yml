@@ -13,3 +13,5 @@ generates:
         Timestamp: 'string'
         UUID: 'string'
         Date: 'string'
+        # TODO: Add proper type in the future
+        Upload: 'string'
