@@ -7,26 +7,25 @@ import FLAG_US from '../../assets/icons/flag_us.svg';
 import LOGOUT from '../../assets/icons/logout.svg';
 
 const icons = {
-  arrow_left: <ARROW_LEFT />,
-  flag_de: <FLAG_DE />,
-  flag_us: <FLAG_US />,
-  logout: <LOGOUT />,
+  arrow_left: () => <ARROW_LEFT />,
+  flag_de: () => <FLAG_DE />,
+  flag_us: () => <FLAG_US />,
+  logout: () => <LOGOUT />,
   star: (args: StarIconProps) => <StarIcon {...args} />,
 };
 
-type Props = {
-  name: keyof typeof icons;
-  compProps?: object;
-};
+type Props<
+  T extends keyof typeof icons,
+  Args = Parameters<typeof icons[T]>[0],
+> = Args extends undefined ? { name: T } : { name: T; compProps: Args };
 
-const Icon = ({ name, compProps }: Props) => {
+const Icon = <T extends keyof typeof icons>(props: Props<T>) => {
   const icon = useMemo(() => {
-    const selectedIcon = icons[name];
-    if (typeof selectedIcon === 'object') return selectedIcon;
-    else if (typeof selectedIcon === 'function') {
-      return selectedIcon(compProps ?? {});
-    }
-  }, [compProps, name]);
+    const compProps = { compProps: {}, ...props }.compProps;
+    const selectedIcon = icons[props.name];
+    return selectedIcon(compProps ?? {});
+  }, [props]);
+
   return <div className="icon">{icon}</div>;
 };
 
