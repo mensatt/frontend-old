@@ -16,7 +16,7 @@ const OccurrencePrice = ({ priceCents, size = 'sm', label }: Props) => {
     [priceCents],
   );
   return (
-    <div style={{ marginRight: '2%' }}>
+    <div>
       <h3
         className={
           styles.price +

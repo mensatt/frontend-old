@@ -21,6 +21,10 @@ export const GET_OCCURRENCES_BY_DATE = gql`
         shortName
         priority
       }
+      reviews {
+        id
+        stars
+      }
     }
   }
 `;
