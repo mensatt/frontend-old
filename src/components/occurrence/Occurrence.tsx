@@ -7,6 +7,7 @@ import { GetOccurrencesByDateQuery } from 'src/graphql/graphql-types';
 import styles from './Occurrence.module.scss';
 import OccurrenceComment, { OccurrenceCommentProps } from './comment';
 import OccurrencePrice from './price';
+import OccurrenceRating from './rating';
 
 type Props = {
   occurrence: GetOccurrencesByDateQuery['occurrencesByDate'][number];
@@ -18,6 +19,13 @@ const dummyComments: Array<OccurrenceCommentProps> = [
   { author: 'dolor', text: 'Lorem ipsum dolor sit amet!' },
   { author: 'sit', text: 'Lorem ipsum dolor sit amet!' },
 ];
+
+// Generate 10 random reviews
+// TODO: Remove once values from backend are available
+const dummyReviews = Array.from(Array(10).keys()).map((elem) => ({
+  id: elem.toString(),
+  stars: Math.floor(Math.random() * 6),
+}));
 
 const Occurrence = ({ occurrence }: Props) => {
   const { t } = useTranslation('common');
@@ -83,7 +91,18 @@ const Occurrence = ({ occurrence }: Props) => {
         />
       </div>
       <h2>{occurrenceName}</h2>
-      {prices}
+      <div className={styles.priceAndRatingWrapper}>
+        {/* TODO: Replace with values from api once available */}
+        <OccurrenceRating
+          average={
+            dummyReviews
+              .map((review) => review.stars)
+              .reduce((a, b) => a + b, 0) / dummyReviews.length
+          }
+          amount={dummyReviews.length}
+        />
+        {prices}
+      </div>
       <h3>{t('commentHeading')}</h3>
       {comments}
       <button className={styles.allComments}>{t('showAllComments')}</button>

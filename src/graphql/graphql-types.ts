@@ -487,5 +487,6 @@ export type GetOccurrencesByDateQuery = {
       shortName?: string | null;
       priority?: Priority | null;
     }>;
+    reviews: Array<{ __typename?: 'Review'; id: string; stars: number }>;
   }>;
 };
