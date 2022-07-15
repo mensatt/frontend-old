@@ -8,6 +8,10 @@ export const GET_OCCURRENCES_BY_DATE = gql`
         id
         nameDe
         nameEn
+        reviewMetadata {
+          averageStars
+          reviewCount
+        }
       }
       sideDishes {
         id
@@ -20,10 +24,6 @@ export const GET_OCCURRENCES_BY_DATE = gql`
       tags {
         shortName
         priority
-      }
-      reviews {
-        id
-        stars
       }
     }
   }

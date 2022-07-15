@@ -110,6 +110,7 @@ export type Dish = {
   images: Array<Image>;
   nameDe: Scalars['String'];
   nameEn?: Maybe<Scalars['String']>;
+  reviewMetadata: ReviewMetadata;
   reviews: Array<Review>;
 };
 
@@ -266,6 +267,7 @@ export type Occurrence = {
   priceStaff?: Maybe<Scalars['Int']>;
   priceStudent?: Maybe<Scalars['Int']>;
   protein?: Maybe<Scalars['Int']>;
+  reviewMetadata: ReviewMetadata;
   reviewStatus: ReviewStatus;
   reviews: Array<Review>;
   salt?: Maybe<Scalars['Int']>;
@@ -342,6 +344,12 @@ export type Review = {
   text?: Maybe<Scalars['String']>;
   upVotes: Scalars['Int'];
   updatedAt: Scalars['Timestamp'];
+};
+
+export type ReviewMetadata = {
+  __typename?: 'ReviewMetadata';
+  averageStars?: Maybe<Scalars['Float']>;
+  reviewCount: Scalars['Int'];
 };
 
 export enum ReviewStatus {
@@ -480,6 +488,11 @@ export type GetOccurrencesByDateQuery = {
       id: string;
       nameDe: string;
       nameEn?: string | null;
+      reviewMetadata: {
+        __typename?: 'ReviewMetadata';
+        averageStars?: number | null;
+        reviewCount: number;
+      };
     };
     sideDishes: Array<{ __typename?: 'Dish'; id: string; nameDe: string }>;
     tags: Array<{
@@ -487,6 +500,5 @@ export type GetOccurrencesByDateQuery = {
       shortName?: string | null;
       priority?: Priority | null;
     }>;
-    reviews: Array<{ __typename?: 'Review'; id: string; stars: number }>;
   }>;
 };
