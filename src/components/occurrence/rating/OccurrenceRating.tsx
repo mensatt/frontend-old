@@ -1,17 +1,20 @@
 import React, { useMemo } from 'react';
 import Icon from 'src/components/icon';
+import { GetOccurrencesByDateQuery } from 'src/graphql/graphql-types';
 
 import styles from './OccurrenceRating.module.scss';
 
 type Props = {
-  average: number;
-  amount: number;
+  reviewMetadata: GetOccurrencesByDateQuery['occurrencesByDate'][number]['dish']['reviewMetadata'];
 };
 
-const OccurrenceRating = ({ average, amount }: Props) => {
+const OccurrenceRating = ({ reviewMetadata }: Props) => {
   const stars = useMemo(
     () =>
       [0, 1, 2, 3, 4].map((_, idx) => {
+        const average = reviewMetadata.averageStars
+          ? reviewMetadata.averageStars
+          : 0;
         const currStarVal = average - idx;
         const percentage =
           currStarVal <= 0
@@ -26,13 +29,15 @@ const OccurrenceRating = ({ average, amount }: Props) => {
           </div>
         );
       }),
-    [average],
+    [reviewMetadata.averageStars],
   );
 
   return (
     <div>
       {stars}
-      {`${amount > 0 ? average : ''} (${amount})`}
+      {`${reviewMetadata.reviewCount > 0 ? reviewMetadata.averageStars : ''} (${
+        reviewMetadata.reviewCount
+      })`}
     </div>
   );
 };

@@ -20,13 +20,6 @@ const dummyComments: Array<OccurrenceCommentProps> = [
   { author: 'sit', text: 'Lorem ipsum dolor sit amet!' },
 ];
 
-// Generate 10 random reviews
-// TODO: Remove once values from backend are available
-const dummyReviews = Array.from(Array(10).keys()).map((elem) => ({
-  id: elem.toString(),
-  stars: Math.floor(Math.random() * 6),
-}));
-
 const Occurrence = ({ occurrence }: Props) => {
   const { t } = useTranslation('common');
   const { locale: routerLocale } = useRouter();
@@ -92,15 +85,7 @@ const Occurrence = ({ occurrence }: Props) => {
       </div>
       <h2>{occurrenceName}</h2>
       <div className={styles.priceAndRatingWrapper}>
-        {/* TODO: Replace with values from api once available */}
-        <OccurrenceRating
-          average={
-            dummyReviews
-              .map((review) => review.stars)
-              .reduce((a, b) => a + b, 0) / dummyReviews.length
-          }
-          amount={dummyReviews.length}
-        />
+        <OccurrenceRating reviewMetadata={occurrence.dish.reviewMetadata} />
         {prices}
       </div>
       <h3>{t('commentHeading')}</h3>
