@@ -44,10 +44,8 @@ export type CreateDishInput = {
 };
 
 export type CreateImageInput = {
-  description?: InputMaybe<Scalars['String']>;
-  displayName?: InputMaybe<Scalars['String']>;
   image: Scalars['Upload'];
-  occurrence: Scalars['UUID'];
+  review: Scalars['UUID'];
 };
 
 export type CreateOccurrenceInput = {
@@ -123,16 +121,9 @@ export type DishAlias = {
 
 export type Image = {
   __typename?: 'Image';
-  acceptedAt?: Maybe<Scalars['Timestamp']>;
-  createdAt: Scalars['Timestamp'];
-  description?: Maybe<Scalars['String']>;
-  displayName: Scalars['String'];
-  downVotes: Scalars['Int'];
   id: Scalars['UUID'];
   imageUrl: Scalars['String'];
-  occurrence: Occurrence;
-  upVotes: Scalars['Int'];
-  updatedAt: Scalars['Timestamp'];
+  review: Review;
 };
 
 export type Location = {
@@ -166,7 +157,6 @@ export type Mutation = {
   removeTagFromOccurrence: OccurrenceTag;
   updateDish: Dish;
   updateDishAlias: DishAlias;
-  updateImage: Image;
   updateOccurrence: Occurrence;
   updateReview: Review;
 };
@@ -239,10 +229,6 @@ export type MutationUpdateDishAliasArgs = {
   input: UpdateDishAliasInput;
 };
 
-export type MutationUpdateImageArgs = {
-  input: UpdateImageInput;
-};
-
 export type MutationUpdateOccurrenceArgs = {
   input: UpdateOccurrenceInput;
 };
@@ -290,6 +276,7 @@ export type OccurrenceTag = {
 };
 
 export enum Priority {
+  Hide = 'HIDE',
   High = 'HIGH',
   Low = 'LOW',
   Medium = 'MEDIUM',
@@ -339,6 +326,7 @@ export type Review = {
   displayName: Scalars['String'];
   downVotes: Scalars['Int'];
   id: Scalars['UUID'];
+  images: Array<Image>;
   occurrence: Occurrence;
   stars: Scalars['Int'];
   text?: Maybe<Scalars['String']>;
@@ -366,7 +354,7 @@ export type Tag = {
   isAllergy: Scalars['Boolean'];
   key: Scalars['String'];
   name: Scalars['String'];
-  priority?: Maybe<Priority>;
+  priority: Priority;
   shortName?: Maybe<Scalars['String']>;
 };
 
@@ -381,14 +369,6 @@ export type UpdateDishInput = {
   id: Scalars['UUID'];
   nameDe?: InputMaybe<Scalars['String']>;
   nameEn?: InputMaybe<Scalars['String']>;
-};
-
-export type UpdateImageInput = {
-  acceptedAt?: InputMaybe<Scalars['Timestamp']>;
-  description?: InputMaybe<Scalars['String']>;
-  displayName?: InputMaybe<Scalars['String']>;
-  id: Scalars['UUID'];
-  occurrence?: InputMaybe<Scalars['UUID']>;
 };
 
 export type UpdateOccurrenceInput = {
@@ -497,8 +477,12 @@ export type GetOccurrencesByDateQuery = {
     sideDishes: Array<{ __typename?: 'Dish'; id: string; nameDe: string }>;
     tags: Array<{
       __typename?: 'Tag';
+      key: string;
+      name: string;
+      description: string;
       shortName?: string | null;
-      priority?: Priority | null;
+      priority: Priority;
+      isAllergy: boolean;
     }>;
   }>;
 };
