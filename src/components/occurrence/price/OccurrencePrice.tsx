@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React, { useMemo } from 'react';
 import { GetOccurrencesByDateQuery } from 'src/graphql/graphql-types';
 
@@ -11,6 +12,8 @@ type Props = {
 };
 
 const OccurrencePrice = ({ priceCents, size = 'sm', label }: Props) => {
+  const { locale } = useRouter();
+
   const price = useMemo(
     () => (priceCents ? priceCents / 100 : '-,--'),
     [priceCents],
@@ -25,7 +28,7 @@ const OccurrencePrice = ({ priceCents, size = 'sm', label }: Props) => {
         }
       >
         {/* TODO: Add padding (with css) before unit */}
-        {price}€
+        {price.toLocaleString(locale, { minimumFractionDigits: 2 })}€
       </h3>
       <p
         className={
