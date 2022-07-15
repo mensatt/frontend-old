@@ -12,5 +12,6 @@
   "sortOrderDescShort": "desc",
   "priceLabelStudent": "Students",
   "priceLabelStaff": "Staff",
-  "priceLabelGuest": "Guests"
+  "priceLabelGuest": "Guests",
+  "showMore": "Show more"
 }
