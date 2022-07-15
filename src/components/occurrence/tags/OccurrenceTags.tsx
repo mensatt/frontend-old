@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import React, { useMemo } from 'react';
 import { GetOccurrencesByDateQuery, Priority } from 'src/graphql/graphql-types';
 
@@ -28,6 +29,7 @@ const sortTags = (a: Tag, b: Tag) => {
 };
 
 const OccurrenceTags = ({ tags }: Props) => {
+  const { t } = useTranslation('common');
   const tagsClone = useMemo(() => [...tags], [tags]);
   const sortedByPriority = useMemo(
     () =>
@@ -52,7 +54,7 @@ const OccurrenceTags = ({ tags }: Props) => {
   return (
     <div className={styles.tagsWrapper}>
       {tagComponents}
-      {sortedByPriority.length > TAG_LIMIT && <button>Show More</button>}
+      {sortedByPriority.length > TAG_LIMIT && <button>{t('showMore')}</button>}
     </div>
   );
 };
