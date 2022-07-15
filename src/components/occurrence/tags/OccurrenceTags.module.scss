@@ -1,0 +1,26 @@
+.tagsWrapper {
+  display: flex;
+  gap: 5px;
+}
+
+.tag {
+  padding: $card-item-padding $card-item-padding * 2;
+  font-size: 10pt;
+  background-color: $bg-light;
+  border-radius: 10px;
+}
+
+.tagTooltip {
+  position: absolute;
+  z-index: 1;
+  padding: 5px;
+  color: #ffffff;
+  text-align: center;
+  visibility: hidden;
+  background-color: black;
+  border-radius: 6px;
+}
+
+.tagsWrapper:hover .tagTooltip {
+  visibility: visible;
+}

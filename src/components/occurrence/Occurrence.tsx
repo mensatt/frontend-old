@@ -8,6 +8,7 @@ import styles from './Occurrence.module.scss';
 import OccurrenceComment, { OccurrenceCommentProps } from './comment';
 import OccurrencePrice from './price';
 import OccurrenceRating from './rating';
+import OccurrenceTags from './tags';
 
 type Props = {
   occurrence: GetOccurrencesByDateQuery['occurrencesByDate'][number];
@@ -86,6 +87,7 @@ const Occurrence = ({ occurrence }: Props) => {
       <h2>{occurrenceName}</h2>
       <div className={styles.priceAndRatingWrapper}>
         <OccurrenceRating reviewMetadata={occurrence.dish.reviewMetadata} />
+        <OccurrenceTags tags={occurrence.tags} />
         {prices}
       </div>
       <h3>{t('commentHeading')}</h3>

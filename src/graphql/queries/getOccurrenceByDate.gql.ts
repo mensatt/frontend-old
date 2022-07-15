@@ -22,8 +22,12 @@ export const GET_OCCURRENCES_BY_DATE = gql`
       priceStaff
       priceGuest
       tags {
+        key
+        name
+        description
         shortName
         priority
+        isAllergy
       }
     }
   }
