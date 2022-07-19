@@ -10,8 +10,8 @@
   "sortOrderDesc": "absteigend",
   "sortOrderAscShort": "aufst",
   "sortOrderDescShort": "abst",
-  "priceLabelStudent": "Studenten",
-  "priceLabelStaff": "Mitarbeiter",
+  "priceLabelStudent": "Stud",
+  "priceLabelStaff": "Bed",
   "priceLabelGuest": "Gäste",
   "showMore": "Mehr anzeigen"
 }
