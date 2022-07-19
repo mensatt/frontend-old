@@ -1,4 +1,21 @@
+.ratingWrapper {
+  display: flex;
+  align-items: center;
+  height: $content-pills-height;
+  padding: 0 10pt;
+  background-color: #ffda3354;
+  border-radius: 99pt;
+
+  span {
+    margin-left: 5pt;
+    font-family: $font-major;
+    font-size: 11pt;
+    color: #ffac33;
+  }
+}
+
 .iconWrapper {
   display: inline-block;
-  width: 25px;
+  width: 15pt;
+  height: 15pt;
 }

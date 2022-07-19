@@ -6,7 +6,7 @@ import { GetOccurrencesByDateQuery } from 'src/graphql/graphql-types';
 
 import styles from './Occurrence.module.scss';
 import OccurrenceComment, { OccurrenceCommentProps } from './comment';
-import OccurrencePrice from './price';
+import OccurrencePrices from './prices';
 import OccurrenceRating from './rating';
 import OccurrenceTags from './tags';
 
@@ -49,21 +49,13 @@ const Occurrence = ({ occurrence }: Props) => {
   const prices = useMemo(
     () => (
       <div className={styles.priceWrapper}>
-        <OccurrencePrice
-          priceCents={occurrence.priceStudent}
-          key="priceStudent"
-          label={t('priceLabelStudent')}
-          size="md"
-        />
-        <OccurrencePrice
-          priceCents={occurrence.priceStaff}
-          key="priceStaff"
-          label={t('priceLabelStaff')}
-        />
-        <OccurrencePrice
-          priceCents={occurrence.priceGuest}
-          key="priceGuest"
-          label={t('priceLabelGuest')}
+        <OccurrencePrices
+          labelPrimary={t('priceLabelStudent')}
+          pricePrimary={occurrence.priceStudent}
+          labelSecondary={t('priceLabelStaff')}
+          priceSecondary={occurrence.priceStaff}
+          labelTertiary={t('priceLabelGuest')}
+          priceTertiary={occurrence.priceGuest}
         />
       </div>
     ),
@@ -86,8 +78,10 @@ const Occurrence = ({ occurrence }: Props) => {
       </div>
       <h2>{occurrenceName}</h2>
       <div className={styles.priceAndRatingWrapper}>
-        <OccurrenceRating reviewMetadata={occurrence.dish.reviewMetadata} />
-        <OccurrenceTags tags={occurrence.tags} />
+        <div className={styles.pillsWrapper}>
+          <OccurrenceRating reviewMetadata={occurrence.dish.reviewMetadata} />
+          <OccurrenceTags tags={occurrence.tags} />
+        </div>
         {prices}
       </div>
       <h3>{t('commentHeading')}</h3>

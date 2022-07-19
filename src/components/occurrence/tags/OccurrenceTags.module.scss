@@ -3,15 +3,28 @@
   gap: 5px;
 }
 
-.tag {
-  padding: $card-item-padding $card-item-padding * 2;
+.tag,
+.showMore {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: $content-pills-height;
+  padding: 0 10pt;
   font-size: 10pt;
   background-color: $bg-light;
-  border-radius: 10px;
+  border: none;
+  border-radius: 99pt;
+  outline: none;
+}
+
+.showMore {
+  cursor: pointer;
 }
 
 .tagTooltip {
   position: absolute;
+  bottom: $content-pills-height;
+  left: 50%;
   z-index: 1;
   padding: 5px;
   color: #ffffff;
@@ -19,8 +32,9 @@
   visibility: hidden;
   background-color: black;
   border-radius: 6px;
+  transform: translateX(-50%);
 }
 
-.tagsWrapper:hover .tagTooltip {
+.tag:hover .tagTooltip {
   visibility: visible;
 }

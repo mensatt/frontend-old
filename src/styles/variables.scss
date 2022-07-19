@@ -50,6 +50,8 @@ $font-header: 'Montserrat 900', 'Roboto', sans-serif;
 $font-major: 'Montserrat 800', 'Roboto', sans-serif;
 $font-regular: 'Montserrat 500', 'Roboto', sans-serif;
 $font-minor: 'Montserrat 500', 'Roboto', sans-serif;
+$font-mono: 'SpaceMono 400', monospace;
+$font-mono-bold: 'SpaceMono 700', monospace;
 
 //// SPACING / SIZES
 
@@ -66,3 +68,5 @@ $card-item-br: 5pt;
 $card-item-padding: 6pt;
 
 $container-padding: 2rem;
+
+$content-pills-height: 28pt;
