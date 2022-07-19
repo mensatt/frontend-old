@@ -1,0 +1,56 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 3pt;
+  height: min-content;
+  padding: 10pt;
+  background-color: $bg-light;
+  border-radius: $card-item-br;
+}
+
+.price {
+}
+
+.pricePrimary {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  .value {
+    font-family: $font-mono-bold;
+    font-size: 20pt;
+    line-height: 26pt;
+    color: $color-header;
+
+    &::after {
+      margin-left: 3pt;
+      content: '€';
+    }
+  }
+}
+
+.priceSecondary {
+  .value {
+    font-family: $font-mono;
+    font-size: 10pt;
+    line-height: 10pt;
+    color: $color-regular;
+  }
+}
+
+.value {
+  margin-bottom: 0;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.label {
+  margin: 0 !important;
+}
+
+.labelSmallFont {
+  font-size: 5pt !important;
+}
+
+.labelMediumFont {
+  font-size: 10pt !important;
+}

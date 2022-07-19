@@ -60,7 +60,16 @@ button.allComments {
 
 .priceAndRatingWrapper {
   display: flex;
+  gap: 10pt;
   justify-content: space-between;
+  margin-bottom: $main-content-padding;
+}
+
+.pillsWrapper {
+  display: flex;
+  flex-shrink: 1;
+  flex-wrap: wrap;
+  gap: 5pt;
 }
 
 .priceWrapper {

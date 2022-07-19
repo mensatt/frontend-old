@@ -52,10 +52,12 @@ const OccurrenceTags = ({ tags }: Props) => {
     [sortedByPriority],
   );
   return (
-    <div className={styles.tagsWrapper}>
+    <>
       {tagComponents}
-      {sortedByPriority.length > TAG_LIMIT && <button>{t('showMore')}</button>}
-    </div>
+      {sortedByPriority.length > TAG_LIMIT && (
+        <button className={styles.showMore}>{t('showMore')}</button>
+      )}
+    </>
   );
 };
 

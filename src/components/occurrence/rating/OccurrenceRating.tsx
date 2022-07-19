@@ -33,11 +33,12 @@ const OccurrenceRating = ({ reviewMetadata }: Props) => {
   );
 
   return (
-    <div>
+    <div className={styles.ratingWrapper}>
       {stars}
-      {`${reviewMetadata.reviewCount > 0 ? reviewMetadata.averageStars : ''} (${
+      <span>({reviewMetadata.reviewCount})</span>
+      {/* {`${reviewMetadata.reviewCount > 0 ? reviewMetadata.averageStars : ''} (${
         reviewMetadata.reviewCount
-      })`}
+      })`} */}
     </div>
   );
 };
