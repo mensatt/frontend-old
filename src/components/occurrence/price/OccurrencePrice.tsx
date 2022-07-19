@@ -14,9 +14,11 @@ type Props = {
 const OccurrencePrice = ({ priceCents, size = 'sm', label }: Props) => {
   const { locale } = useRouter();
 
+  const decimalSeparator = (1.1).toLocaleString(locale).substring(1, 2);
+
   const price = useMemo(
-    () => (priceCents ? priceCents / 100 : '-,--'),
-    [priceCents],
+    () => (priceCents ? priceCents / 100 : `-${decimalSeparator}--`),
+    [decimalSeparator, priceCents],
   );
   return (
     <div>
