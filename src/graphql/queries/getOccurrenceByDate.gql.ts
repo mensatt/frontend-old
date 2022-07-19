@@ -9,6 +9,13 @@ export const GET_OCCURRENCES_BY_DATE = gql`
         nameDe
         nameEn
         reviewData {
+          reviews {
+            id
+            displayName
+            text
+            acceptedAt
+            createdAt
+          }
           metadata {
             averageStars
             reviewCount
