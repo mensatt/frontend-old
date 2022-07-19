@@ -51,9 +51,9 @@ const Occurrence = ({ occurrence }: Props) => {
       <div className={styles.priceWrapper}>
         <OccurrencePrice
           priceCents={occurrence.priceStudent}
-          size="md"
-          label={t('priceLabelStudent')}
           key="priceStud"
+          label={t('priceLabelStudent')}
+          size="md"
         />
         <OccurrencePrice
           priceCents={occurrence.priceStaff}
