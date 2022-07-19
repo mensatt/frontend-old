@@ -21,6 +21,12 @@ export const GET_OCCURRENCES_BY_DATE = gql`
       priceStudent
       priceStaff
       priceGuest
+      reviews {
+        id
+        displayName
+        text
+        acceptedAt
+      }
       tags {
         key
         name

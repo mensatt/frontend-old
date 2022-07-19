@@ -5,7 +5,7 @@ import { useMemo } from 'react';
 import { GetOccurrencesByDateQuery } from 'src/graphql/graphql-types';
 
 import styles from './Occurrence.module.scss';
-import OccurrenceComment, { OccurrenceCommentProps } from './comment';
+import OccurrenceComment from './comment';
 import OccurrencePrices from './prices';
 import OccurrenceRating from './rating';
 import OccurrenceTags from './tags';
@@ -13,13 +13,6 @@ import OccurrenceTags from './tags';
 type Props = {
   occurrence: GetOccurrencesByDateQuery['occurrencesByDate'][number];
 };
-
-const dummyComments: Array<OccurrenceCommentProps> = [
-  { author: 'Lorem', text: 'Lorem ipsum dolor sit amet!' },
-  { author: 'ipsum', text: 'Lorem ipsum dolor sit amet!' },
-  { author: 'dolor', text: 'Lorem ipsum dolor sit amet!' },
-  { author: 'sit', text: 'Lorem ipsum dolor sit amet!' },
-];
 
 const Occurrence = ({ occurrence }: Props) => {
   const { t } = useTranslation('common');
@@ -29,13 +22,31 @@ const Occurrence = ({ occurrence }: Props) => {
     [routerLocale],
   );
 
-  const comments = dummyComments.map((elem) => (
-    <OccurrenceComment
-      key={elem.author + elem.text}
-      author={elem.author}
-      text={elem.text}
-    />
-  ));
+  const filteredReviews = useMemo(
+    () =>
+      occurrence.reviews.filter((review) => review.acceptedAt && review.text),
+    [occurrence.reviews],
+  );
+
+  const comments = useMemo(
+    () =>
+      filteredReviews.length > 0 ? (
+        filteredReviews
+          .filter((review) => review.text)
+          .map((review) => (
+            <OccurrenceComment
+              key={review.id}
+              author={review.displayName || t('noAuthorName')}
+              // NOTE: We can safely cast to string here as
+              // undefined or null are filtered out above
+              text={review.text as string}
+            />
+          ))
+      ) : (
+        <div>{t('noCommentMsg')}</div>
+      ),
+    [filteredReviews, t],
+  );
 
   const occurrenceName = useMemo(
     () =>

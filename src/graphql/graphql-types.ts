@@ -70,7 +70,7 @@ export type CreateOccurrenceInput = {
 };
 
 export type CreateReviewInput = {
-  displayName: Scalars['String'];
+  displayName?: InputMaybe<Scalars['String']>;
   occurrence: Scalars['UUID'];
   stars: Scalars['Int'];
   text?: InputMaybe<Scalars['String']>;
@@ -323,7 +323,7 @@ export type Review = {
   __typename?: 'Review';
   acceptedAt?: Maybe<Scalars['Timestamp']>;
   createdAt: Scalars['Timestamp'];
-  displayName: Scalars['String'];
+  displayName?: Maybe<Scalars['String']>;
   downVotes: Scalars['Int'];
   id: Scalars['UUID'];
   images: Array<Image>;
@@ -475,6 +475,13 @@ export type GetOccurrencesByDateQuery = {
       };
     };
     sideDishes: Array<{ __typename?: 'Dish'; id: string; nameDe: string }>;
+    reviews: Array<{
+      __typename?: 'Review';
+      id: string;
+      displayName?: string | null;
+      text?: string | null;
+      acceptedAt?: string | null;
+    }>;
     tags: Array<{
       __typename?: 'Tag';
       key: string;

@@ -13,5 +13,7 @@
   "priceLabelStudent": "Stud",
   "priceLabelStaff": "Bed",
   "priceLabelGuest": "Gäste",
-  "showMore": "Mehr anzeigen"
+  "showMore": "Mehr anzeigen",
+  "noCommentMsg": "Es gibt noch keine Kommentare für dieses Gericht...",
+  "noAuthorName": "(kein nick)"
 }
