@@ -13,5 +13,7 @@
   "priceLabelStudent": "Students",
   "priceLabelStaff": "Staff",
   "priceLabelGuest": "Guests",
-  "showMore": "Show more"
+  "showMore": "Show more",
+  "noCommentMsg": "There are no comments for this dish yet.",
+  "noAuthorName": "(no nick)"
 }

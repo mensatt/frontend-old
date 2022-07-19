@@ -5,21 +5,24 @@ import { useMemo } from 'react';
 import { GetOccurrencesByDateQuery } from 'src/graphql/graphql-types';
 
 import styles from './Occurrence.module.scss';
-import OccurrenceComment, { OccurrenceCommentProps } from './comment';
+import OccurrenceComment from './comment';
 import OccurrencePrices from './prices';
 import OccurrenceRating from './rating';
 import OccurrenceTags from './tags';
 
+type Occurrence = GetOccurrencesByDateQuery['occurrencesByDate'][number];
+type Review = Occurrence['dish']['reviewData']['reviews'][number];
+
 type Props = {
-  occurrence: GetOccurrencesByDateQuery['occurrencesByDate'][number];
+  occurrence: Occurrence;
 };
 
-const dummyComments: Array<OccurrenceCommentProps> = [
-  { author: 'Lorem', text: 'Lorem ipsum dolor sit amet!' },
-  { author: 'ipsum', text: 'Lorem ipsum dolor sit amet!' },
-  { author: 'dolor', text: 'Lorem ipsum dolor sit amet!' },
-  { author: 'sit', text: 'Lorem ipsum dolor sit amet!' },
-];
+const filterFunction = (review: Review) => review.acceptedAt && review.text;
+const sortFunction = (a: Review, b: Review) => {
+  if (a.createdAt > b.createdAt) return 1;
+  if (a.createdAt < b.createdAt) return -1;
+  return 0;
+};
 
 const Occurrence = ({ occurrence }: Props) => {
   const { t } = useTranslation('common');
@@ -29,13 +32,31 @@ const Occurrence = ({ occurrence }: Props) => {
     [routerLocale],
   );
 
-  const comments = dummyComments.map((elem) => (
-    <OccurrenceComment
-      key={elem.author + elem.text}
-      author={elem.author}
-      text={elem.text}
-    />
-  ));
+  const filteredDishReviews = useMemo(
+    () =>
+      occurrence.dish.reviewData.reviews
+        .filter(filterFunction)
+        .sort(sortFunction),
+    [occurrence.dish.reviewData.reviews],
+  );
+
+  const comments = useMemo(
+    () =>
+      filteredDishReviews.length > 0 ? (
+        filteredDishReviews.map((review) => (
+          <OccurrenceComment
+            key={review.id}
+            author={review.displayName || t('noAuthorName')}
+            // NOTE: We can safely cast to string here as
+            // undefined or null are filtered out above
+            text={review.text as string}
+          />
+        ))
+      ) : (
+        <div>{t('noCommentMsg')}</div>
+      ),
+    [filteredDishReviews, t],
+  );
 
   const occurrenceName = useMemo(
     () =>

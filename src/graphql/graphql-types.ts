@@ -490,6 +490,14 @@ export type GetOccurrencesByDateQuery = {
       nameEn?: string | null;
       reviewData: {
         __typename?: 'ReviewDataDish';
+        reviews: Array<{
+          __typename?: 'Review';
+          id: string;
+          displayName?: string | null;
+          text?: string | null;
+          acceptedAt?: string | null;
+          createdAt: string;
+        }>;
         metadata: {
           __typename?: 'ReviewMetadataDish';
           averageStars?: number | null;
