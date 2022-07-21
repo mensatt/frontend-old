@@ -3,7 +3,7 @@
   "back": "Back",
   "imageDescription": "Picture of {{name}} by {{author}}",
   "commentHeading": "Comments",
-  "showAllComments": "Show all comments",
+  "showOccurrenceDetails": "Show details",
   "loading": "Loading...",
   "logoutSuccessful": "Logout successful",
   "sortOrderAsc": "ascending",
