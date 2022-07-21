@@ -15,5 +15,11 @@
   "priceLabelGuest": "Gäste",
   "showMore": "Mehr anzeigen",
   "noCommentMsg": "Es gibt noch keine Kommentare für dieses Gericht...",
-  "noAuthorName": "(kein nick)"
+  "noAuthorName": "(kein nick)",
+  "rate": "Bewerten",
+  "reviewModalHeading": "Wie war '{{name}}'?",
+  "reviewModalNameLabel": "Dein Nickname",
+  "reviewModalCommentLabel": "Dein Kommentar",
+  "reviewModalSubmitError": "Es gab einen Fehler beim Absenden deiner Bewertung",
+  "reviewModalMissingFieldsError": "Du musst mindestens eine Sternebewertung und einen Namen angeben"
 }

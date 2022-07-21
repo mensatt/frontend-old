@@ -15,5 +15,11 @@
   "priceLabelGuest": "Guests",
   "showMore": "Show more",
   "noCommentMsg": "There are no comments for this dish yet...",
-  "noAuthorName": "(no nick)"
+  "noAuthorName": "(no nick)",
+  "rate": "Rate",
+  "reviewModalHeading": "How was '{{name}}'?",
+  "reviewModalNameLabel": "Your Nickname",
+  "reviewModalCommentLabel": "Your Comment",
+  "reviewModalSubmitError": "There was an error while submitting your review",
+  "reviewModalMissingFieldsError": "You need to provide at least a star rating and a name"
 }
