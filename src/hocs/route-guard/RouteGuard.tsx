@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import { GET_NAVIGATION, Navigation } from 'src/graphql/queries';
+import { Url } from 'url';
 
 import { useQuery } from '@apollo/client';
 
@@ -64,7 +65,11 @@ const RouteGuard = ({ children }: Props) => {
     authCheck(router.asPath);
 
     // On route change start - hide page content by setting authorized to false
-    const hideContent = () => setAuthorized(false);
+    // Note if we are shallow routing we stay on the same page and therefore don't have to hide the content
+    // TODO: Could use a better type for `transitionOptions`.
+    // The ideal solution (to use the type from next/router) sadly is not possible as that type is not exported
+    const hideContent = (_: Url, transitionOptions: { shallow: boolean }) =>
+      setAuthorized(transitionOptions.shallow);
     router.events.on('routeChangeStart', hideContent);
 
     // On route change complete - run auth check
