@@ -43,13 +43,16 @@ const WeekdaySelection = () => {
             key={elem}
             date={thisWeekdaysDate}
             selected={thisWeekdaysDateString === data.selectedDate}
-            onClick={() => {
-              router.push({
-                pathname: router.pathname,
-                query: { date: thisWeekdaysDateString },
-              });
-              selectedDateVar(thisWeekdaysDateString);
-            }}
+            onClick={() =>
+              router.push(
+                {
+                  pathname: router.pathname,
+                  query: { date: thisWeekdaysDateString },
+                },
+                undefined,
+                { shallow: true },
+              )
+            }
           />
         );
       }),
