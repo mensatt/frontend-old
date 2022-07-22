@@ -431,12 +431,12 @@ export type LoginUserMutationVariables = Exact<{
 
 export type LoginUserMutation = { __typename?: 'Mutation'; loginUser: string };
 
-export type SetReviewStatusMutationVariables = Exact<{
+export type SetOccurrenceReviewStatusMutationVariables = Exact<{
   id: Scalars['UUID'];
   status: ReviewStatus;
 }>;
 
-export type SetReviewStatusMutation = {
+export type SetOccurrenceReviewStatusMutation = {
   __typename?: 'Mutation';
   updateOccurrence: {
     __typename?: 'Occurrence';

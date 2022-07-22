@@ -7,10 +7,10 @@ import {
   GetAdminPanelOccurrencesQuery,
   GetAdminPanelOccurrencesQueryVariables,
   ReviewStatus,
-  SetReviewStatusMutation,
-  SetReviewStatusMutationVariables,
+  SetOccurrenceReviewStatusMutation,
+  SetOccurrenceReviewStatusMutationVariables,
 } from 'src/graphql/graphql-types';
-import { SET_REVIEW_STATUS } from 'src/graphql/mutations/';
+import { SET_OCCURRENCE_REVIEW_STATUS } from 'src/graphql/mutations/';
 import {
   GET_ADMIN_PANEL_OCCURRENCES,
   GET_NAVIGATION,
@@ -40,9 +40,9 @@ const AdminOccurrencesPage: NextPage = () => {
   });
 
   const [setReviewStatus, { loading: mutationLoading }] = useMutation<
-    SetReviewStatusMutation,
-    SetReviewStatusMutationVariables
-  >(SET_REVIEW_STATUS, {
+    SetOccurrenceReviewStatusMutation,
+    SetOccurrenceReviewStatusMutationVariables
+  >(SET_OCCURRENCE_REVIEW_STATUS, {
     // TODO: In the future it might be better to just update the apollo cache
     // if the mutation was successful instead of refetching the data.
     refetchQueries: [
