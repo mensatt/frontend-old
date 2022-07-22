@@ -66,9 +66,6 @@ const OccurrenceRating = ({ reviewMetadata, onSetSelectedStars }: Props) => {
     <div className={styles.ratingWrapper}>
       {stars}
       {reviewMetadata && <span>({reviewMetadata.reviewCount})</span>}
-      {/* {`${reviewMetadata.reviewCount > 0 ? reviewMetadata.averageStars : ''} (${
-        reviewMetadata.reviewCount
-      })`} */}
     </div>
   );
 };

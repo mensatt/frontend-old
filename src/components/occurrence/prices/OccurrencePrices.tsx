@@ -28,30 +28,6 @@ const OccurrencePrices = (prices: Props) => {
         minimumFractionDigits: 2,
       });
 
-    //   return (
-    //     <div className={styles.wrapper}>
-    //       <div className={styles.price + ' ' + styles.pricePrimary}>
-    //         <span className={styles.value}>
-    //           {renderPrice(prices.pricePrimary)}€
-    //         </span>
-    //         <span className={styles.label}>{prices.labelPrimary}</span>
-    //       </div>
-    //       <div className={styles.price + ' ' + styles.priceSecondary}>
-    //         <span className={styles.value}>
-    //           {renderPrice(prices.priceSecondary)}€
-    //         </span>
-    //         <span className={styles.label}>{prices.labelSecondary}</span>
-    //       </div>
-    //       <div className={styles.price + ' ' + styles.priceTertiary}>
-    //         <span className={styles.value}>
-    //           {renderPrice(prices.priceTertiary)}€
-    //         </span>
-    //         <span className={styles.label}>{prices.labelTertiary}</span>
-    //       </div>
-    //     </div>
-    //   );
-    // }, [prices, locale, decimalSeparator]);
-
     return (
       <div className={styles.wrapper}>
         <div className={styles.price + ' ' + styles.pricePrimary}>
