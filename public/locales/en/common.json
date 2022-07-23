@@ -15,6 +15,7 @@
   "priceLabelGuest": "Guests",
   "showMore": "Show more",
   "noCommentMsg": "There are no comments for this dish yet...",
+  "noImagesMsg": "There are no images for this dish yet...",
   "noAuthorName": "(no nick)",
   "rate": "Rate",
   "reviewModalHeading": "How was '{{name}}'?",

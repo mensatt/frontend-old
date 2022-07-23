@@ -35,6 +35,14 @@ export const GET_OCCURRENCES_BY_DATE = gql`
         priority
         isAllergy
       }
+      images {
+        id
+        imageUrl
+        review {
+          displayName
+          acceptedAt
+        }
+      }
     }
   }
 `;

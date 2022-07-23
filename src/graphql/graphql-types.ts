@@ -503,5 +503,15 @@ export type GetOccurrencesByDateQuery = {
       priority: Priority;
       isAllergy: boolean;
     }>;
+    images: Array<{
+      __typename?: 'Image';
+      id: string;
+      imageUrl: string;
+      review: {
+        __typename?: 'Review';
+        displayName?: string | null;
+        acceptedAt?: string | null;
+      };
+    }>;
   }>;
 };
