@@ -17,8 +17,9 @@ type Props = {
   occurrence: Occurrence;
 };
 
-const filterFunction = (review: Review) => review.acceptedAt && review.text;
-const sortFunction = (a: Review, b: Review) => {
+const commentFilterFunction = (review: Review) =>
+  review.acceptedAt && review.text;
+const reviewSortFunction = (a: Review, b: Review) => {
   if (a.createdAt > b.createdAt) return 1;
   if (a.createdAt < b.createdAt) return -1;
   return 0;
@@ -35,8 +36,8 @@ const Occurrence = ({ occurrence }: Props) => {
   const filteredDishReviews = useMemo(
     () =>
       occurrence.dish.reviewData.reviews
-        .filter(filterFunction)
-        .sort(sortFunction),
+        .filter(commentFilterFunction)
+        .sort(reviewSortFunction),
     [occurrence.dish.reviewData.reviews],
   );
 
