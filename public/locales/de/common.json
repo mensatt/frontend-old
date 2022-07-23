@@ -22,5 +22,6 @@
   "reviewModalNameLabel": "Dein Nickname",
   "reviewModalCommentLabel": "Dein Kommentar",
   "reviewModalSubmitError": "Es gab einen Fehler beim Absenden deiner Bewertung",
-  "reviewModalMissingFieldsError": "Du musst mindestens eine Sternebewertung und einen Namen angeben"
+  "reviewModalMissingFieldsError": "Du musst mindestens eine Sternebewertung und einen Namen angeben",
+  "reviewModalImageTooBigError": "Dein Bild is zu groß. Es darf maximal {{size}} groß sein"
 }

@@ -412,6 +412,16 @@ export type VcsBuildInfo = {
   modified: Scalars['String'];
 };
 
+export type AddImageMutationVariables = Exact<{
+  reviewId: Scalars['UUID'];
+  image: Scalars['Upload'];
+}>;
+
+export type AddImageMutation = {
+  __typename?: 'Mutation';
+  createImage: { __typename?: 'Image'; id: string; imageUrl: string };
+};
+
 export type AddReviewMutationVariables = Exact<{
   occID: Scalars['UUID'];
   author: Scalars['String'];

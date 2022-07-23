@@ -1,4 +1,6 @@
-import { ApolloClient, HttpLink } from '@apollo/client';
+import { createUploadLink } from 'apollo-upload-client';
+
+import { ApolloClient } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
 import { cache } from './cache';
@@ -16,7 +18,7 @@ const authMiddleware = setContext((_, { headers }) => {
 });
 
 const apolloClient = new ApolloClient({
-  link: authMiddleware.concat(new HttpLink()),
+  link: authMiddleware.concat(createUploadLink()),
   cache: cache,
 });
 
