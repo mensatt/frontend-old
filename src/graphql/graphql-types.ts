@@ -19,7 +19,7 @@ export type Scalars = {
   Date: string;
   Timestamp: string;
   UUID: string;
-  Upload: string;
+  Upload: File;
 };
 
 export type AddImagesToReviewInput = {
