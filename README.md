@@ -8,23 +8,23 @@ This project is licensed under the GNU GPL v3. For more information see [LICENSE
 
 ## Contributing
 
-By default you only have rights to view this repository (which you are doing right now). Forking is not available as this repository is currently private.
+By default you only have rights to view this repository (which you are doing right now).
 
-### Getting write access
+You can create a branch (for a PR) in two ways:
 
-To contribute get in touch with one of the repo admins - they will grant you write access.
+- By Forking this repo with the `Fork` button on the top of the page.
+- By [Getting write access to this repo](#getting-write-access)
 
-### Once you have write access:
-
-> Note: **Do not push directly to main**
+### Implementing changes
 
 1. Create a new branch with a descriptive name based on `main`
-2. Make your changes
-3. Publish your branch to the repo
+2. Make your change(s)
+3. Publish your branch in your fork (or this repo if you have write access)
 4. [Create a pull request](https://github.com/mensatt/mensatt-frontend/compare)
-5. Wait for checks to pass (you might need to make changes)
-6. Once checks are successful, request a review from one of the other contributors
-7. Branch can be merged (by rebasing - see section below) once an approving review was given
+5. Ensure all checks are passing
+   > Note: You probably need to make changes to accomplish this
+6. Once all checks are passing, request a review from someone with write access
+7. Branch can be merged (by rebasing - see [section](#repo-structure-and-merging) below) once an approving review was given
 
 ### Commit style
 
@@ -37,10 +37,16 @@ use
 
 > Add new bugs so we do not run out of work
 
+Ideally, use [conventional commit style](https://www.conventionalcommits.org/en/v1.0.0/) for your commit messages
+
 ### Repo structure and merging
 
 Similarly to above it was agreed upon to use rebasing as the preferred method for updating and merging branches.  
 This has a few implications - mainly that only one person should work on a branch at a time and that force pushes become mandatory to update your branch (e.g. when `main` has changed since you created your feature-branch).
+
+### Getting write access
+
+If you want to get write access (which is not needed to contribute) get in touch with one of the repo admins - they may grant you write access if they see fit.
 
 ## Setting up development environment
 
@@ -69,7 +75,7 @@ yarn lint
 
 Will check your local files for linting and style errors and will notify you of found problems.
 
-> This is also run before every commit (see [section about husky](#pre-commit-hooks) below )
+> This is also run before every commit (see [section about husky](#pre-commit-hooks) below)
 
 ```
 yarn lint-fix
