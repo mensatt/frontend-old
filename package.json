@@ -1,5 +1,5 @@
 {
-  "name": "neosigfood-frontend",
+  "name": "mensatt-frontend",
   "private": true,
   "scripts": {
     "dev": "next dev",
