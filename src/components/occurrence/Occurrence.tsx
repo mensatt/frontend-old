@@ -17,9 +17,14 @@ import OccurrenceRating from './rating';
 import ReviewModal from './review-modal/ReviewModal';
 import OccurrenceTags from './tags';
 
+type Occurrence = GetOccurrencesByDateQuery['occurrencesByDate'][number];
+type Review = Occurrence['dish']['reviews'][number];
+
 type Props = {
-  occurrence: GetOccurrencesByDateQuery['occurrencesByDate'][number];
+  occurrence: Occurrence;
 };
+
+const reviewFilterFunction = (review: Review) => review.text;
 
 const Occurrence = ({ occurrence }: Props) => {
   const { t } = useTranslation('common');
@@ -40,10 +45,9 @@ const Occurrence = ({ occurrence }: Props) => {
     return `${protocol}//${hostname}`;
   }, [navData]);
 
-  const filteredReviews = useMemo(
-    () =>
-      occurrence.reviews.filter((review) => review.acceptedAt && review.text),
-    [occurrence.reviews],
+  const filteredDishReviews = useMemo(
+    () => occurrence.dish.reviews.filter(reviewFilterFunction),
+    [occurrence.dish.reviews],
   );
 
   const filteredImages = useMemo(
@@ -57,8 +61,8 @@ const Occurrence = ({ occurrence }: Props) => {
 
   const comments = useMemo(
     () =>
-      filteredReviews.length > 0 ? (
-        filteredReviews
+      filteredDishReviews.length > 0 ? (
+        filteredDishReviews
           .filter((review) => review.text)
           .map((review) => (
             <OccurrenceComment
@@ -72,7 +76,7 @@ const Occurrence = ({ occurrence }: Props) => {
       ) : (
         <div>{t('noCommentMsg')}</div>
       ),
-    [filteredReviews, t],
+    [filteredDishReviews, t],
   );
 
   const occurrenceName = useMemo(

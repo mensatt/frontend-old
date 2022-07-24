@@ -495,15 +495,15 @@ export type GetOccurrencesByDateQuery = {
         averageStars?: number | null;
         reviewCount: number;
       };
+      reviews: Array<{
+        __typename?: 'Review';
+        id: string;
+        displayName?: string | null;
+        text?: string | null;
+        acceptedAt?: string | null;
+      }>;
     };
     sideDishes: Array<{ __typename?: 'Dish'; id: string; nameDe: string }>;
-    reviews: Array<{
-      __typename?: 'Review';
-      id: string;
-      displayName?: string | null;
-      text?: string | null;
-      acceptedAt?: string | null;
-    }>;
     tags: Array<{
       __typename?: 'Tag';
       key: string;
