@@ -13,7 +13,9 @@
     "lint:prettier": "yarn prettier -c --ignore-path .gitignore .",
     "lint:prettier-fix": "yarn prettier -w --ignore-path .gitignore .",
     "types": "graphql-codegen --config codegen.yml && prettier -w src/graphql/graphql-types.ts",
-    "clean": "rm -rf node_modules/"
+    "clean": "rm -rf node_modules/",
+    "unix:dep-licenses-update": "yarn licenses list > DEPLICENSESDETAILS && sed -i '/Done in \\|yarn licenses/d' DEPLICENSESDETAILS",
+    "unix:dep-licenses-summary": "sed '/^\\(├\\|└\\)/!d' DEPLICENSESDETAILS"
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
