@@ -2,14 +2,14 @@ import { gql } from '@apollo/client';
 
 export const ADD_REVIEW = gql`
   mutation addReview(
-    $occID: UUID!
+    $occId: UUID!
     $author: String!
     $stars: Int!
     $comment: String
   ) {
     createReview(
       input: {
-        occurrence: $occID
+        occurrence: $occId
         displayName: $author
         stars: $stars
         text: $comment

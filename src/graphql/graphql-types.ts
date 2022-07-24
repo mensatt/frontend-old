@@ -423,7 +423,7 @@ export type AddImageMutation = {
 };
 
 export type AddReviewMutationVariables = Exact<{
-  occID: Scalars['UUID'];
+  occId: Scalars['UUID'];
   author: Scalars['String'];
   stars: Scalars['Int'];
   comment?: InputMaybe<Scalars['String']>;

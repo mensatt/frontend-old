@@ -35,13 +35,13 @@ type Props = {
   occurrenceName:
     | GetOccurrencesByDateQuery['occurrencesByDate'][number]['dish']['nameDe']
     | GetOccurrencesByDateQuery['occurrencesByDate'][number]['dish']['nameEn'];
-  occurrenceID: GetOccurrencesByDateQuery['occurrencesByDate'][number]['id'];
+  occurrenceId: GetOccurrencesByDateQuery['occurrencesByDate'][number]['id'];
   onSuccessfulSubmit: () => void;
 };
 
 const ReviewModal = ({
   occurrenceName,
-  occurrenceID,
+  occurrenceId,
   onSuccessfulSubmit,
 }: Props) => {
   const { t } = useTranslation('common');
@@ -106,7 +106,7 @@ const ReviewModal = ({
     author: '',
     stars: 0,
     comment: null,
-    occID: occurrenceID,
+    occId: occurrenceId,
   });
 
   const hasMissingFields = useMemo(
