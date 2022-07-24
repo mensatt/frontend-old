@@ -2,6 +2,10 @@
 
 Frontend of [mensatt](https://www.mensatt.de/) written in Next.js
 
+## License
+
+This project is licensed under the GNU GPL v3. For more information see [LICENSE](/LICENSE) and [DEPLICENSES](/DEPLICENSES.md).
+
 ## Contributing
 
 By default you only have rights to view this repository (which you are doing right now). Forking is not available as this repository is currently private.
