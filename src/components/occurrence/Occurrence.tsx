@@ -3,6 +3,9 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useMemo } from 'react';
 import { GetOccurrencesByDateQuery } from 'src/graphql/graphql-types';
+import { GET_NAVIGATION, Navigation } from 'src/graphql/queries';
+
+import { useQuery } from '@apollo/client';
 
 import styles from './Occurrence.module.scss';
 import OccurrenceComment from './comment';
@@ -19,6 +22,15 @@ type Props = {
 
 const commentFilterFunction = (review: Review) =>
   review.acceptedAt && review.text;
+const imagesFilterFunction = (review: Review) =>
+  review.acceptedAt && review.images.length > 0;
+const imagesMapFunction = (review: Review) =>
+  review.images.map((image) => ({
+    displayName: review.displayName,
+    createdAt: review.createdAt,
+    ...image,
+  }));
+
 const reviewSortFunction = (a: Review, b: Review) => {
   if (a.createdAt > b.createdAt) return 1;
   if (a.createdAt < b.createdAt) return -1;
@@ -33,6 +45,18 @@ const Occurrence = ({ occurrence }: Props) => {
     [routerLocale],
   );
 
+  // Get "URL-Base" from currently active backend
+  // Example: https://api.mensatt.de/v1/graphql => https://api.mensatt.de
+  const { data: navData } = useQuery<Navigation>(GET_NAVIGATION);
+  const backendURLBase = useMemo(() => {
+    const { protocol, hostname } = new URL(
+      navData
+        ? navData.mensas[navData.activeMensaIdx].url
+        : 'https://api.mensatt.de/v1/graphql',
+    );
+    return `${protocol}//${hostname}`;
+  }, [navData]);
+
   const filteredDishReviews = useMemo(
     () =>
       occurrence.dish.reviewData.reviews
@@ -40,6 +64,19 @@ const Occurrence = ({ occurrence }: Props) => {
         .sort(reviewSortFunction),
     [occurrence.dish.reviewData.reviews],
   );
+
+  const filteredDishImages = useMemo(
+    () =>
+      occurrence.dish.reviewData.reviews
+        .filter(imagesFilterFunction)
+        .sort(reviewSortFunction)
+        .flatMap(imagesMapFunction),
+    [occurrence.dish.reviewData.reviews],
+  );
+
+  // TODO: Replace with something more advanced (carousel maybe?) in the future
+  const randomImage =
+    filteredDishImages[Math.floor(Math.random() * filteredDishImages.length)];
 
   const comments = useMemo(
     () =>
@@ -87,16 +124,19 @@ const Occurrence = ({ occurrence }: Props) => {
   return (
     <div className={styles.content}>
       <div className={styles.image}>
-        <Image
-          src={'https://picsum.photos/1400/600'}
-          alt={t('imageDescription', {
-            name: occurrenceName,
-            author: 'John Doe',
-          })}
-          // width={100}
-          // height={600}
-          layout={'fill'}
-        />
+        {filteredDishImages.length > 0 ? (
+          <Image
+            key={randomImage.id}
+            src={backendURLBase + randomImage.imageUrl}
+            alt={t('imageDescription', {
+              name: occurrenceName,
+              author: randomImage.displayName || t('noAuthorName'),
+            })}
+            layout={'fill'}
+          />
+        ) : (
+          <div>{t('noImagesMsg')}</div>
+        )}
       </div>
       <h2>{occurrenceName}</h2>
       <div className={styles.priceAndRatingWrapper}>

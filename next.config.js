@@ -15,9 +15,6 @@ module.exports = withPWA({
     skipWaiting: true,
     disable: process.env.NODE_ENV === 'development',
   },
-  images: {
-    // TODO: Remove/Replace once proper backend URL is available
-    domains: ['picsum.photos'],
-  },
+  images: { domains: ['dev-api.mensatt.de', 'api.mensatt.de'] },
   i18n,
 });

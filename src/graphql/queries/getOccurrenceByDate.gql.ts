@@ -15,6 +15,10 @@ export const GET_OCCURRENCES_BY_DATE = gql`
             text
             acceptedAt
             createdAt
+            images {
+              id
+              imageUrl
+            }
           }
           metadata {
             averageStars
