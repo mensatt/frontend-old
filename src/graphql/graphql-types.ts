@@ -446,6 +446,19 @@ export type VcsBuildInfo = {
   modified: Scalars['String'];
 };
 
+export type AddReviewMutationVariables = Exact<{
+  occId: Scalars['UUID'];
+  author: Scalars['String'];
+  images?: InputMaybe<Array<ImageInput> | ImageInput>;
+  stars: Scalars['Int'];
+  comment?: InputMaybe<Scalars['String']>;
+}>;
+
+export type AddReviewMutation = {
+  __typename?: 'Mutation';
+  createReview: { __typename?: 'Review'; id: string };
+};
+
 export type LoginUserMutationVariables = Exact<{
   email: Scalars['String'];
   password: Scalars['String'];
