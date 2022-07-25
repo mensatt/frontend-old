@@ -23,5 +23,6 @@
   "reviewModalCommentLabel": "Your Comment",
   "reviewModalSubmitError": "There was an error while submitting your review",
   "reviewModalMissingStarValueError": "You need to provide a star rating",
-  "reviewModalImageTooBigError": "One of your pictures is too big. Pictures must not be bigger than {{size}}."
+  "reviewModalImageTooBigError": "One of your pictures is too big. Pictures must not be bigger than {{size}}.",
+  "reviewModalWrongExtensionError": "One of your pictures has a unsupported extension. Allowed extensions are: {{extensions}}"
 }
