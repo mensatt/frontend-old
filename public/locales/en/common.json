@@ -16,5 +16,12 @@
   "showMore": "Show more",
   "noCommentMsg": "There are no comments for this dish yet.",
   "noImagesMsg": "There are no images for this dish yet.",
-  "noAuthorName": "(no nick)"
+  "noAuthorName": "(no nick)",
+  "rate": "Rate",
+  "reviewModalHeading": "How was '{{name}}'?",
+  "reviewModalNameLabel": "Your Nickname",
+  "reviewModalCommentLabel": "Your Comment",
+  "reviewModalSubmitError": "There was an error while submitting your review",
+  "reviewModalMissingStarValueError": "You need to provide a star rating",
+  "reviewModalImageTooBigError": "One of your pictures is too big. Pictures must not be bigger than {{size}}."
 }
