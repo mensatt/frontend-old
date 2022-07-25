@@ -5,22 +5,20 @@ import { GetOccurrencesByDateQuery } from 'src/graphql/graphql-types';
 import styles from './OccurrenceRating.module.scss';
 
 type Props = {
-  reviewMetadata?: GetOccurrencesByDateQuery['occurrencesByDate'][number]['dish']['reviewMetadata'];
+  metadata?: GetOccurrencesByDateQuery['occurrencesByDate'][number]['dish']['reviewData']['metadata'];
   onSetSelectedStars?: (stars: number) => void;
 };
 
-const OccurrenceRating = ({ reviewMetadata, onSetSelectedStars }: Props) => {
+const OccurrenceRating = ({ metadata, onSetSelectedStars }: Props) => {
   const [hoverStarAmount, setHoverStarAmount] = useState(0);
   const [selectedStars, setSelectedStars] = useState(0);
 
   // This component is interactive if reviewMetadata is NOT passed
-  const isInteractive = !reviewMetadata;
+  const isInteractive = !metadata;
 
   const determineStarPercentage = useCallback(
     (idx: number) => {
-      const baseValue = reviewMetadata
-        ? reviewMetadata.averageStars || 0
-        : selectedStars;
+      const baseValue = metadata ? metadata.averageStars || 0 : selectedStars;
       const currStarVal = baseValue - idx;
       const normalizedStarVal =
         currStarVal <= 0
@@ -37,7 +35,7 @@ const OccurrenceRating = ({ reviewMetadata, onSetSelectedStars }: Props) => {
         return isHoveredOn ? hoverPercentage : normalizedStarVal;
       }
     },
-    [hoverStarAmount, isInteractive, reviewMetadata, selectedStars],
+    [hoverStarAmount, isInteractive, metadata, selectedStars],
   );
 
   const stars = useMemo(
@@ -65,7 +63,7 @@ const OccurrenceRating = ({ reviewMetadata, onSetSelectedStars }: Props) => {
   return (
     <div className={styles.ratingWrapper}>
       {stars}
-      {reviewMetadata && <span>({reviewMetadata.reviewCount})</span>}
+      {metadata && <span>({metadata.reviewCount})</span>}
     </div>
   );
 };

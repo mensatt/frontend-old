@@ -1,2 +1,2 @@
 export * from '../mutations/loginUser.gql';
-export * from '../mutations/setReviewStatus.gql';
+export * from './setOccurrenceStatus.gql';

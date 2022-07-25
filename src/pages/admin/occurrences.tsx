@@ -6,11 +6,11 @@ import Table, { TableDataRow, TableHeaderRow } from 'src/components/table';
 import {
   GetAdminPanelOccurrencesQuery,
   GetAdminPanelOccurrencesQueryVariables,
-  ReviewStatus,
-  SetReviewStatusMutation,
-  SetReviewStatusMutationVariables,
+  OccurrenceStatus,
+  SetOccurrenceStatusMutation,
+  SetOccurrenceStatusMutationVariables,
 } from 'src/graphql/graphql-types';
-import { SET_REVIEW_STATUS } from 'src/graphql/mutations/';
+import { SET_OCCURRENCE_STATUS } from 'src/graphql/mutations/';
 import {
   GET_ADMIN_PANEL_OCCURRENCES,
   GET_NAVIGATION,
@@ -27,7 +27,7 @@ const AdminOccurrencesPage: NextPage = () => {
   // TODO: In the future this can/should be updated to display/hide columns dynamically
   const [headerRows] = useState<TableHeaderRow[]>([
     { fieldName: 'name', displayName: 'Name' },
-    { fieldName: 'reviewStatus', displayName: 'Review Status' },
+    { fieldName: 'occurrenceStatus', displayName: 'Review Status' },
     { fieldName: 'date', displayName: 'Date' },
   ]);
 
@@ -39,10 +39,10 @@ const AdminOccurrencesPage: NextPage = () => {
     skip: !navData || navData.selectedDate.length < DATE_FORMAT.length,
   });
 
-  const [setReviewStatus, { loading: mutationLoading }] = useMutation<
-    SetReviewStatusMutation,
-    SetReviewStatusMutationVariables
-  >(SET_REVIEW_STATUS, {
+  const [setOccurrenceStatus, { loading: mutationLoading }] = useMutation<
+    SetOccurrenceStatusMutation,
+    SetOccurrenceStatusMutationVariables
+  >(SET_OCCURRENCE_STATUS, {
     // TODO: In the future it might be better to just update the apollo cache
     // if the mutation was successful instead of refetching the data.
     refetchQueries: [
@@ -58,47 +58,47 @@ const AdminOccurrencesPage: NextPage = () => {
 
     return data.occurrencesAfterInclusiveDate.map((elem) => ({
       name: elem.dish.nameDe,
-      reviewStatus: {
+      occurrenceStatus: {
         node: (
           <>
             <select
               disabled={mutationLoading}
-              value={elem.reviewStatus}
+              value={elem.status}
               onChange={(e) =>
-                setReviewStatus({
+                setOccurrenceStatus({
                   variables: {
                     id: elem.id,
-                    status: e.target.value as ReviewStatus,
+                    status: e.target.value as OccurrenceStatus,
                   },
                 })
               }
             >
-              <option value={ReviewStatus.Approved}>
-                {ReviewStatus.Approved}
+              <option value={OccurrenceStatus.Approved}>
+                {OccurrenceStatus.Approved}
               </option>
-              <option value={ReviewStatus.AwaitingApproval}>
-                {ReviewStatus.AwaitingApproval}
+              <option value={OccurrenceStatus.AwaitingApproval}>
+                {OccurrenceStatus.AwaitingApproval}
               </option>
-              <option value={ReviewStatus.Confirmed}>
-                {ReviewStatus.Confirmed}
+              <option value={OccurrenceStatus.Confirmed}>
+                {OccurrenceStatus.Confirmed}
               </option>
-              <option value={ReviewStatus.PendingDeletion}>
-                {ReviewStatus.PendingDeletion}{' '}
+              <option value={OccurrenceStatus.PendingDeletion}>
+                {OccurrenceStatus.PendingDeletion}{' '}
               </option>
-              <option value={ReviewStatus.Updated}>
-                {ReviewStatus.Updated}
+              <option value={OccurrenceStatus.Updated}>
+                {OccurrenceStatus.Updated}
               </option>
             </select>
           </>
         ),
-        value: elem.reviewStatus,
+        value: elem.status,
       },
       date: elem.date,
       ...(headerRows.find((elem) => elem.fieldName === 'id') && {
         id: elem.id,
       }),
     }));
-  }, [data, headerRows, mutationLoading, setReviewStatus]);
+  }, [data, headerRows, mutationLoading, setOccurrenceStatus]);
 
   return (
     <>
