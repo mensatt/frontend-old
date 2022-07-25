@@ -71,7 +71,7 @@ export type CreateOccurrenceInput = {
 
 export type CreateReviewInput = {
   displayName?: InputMaybe<Scalars['String']>;
-  images: Array<ImageInput>;
+  images?: InputMaybe<Array<ImageInput>>;
   occurrence: Scalars['UUID'];
   stars: Scalars['Int'];
   text?: InputMaybe<Scalars['String']>;
