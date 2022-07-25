@@ -1,0 +1,29 @@
+.header {
+  grid-area: header;
+}
+
+.stars {
+  grid-area: stars;
+  justify-self: center;
+}
+
+.name {
+  grid-area: name;
+}
+
+.comment {
+  grid-area: comment;
+}
+
+.button {
+  grid-area: button;
+}
+
+.form {
+  display: grid;
+  grid-template-areas:
+    'header header'
+    'stars stars'
+    'name comment'
+    'button button';
+}

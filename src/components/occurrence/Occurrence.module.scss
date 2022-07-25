@@ -37,24 +37,46 @@
   }
 }
 
-button.allComments {
-  all: unset;
-  padding: $card-item-padding $card-item-padding * 2;
+.buttonContainer {
+  display: flex;
+  gap: 3%;
   margin-top: $main-content-padding;
+}
+
+.buttonContainer button {
+  all: unset;
+  flex: 1;
+  padding: $card-item-padding $card-item-padding * 2;
   font-family: $font-major;
   font-size: 10pt;
   color: $color-major;
+  text-align: center;
   cursor: pointer;
   background-color: $bg-light;
   border-radius: $card-item-br;
   transition: background-color 0.1s ease;
+}
 
+.buttonContainer .occDetails {
   &:hover {
     background-color: $bg-darker;
   }
 
   &:focus-visible {
     outline: 2px solid $color-blue !important;
+  }
+}
+
+.buttonContainer .rate {
+  background-color: $color-blue;
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: $bg-dark;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-major !important;
   }
 }
 

@@ -16,5 +16,12 @@
   "showMore": "Mehr anzeigen",
   "noCommentMsg": "Es gibt noch keine Kommentare für dieses Gericht.",
   "noImagesMsg": "Es gibt noch keine Bilder für dieses Gericht.",
-  "noAuthorName": "(kein nick)"
+  "noAuthorName": "(kein nick)",
+  "rate": "Bewerten",
+  "reviewModalHeading": "Wie war '{{name}}'?",
+  "reviewModalNameLabel": "Dein Nickname",
+  "reviewModalCommentLabel": "Dein Kommentar",
+  "reviewModalSubmitError": "Es gab einen Fehler beim Absenden deiner Bewertung",
+  "reviewModalMissingFieldsError": "Du musst mindestens eine Sternebewertung angeben",
+  "reviewModalImageTooBigError": "Dein Bild is zu groß. Es darf maximal {{size}} groß sein"
 }
