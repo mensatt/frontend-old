@@ -8,9 +8,11 @@ export const GET_OCCURRENCES_BY_DATE = gql`
         id
         nameDe
         nameEn
-        reviewMetadata {
-          averageStars
-          reviewCount
+        reviewData {
+          metadata {
+            averageStars
+            reviewCount
+          }
         }
       }
       sideDishes {

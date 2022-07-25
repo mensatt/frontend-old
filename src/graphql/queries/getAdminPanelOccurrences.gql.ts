@@ -7,7 +7,7 @@ export const GET_ADMIN_PANEL_OCCURRENCES = gql`
       dish {
         nameDe
       }
-      reviewStatus
+      status
       date
     }
   }

@@ -79,7 +79,7 @@ const Occurrence = ({ occurrence }: Props) => {
       <h2>{occurrenceName}</h2>
       <div className={styles.priceAndRatingWrapper}>
         <div className={styles.pillsWrapper}>
-          <OccurrenceRating reviewMetadata={occurrence.dish.reviewMetadata} />
+          <OccurrenceRating metadata={occurrence.dish.reviewData.metadata} />
           <OccurrenceTags tags={occurrence.tags} />
         </div>
         {prices}
