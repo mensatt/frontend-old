@@ -23,5 +23,6 @@
   "reviewModalCommentLabel": "Dein Kommentar",
   "reviewModalSubmitError": "Es gab einen Fehler beim Absenden deiner Bewertung",
   "reviewModalMissingStarValueError": "Du musst eine Sternebewertung angeben",
-  "reviewModalImageTooBigError": "Eins deiner Bilder ist zu groß. Bilder dürfen maximal {{size}} groß sein"
+  "reviewModalImageTooBigError": "Eins deiner Bilder ist zu groß. Bilder dürfen maximal {{size}} groß sein",
+  "reviewModalWrongExtensionError": "Eins deiner Bilder hat eine nicht-unterstüzte Dateiendung. Erlaubte Endungen sind: {{extensions}}"
 }
