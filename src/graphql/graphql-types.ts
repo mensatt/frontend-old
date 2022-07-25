@@ -341,12 +341,14 @@ export type Review = {
 
 export type ReviewDataDish = {
   __typename?: 'ReviewDataDish';
+  images: Array<Image>;
   metadata: ReviewMetadataDish;
   reviews: Array<Review>;
 };
 
 export type ReviewDataOccurrence = {
   __typename?: 'ReviewDataOccurrence';
+  images: Array<Image>;
   metadata: ReviewMetadataOccurrence;
   reviews: Array<Review>;
 };
@@ -497,6 +499,7 @@ export type GetOccurrencesByDateQuery = {
           text?: string | null;
           acceptedAt?: string | null;
           createdAt: string;
+          images: Array<{ __typename?: 'Image'; id: string; imageUrl: string }>;
         }>;
         metadata: {
           __typename?: 'ReviewMetadataDish';
