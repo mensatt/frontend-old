@@ -139,50 +139,53 @@ const Occurrence = ({ occurrence }: Props) => {
             layout={'fill'}
           />
         ) : (
-          <div>{t('noImagesMsg')}</div>
+          <span>{t('noImagesMsg')}</span>
         )}
       </div>
-      <h2>{occurrenceName}</h2>
-      <div className={styles.priceAndRatingWrapper}>
-        <div className={styles.pillsWrapper}>
-          <OccurrenceRating metadata={occurrence.dish.reviewData.metadata} />
-          <OccurrenceTags tags={occurrence.tags} />
+      <div className={styles.inner}>
+        <h2>{occurrenceName}</h2>
+        <div className={styles.priceAndRatingWrapper}>
+          <div className={styles.pillsWrapper}>
+            <OccurrenceRating metadata={occurrence.dish.reviewData.metadata} />
+            <OccurrenceTags tags={occurrence.tags} />
+          </div>
+          {prices}
         </div>
-        {prices}
-      </div>
-      <h3>{t('commentHeading')}</h3>
-      {comments}
-      <div className={styles.buttonContainer}>
-        <button className={styles.occDetails}>
-          {t('showOccurrenceDetails')}
-        </button>
-        {/* NOTE: At the time of writing reduxjs-popup did not support using `open => ReactNode` as children (even though it was documented). So I had to work around it.
-            This involved:
-              - not using the rate button as the `trigger` value for the Popup
-              - using `useState` to manage the open state of the popup ourself
-            TODO: Investigate if this is still needed in the future or perhaps
-                  even replace popups with own implementation
-         */}
-        <button
-          disabled={dayjs(occurrence.date, DATE_FORMAT) > currentDate}
-          className={styles.rate}
-          onClick={() => setPopupOpen(true)}
-        >
-          {t('rate')}
-        </button>
-        <Popup
-          closeOnDocumentClick
-          on="click"
-          modal
-          open={popupOpen}
-          onClose={() => setPopupOpen(false)}
-        >
-          <ReviewModal
-            occurrenceName={occurrenceName}
-            occurrenceId={occurrence.id}
-            afterSuccessfulSubmit={() => setPopupOpen(false)}
-          />
-        </Popup>
+        <h3>{t('commentHeading')}</h3>
+        {comments}
+        <div className={styles.dynamicSpace} />
+        <div className={styles.buttonContainer}>
+          <button className={styles.occDetails}>
+            {t('showOccurrenceDetails')}
+          </button>
+          {/* NOTE: At the time of writing reduxjs-popup did not support using `open => ReactNode` as children (even though it was documented). So I had to work around it.
+              This involved:
+                - not using the rate button as the `trigger` value for the Popup
+                - using `useState` to manage the open state of the popup ourself
+              TODO: Investigate if this is still needed in the future or perhaps
+                    even replace popups with own implementation
+          */}
+          <button
+            disabled={dayjs(occurrence.date, DATE_FORMAT) > currentDate}
+            className={styles.rate}
+            onClick={() => setPopupOpen(true)}
+          >
+            {t('rate')}
+          </button>
+          <Popup
+            closeOnDocumentClick
+            on="click"
+            modal
+            open={popupOpen}
+            onClose={() => setPopupOpen(false)}
+          >
+            <ReviewModal
+              occurrenceName={occurrenceName}
+              occurrenceId={occurrence.id}
+              afterSuccessfulSubmit={() => setPopupOpen(false)}
+            />
+          </Popup>
+        </div>
       </div>
     </div>
   );

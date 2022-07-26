@@ -1,11 +1,22 @@
 .content {
   position: relative;
-  padding: $main-content-padding;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
   background-color: $bg-lighter;
   border-radius: $main-content-br;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  padding: $main-content-padding;
 
   h2 {
-    margin: $main-content-padding 0;
+    margin: 0 0 $main-content-padding 0;
     font-family: $font-header;
     font-size: 18pt;
     color: $color-header;
@@ -20,33 +31,45 @@
 }
 
 .image {
-  position: relative !important;
-  width: 100% !important;
-  height: 200pt !important;
+  position: relative;
+  width: 100%;
+  height: 200pt;
   overflow: hidden;
-  border-radius: $card-item-br;
+  background-color: $bg-light;
 
   img {
     object-fit: cover;
   }
 
+  span {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    padding: $main-content-padding;
+  }
+
   @supports (aspect-ratio: 1) {
     height: unset !important;
     // TODO pick an aspect ratio
-    aspect-ratio: 21 / 9 !important;
+    aspect-ratio: 16 / 9 !important;
   }
+}
+
+.dynamicSpace {
+  flex-grow: 1;
 }
 
 .buttonContainer {
   display: flex;
-  gap: 3%;
+  gap: $card-item-padding;
   margin-top: $main-content-padding;
 }
 
 .buttonContainer button {
   all: unset;
   flex: 1;
-  padding: $card-item-padding $card-item-padding * 2;
+  height: $content-pills-height;
   font-family: $font-major;
   font-size: 10pt;
   color: $color-major;

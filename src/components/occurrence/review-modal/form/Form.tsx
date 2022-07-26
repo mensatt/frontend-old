@@ -109,10 +109,8 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
     [formState],
   );
   return (
-    <>
-      <h1 className={styles.header}>
-        {t('reviewModalHeading', { name: occurrenceName })}
-      </h1>
+    <div className={styles.wrapper}>
+      <h1>{t('reviewModalHeading', { name: occurrenceName })}</h1>
       {addReviewError && <p>{t('reviewModalSubmitError')}</p>}
       {showMissingStarValueError && (
         <p>{t('reviewModalMissingStarValueError')}</p>
@@ -177,7 +175,7 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
           {addReviewLoading ? t('loading') : t('rate')}
         </button>
       </form>
-    </>
+    </div>
   );
 };
 
