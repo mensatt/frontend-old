@@ -6,8 +6,7 @@ import styles from './OccurrenceTags.module.scss';
 
 const TAG_LIMIT = 3;
 
-type Tag =
-  GetOccurrencesByDateQuery['occurrencesByDate'][number]['tags'][number];
+type Tag = GetOccurrencesByDateQuery['occurrences'][number]['tags'][number];
 
 type Props = {
   tags: Array<Tag>;

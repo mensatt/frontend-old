@@ -13,17 +13,15 @@ import OccurrencePrices from './prices';
 import OccurrenceRating from './rating';
 import OccurrenceTags from './tags';
 
-type Occurrence = GetOccurrencesByDateQuery['occurrencesByDate'][number];
+type Occurrence = GetOccurrencesByDateQuery['occurrences'][number];
 type Review = Occurrence['dish']['reviewData']['reviews'][number];
 
 type Props = {
   occurrence: Occurrence;
 };
 
-const commentFilterFunction = (review: Review) =>
-  review.acceptedAt && review.text;
-const imagesFilterFunction = (review: Review) =>
-  review.acceptedAt && review.images.length > 0;
+const commentFilterFunction = (review: Review) => review.text;
+const imagesFilterFunction = (review: Review) => review.images.length > 0;
 const imagesMapFunction = (review: Review) =>
   review.images.map((image) => ({
     displayName: review.displayName,

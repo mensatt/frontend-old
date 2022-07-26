@@ -54,20 +54,20 @@ const AdminOccurrencesPage: NextPage = () => {
   });
 
   const rows: TableDataRow[] = useMemo(() => {
-    if (!data || data.occurrencesAfterInclusiveDate.length < 1) return [];
+    if (!data || data.occurrences.length < 1) return [];
 
-    return data.occurrencesAfterInclusiveDate.map((elem) => ({
-      name: elem.dish.nameDe,
+    return data.occurrences.map((occurrence) => ({
+      name: occurrence.dish.nameDe,
       occurrenceStatus: {
         node: (
           <>
             <select
               disabled={mutationLoading}
-              value={elem.status}
+              value={occurrence.status}
               onChange={(e) =>
                 setOccurrenceStatus({
                   variables: {
-                    id: elem.id,
+                    id: occurrence.id,
                     status: e.target.value as OccurrenceStatus,
                   },
                 })
@@ -91,11 +91,11 @@ const AdminOccurrencesPage: NextPage = () => {
             </select>
           </>
         ),
-        value: elem.status,
+        value: occurrence.status,
       },
-      date: elem.date,
+      date: occurrence.date,
       ...(headerRows.find((elem) => elem.fieldName === 'id') && {
-        id: elem.id,
+        id: occurrence.id,
       }),
     }));
   }, [data, headerRows, mutationLoading, setOccurrenceStatus]);

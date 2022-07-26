@@ -112,6 +112,10 @@ export type Dish = {
   reviewData: ReviewDataDish;
 };
 
+export type DishReviewDataArgs = {
+  filter?: InputMaybe<ReviewFilter>;
+};
+
 export type DishAlias = {
   __typename?: 'DishAlias';
   aliasName: Scalars['String'];
@@ -260,6 +264,17 @@ export type Occurrence = {
   tags: Array<Tag>;
 };
 
+export type OccurrenceReviewDataArgs = {
+  filter?: InputMaybe<ReviewFilter>;
+};
+
+export type OccurrenceFilter = {
+  endDate?: InputMaybe<Scalars['Date']>;
+  location?: InputMaybe<Scalars['UUID']>;
+  startDate?: InputMaybe<Scalars['Date']>;
+  status?: InputMaybe<OccurrenceStatus>;
+};
+
 export type OccurrenceSideDish = {
   __typename?: 'OccurrenceSideDish';
   dish: Dish;
@@ -291,12 +306,9 @@ export type Query = {
   __typename?: 'Query';
   currentUser?: Maybe<User>;
   dishes: Array<Dish>;
-  images: Array<Image>;
   locationById: Location;
   locations: Array<Location>;
   occurrences: Array<Occurrence>;
-  occurrencesAfterInclusiveDate: Array<Occurrence>;
-  occurrencesByDate: Array<Occurrence>;
   reviews: Array<Review>;
   tags: Array<Tag>;
   vcsBuildInfo?: Maybe<VcsBuildInfo>;
@@ -306,12 +318,8 @@ export type QueryLocationByIdArgs = {
   id: Scalars['UUID'];
 };
 
-export type QueryOccurrencesAfterInclusiveDateArgs = {
-  start: Scalars['Date'];
-};
-
-export type QueryOccurrencesByDateArgs = {
-  date: Scalars['Date'];
+export type QueryOccurrencesArgs = {
+  filter?: InputMaybe<OccurrenceFilter>;
 };
 
 export type RemoveSideDishFromOccurrenceInput = {
@@ -351,6 +359,10 @@ export type ReviewDataOccurrence = {
   images: Array<Image>;
   metadata: ReviewMetadataOccurrence;
   reviews: Array<Review>;
+};
+
+export type ReviewFilter = {
+  approved?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type ReviewMetadataDish = {
@@ -463,7 +475,7 @@ export type GetAdminPanelOccurrencesQueryVariables = Exact<{
 
 export type GetAdminPanelOccurrencesQuery = {
   __typename?: 'Query';
-  occurrencesAfterInclusiveDate: Array<{
+  occurrences: Array<{
     __typename?: 'Occurrence';
     id: string;
     status: OccurrenceStatus;
@@ -478,7 +490,7 @@ export type GetOccurrencesByDateQueryVariables = Exact<{
 
 export type GetOccurrencesByDateQuery = {
   __typename?: 'Query';
-  occurrencesByDate: Array<{
+  occurrences: Array<{
     __typename?: 'Occurrence';
     id: string;
     date: string;

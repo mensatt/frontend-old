@@ -4,8 +4,7 @@ import { GetOccurrencesByDateQuery } from 'src/graphql/graphql-types';
 
 import styles from './OccurrencePrices.module.scss';
 
-type Cents =
-  GetOccurrencesByDateQuery['occurrencesByDate'][number]['priceStudent'];
+type Cents = GetOccurrencesByDateQuery['occurrences'][number]['priceStudent'];
 
 type Props = {
   // Note: Assuming all prices have the same type
