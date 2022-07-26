@@ -180,7 +180,7 @@ const Occurrence = ({ occurrence }: Props) => {
           <ReviewModal
             occurrenceName={occurrenceName}
             occurrenceId={occurrence.id}
-            onSuccessfulSubmit={() => setPopupOpen(false)}
+            afterSuccessfulSubmit={() => setPopupOpen(false)}
           />
         </Popup>
       </div>
