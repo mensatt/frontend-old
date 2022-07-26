@@ -1,4 +1,5 @@
-import React from 'react';
+import { useTranslation } from 'next-i18next';
+import React, { useState } from 'react';
 import Modal from 'src/components/modal';
 import { GetOccurrencesByDateQuery } from 'src/graphql/graphql-types';
 
@@ -15,14 +16,24 @@ type Props = {
 const ReviewModal = ({
   occurrenceName,
   occurrenceId,
-  afterSuccessfulSubmit,
+  afterSuccessfulSubmit: onSuccessfulSubmit,
 }: Props) => {
+  const { t } = useTranslation('common');
+  const [submitted, setSubmitted] = useState(false);
+
   return (
     <Modal>
-      <Form
-        {...{ occurrenceId, occurrenceName }}
-        onSuccessfulSubmit={() => afterSuccessfulSubmit()}
-      />
+      {submitted ? (
+        <>
+          <p>{t('reviewModalSubmittedAwaitingApproval')}</p>
+          <button onClick={onSuccessfulSubmit}>Okay</button>
+        </>
+      ) : (
+        <Form
+          {...{ occurrenceId, occurrenceName }}
+          onSuccessfulSubmit={() => setSubmitted(true)}
+        />
+      )}
     </Modal>
   );
 };
