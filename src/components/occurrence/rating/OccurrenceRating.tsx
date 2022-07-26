@@ -5,7 +5,7 @@ import { GetOccurrencesByDateQuery } from 'src/graphql/graphql-types';
 import styles from './OccurrenceRating.module.scss';
 
 type Props = {
-  metadata?: GetOccurrencesByDateQuery['occurrencesByDate'][number]['dish']['reviewData']['metadata'];
+  metadata?: GetOccurrencesByDateQuery['occurrences'][number]['dish']['reviewData']['metadata'];
   onSetSelectedStars?: (stars: number) => void;
 };
 

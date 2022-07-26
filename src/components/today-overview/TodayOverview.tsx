@@ -34,12 +34,12 @@ const TodayOverview = () => {
 
   const content =
     data &&
-    data.occurrencesByDate.map((occurrence) => (
+    data.occurrences.map((occurrence) => (
       <Occurrence occurrence={occurrence} key={occurrence.id} />
     ));
 
   const contentWithMessage =
-    data && data.occurrencesByDate.length > 0 ? content : t('noFoodMsg');
+    data && data.occurrences.length > 0 ? content : t('noFoodMsg');
 
   return (
     <div className={styles.container}>
