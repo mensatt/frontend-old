@@ -142,6 +142,7 @@ const ReviewModal = ({
           })}
         </p>
       )}
+      {formState.images && <p>{t('reviewModalImageDisclaimer')}</p>}
       <form className={styles.form} onSubmit={handleSubmit}>
         <input type="file" onChange={onFileInputChange} multiple />
         <div className={styles.stars}>
