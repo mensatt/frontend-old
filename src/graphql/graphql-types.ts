@@ -480,6 +480,19 @@ export type SetReviewApprovalStatusMutation = {
   updateReview: { __typename?: 'Review'; id: string };
 };
 
+export type GetAdminPanelDishesQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetAdminPanelDishesQuery = {
+  __typename?: 'Query';
+  dishes: Array<{
+    __typename?: 'Dish';
+    id: string;
+    nameDe: string;
+    nameEn?: string | null;
+    aliases: Array<string>;
+  }>;
+};
+
 export type GetAdminPanelOccurrencesQueryVariables = Exact<{
   status?: InputMaybe<OccurrenceStatus>;
   locationId: Scalars['UUID'];
