@@ -25,5 +25,6 @@
   "reviewModalMissingStarValueError": "You need to provide a star rating",
   "reviewModalImageTooBigError": "One of your pictures is too big. Pictures must not be bigger than {{size}}.",
   "reviewModalWrongExtensionError": "One of your pictures has a unsupported extension. Allowed extensions are: {{extensions}}",
-  "reviewModalImageDisclaimer": "By uploading your pictures you allow Mensatt to use them in any form."
+  "reviewModalImageDisclaimer": "By uploading your pictures you allow Mensatt to use them in any form.",
+  "reviewModalSubmittedAwaitingApproval": "Your review was submitted successfully and will be visible once it is approved by one of our moderators."
 }
