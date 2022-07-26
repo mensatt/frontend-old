@@ -1,29 +1,38 @@
-.header {
-  grid-area: header;
-}
+.wrapper {
+  width: 90vw;
+  max-width: 400pt;
 
-.stars {
-  grid-area: stars;
-  justify-self: center;
-}
+  h1 {
+    margin: 0;
+  }
 
-.name {
-  grid-area: name;
-}
-
-.comment {
-  grid-area: comment;
-}
-
-.button {
-  grid-area: button;
+  // p == error message
+  p {
+    padding: $card-item-padding;
+    color: $color-red;
+    background-color: $color-red20;
+    border-radius: $card-item-br;
+  }
 }
 
 .form {
-  display: grid;
-  grid-template-areas:
-    'header header'
-    'stars stars'
-    'name comment'
-    'button button';
+  display: flex;
+  flex-direction: column;
+  gap: $card-item-padding;
+
+  input[type='file'] {
+  }
+
+  .stars {
+    justify-self: center;
+  }
+
+  .name {
+  }
+
+  .comment {
+  }
+
+  .button {
+  }
 }
