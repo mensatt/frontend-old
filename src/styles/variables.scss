@@ -4,7 +4,11 @@
   --bg-light: #eeeeee;
   --bg-lighter: #ffffff;
   --color-blue: #55acee;
+  --color-blue20: #55acee20;
+  --color-blueH: #3381bd;
   --color-red: #ec3960;
+  --color-red20: #ec396020;
+  --color-redH: #961f39;
   --color-red20: #ec396020;
   --color-minor: #585858;
   --color-regular: #141414;
@@ -19,8 +23,11 @@
   --bg-light: #eeeeee;
   --bg-lighter: #ffffff;
   --color-blue: #55acee;
+  --color-blue20: #55acee20;
+  --color-blueH: #3381bd;
   --color-red: #ec3960;
   --color-red20: #ec396020;
+  --color-redH: #961f39;
   --color-minor: #585858;
   --color-regular: #141414;
   --color-major: #080808;
@@ -37,8 +44,11 @@ $bg-lighter: var(--bg-lighter);
 
 // theme
 $color-blue: var(--color-blue);
+$color-blue20: var(--color-blue20);
+$color-blueH: var(--color-blueH);
 $color-red: var(--color-red);
 $color-red20: var(--color-red20);
+$color-redH: var(--color-redH);
 $color-minor: var(--color-minor);
 $color-regular: var(--color-regular);
 $color-major: var(--color-major);
@@ -70,3 +80,10 @@ $card-item-padding: 6pt;
 $container-padding: 2rem;
 
 $content-pills-height: 28pt;
+
+//
+
+@mixin lifted {
+  border: 1px solid $bg-darker;
+  box-shadow: 0 4px 2px -2px #00000022;
+}

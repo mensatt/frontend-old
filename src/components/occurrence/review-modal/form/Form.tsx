@@ -140,22 +140,25 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <h1>{t('reviewModalHeading', { name: occurrenceName })}</h1>
-      {formState.images && <p>{t('reviewModalImageDisclaimer')}</p>}
+      <label>{t('reviewModalRatingLabel')}</label>
       <div className={styles.stars}>
         <OccurrenceRating
           onSetSelectedStars={(stars) => {
             setFormState({ ...formState, stars: stars });
             setShowMissingStarValueError(false);
           }}
+          className={styles.rating}
         />
       </div>
-      <div className={styles.divider} />
-      {/* TODO localize this */}
-      <label>Image (optional)</label>
+      <label>{t('reviewModalImageLabel')}</label>
       <div className={styles.fileUpload}>
+        {/* TODO give this div element an additional class when the user is dragging a file over it */}
         <input type="file" onChange={onFileInputChange} multiple />
+        {/* TODO put this into lang file */}
         <span>Click or drop an image to upload.</span>
+        {/* TODO show a preview of the selected image file here, just add an <img> tag or something i can style if there is a file selected */}
       </div>
+      {formState.images && <p>{t('reviewModalImageDisclaimer')}</p>}
       <label htmlFor="reviewModalCommentInput">
         {t('reviewModalCommentLabel')}
       </label>
