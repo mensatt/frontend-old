@@ -10,6 +10,8 @@ import {
 import { UPDATE_DISH } from '../../graphql/mutations';
 import { GET_ADMIN_PANEL_DISHES } from '../../graphql/queries';
 
+import styles from './DishInput.module.scss';
+
 type ValueType = 'id' | 'nameDe' | 'nameEn';
 
 const DishInput = ({
@@ -40,13 +42,12 @@ const DishInput = ({
     <input
       type="text"
       disabled={mutationLoading}
+      className={styles.dishInput}
       value={
         currentDish.id === dish.id
           ? currentDish[valueAttribute]
           : dish[valueAttribute] ?? '<NULL>'
       }
-      // TODO: Move to scss file
-      style={{ width: '95%' }}
       onChange={(e) =>
         setCurrentDish({
           id: dish.id,
