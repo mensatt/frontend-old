@@ -7,6 +7,7 @@ import { GET_ADMIN_PANEL_DISHES } from 'src/graphql/queries/';
 
 import { useQuery } from '@apollo/client';
 
+import DishInput from '../../components/admin';
 import Table, { TableDataRow, TableHeaderRow } from '../../components/table';
 
 const AdminDishesPage: NextPage = () => {
@@ -22,13 +23,21 @@ const AdminDishesPage: NextPage = () => {
   const { data, loading, error } = useQuery<GetAdminPanelDishesQuery>(
     GET_ADMIN_PANEL_DISHES,
   );
+
   const rows: TableDataRow[] = useMemo(() => {
     if (!data || data.dishes.length === 0) return [];
-    return data.dishes.map((elem) => ({
-      id: elem.id,
-      nameDe: elem.nameDe ?? '<NULL>',
-      nameEn: elem.nameEn ?? '<NULL>',
-      aliases: elem.aliases.join(','),
+
+    return data.dishes.map((dish) => ({
+      id: dish.id,
+      nameDe: {
+        node: <DishInput dish={dish} valueAttribute="nameDe" />,
+        value: dish.nameDe,
+      },
+      nameEn: {
+        node: <DishInput dish={dish} valueAttribute="nameEn" />,
+        value: dish.nameEn ?? '<Null>',
+      },
+      aliases: dish.aliases.join(','),
     }));
   }, [data]);
 
