@@ -1,4 +1,7 @@
-.wrapper {
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $card-item-padding;
   width: 90vw;
   max-width: 400pt;
 
@@ -6,33 +9,82 @@
     margin: 0;
   }
 
-  // p == error message
   p {
-    padding: $card-item-padding;
-    color: $color-red;
-    background-color: $color-red20;
+    padding: $card-item-padding $card-item-padding * 1.5;
+    margin: 0;
+    font-family: $font-regular;
+    font-size: 10pt;
+    color: $color-major;
+    background-color: $bg-light;
     border-radius: $card-item-br;
+
+    &.error {
+      color: $color-red;
+      background-color: $color-red20;
+    }
   }
-}
 
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: $card-item-padding;
+  .fileUpload {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100px;
+    border: 2px solid $bg-dark;
+    border-style: dashed;
+    border-radius: $card-item-br;
 
-  input[type='file'] {
+    input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+    }
+
+    span {
+      font-family: $font-regular;
+      font-size: 10pt;
+      color: $color-minor;
+    }
   }
 
   .stars {
     justify-self: center;
   }
 
-  .name {
-  }
-
-  .comment {
+  label {
+    font-family: $font-major;
+    font-size: 9pt;
+    color: $color-major;
+    text-transform: uppercase;
   }
 
   .button {
+    height: $content-pills-height;
+    font-family: $font-major;
+    font-size: 10pt;
+    color: $color-major;
+    text-align: center;
+    cursor: pointer;
+    background-color: $color-blue;
+    border: none;
+    border-radius: $card-item-br;
+    transition: background-color 0.1s ease;
+
+    &:disabled {
+      color: $color-minor;
+      cursor: not-allowed;
+      background-color: $bg-light;
+    }
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    margin: calc($main-content-padding - $card-item-padding) 0;
+    background-color: $bg-darker;
   }
 }
