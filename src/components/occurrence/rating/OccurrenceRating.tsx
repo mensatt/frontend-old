@@ -7,9 +7,14 @@ import styles from './OccurrenceRating.module.scss';
 type Props = {
   metadata?: GetOccurrencesByDateQuery['occurrences'][number]['dish']['reviewData']['metadata'];
   onSetSelectedStars?: (stars: number) => void;
+  className?: string;
 };
 
-const OccurrenceRating = ({ metadata, onSetSelectedStars }: Props) => {
+const OccurrenceRating = ({
+  metadata,
+  onSetSelectedStars,
+  className,
+}: Props) => {
   const [hoverStarAmount, setHoverStarAmount] = useState(0);
   const [selectedStars, setSelectedStars] = useState(0);
 
@@ -61,7 +66,7 @@ const OccurrenceRating = ({ metadata, onSetSelectedStars }: Props) => {
   );
 
   return (
-    <div className={styles.ratingWrapper}>
+    <div className={styles.ratingWrapper + ' ' + className}>
       {stars}
       {metadata && <span>({metadata.reviewCount})</span>}
     </div>

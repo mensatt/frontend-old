@@ -1,29 +1,47 @@
 .footer {
   box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-areas: 'logo legal' 'logo disclaimer';
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: auto 1fr;
+  row-gap: 2pt;
+  column-gap: 8pt;
   padding: $main-content-padding $container-padding;
   margin: #{$container-padding} #{-$container-padding} 0 #{-$container-padding};
-  color: white;
-  background-color: #00000066;
 
   p {
-    display: inline-block;
+    grid-area: disclaimer;
     margin: 0;
-    text-align: right;
+    font-family: $font-regular;
+    font-size: 11pt;
+    color: $color-minor;
   }
+}
+
+.logo {
+  grid-area: logo;
+  width: 28pt;
+  height: 100%;
+  background-image: url('/static/img/logo.svg');
+  filter: grayscale(1);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .links {
   display: flex;
+  grid-area: legal;
   gap: $main-content-padding;
-  justify-content: center;
 
-  a {
+  * {
+    font-family: $font-major;
+    font-size: 11pt;
     font-weight: 600;
+    color: $color-minor;
+  }
 
-    &:hover {
-      text-decoration: underline;
-    }
+  a:hover {
+    text-decoration: underline;
   }
 }

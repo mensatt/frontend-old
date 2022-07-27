@@ -1,4 +1,5 @@
 .container {
+  @include lifted;
   box-sizing: border-box;
   display: inline-flex !important;
   gap: 3pt;

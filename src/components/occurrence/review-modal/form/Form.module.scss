@@ -12,11 +12,9 @@
   p {
     padding: $card-item-padding $card-item-padding * 1.5;
     margin: 0;
+    margin: 0 0 $card-item-padding 0;
     font-family: $font-regular;
-    font-size: 10pt;
-    color: $color-major;
-    background-color: $bg-light;
-    border-radius: $card-item-br;
+    font-size: 11pt;
 
     &.error {
       color: $color-red;
@@ -39,9 +37,10 @@
       top: 0;
       left: 0;
       display: block;
+      display: block;
       width: 100%;
       height: 100%;
-      opacity: 0;
+      cursor: pointer;
     }
 
     span {
@@ -55,11 +54,42 @@
     justify-self: center;
   }
 
+  .rating {
+    justify-content: center;
+    height: unset !important;
+    padding: 10pt 10pt !important;
+    border-radius: $card-item-br !important;
+
+    & > div {
+      width: 34pt;
+      height: 24pt;
+      padding: 0 5pt;
+      cursor: pointer;
+    }
+  }
+
   label {
+    margin-top: $card-item-padding;
     font-family: $font-major;
     font-size: 9pt;
     color: $color-major;
-    text-transform: uppercase;
+  }
+
+  input[type='text'] {
+    padding: 10pt 12pt;
+    font-family: $font-regular;
+    font-size: 12pt;
+    color: $color-regular;
+    border: 1px solid $bg-darker;
+    border-radius: $card-item-br;
+    box-shadow: 0px 0px 0px #00000000;
+    transition: box-shadow 0.1s ease, border-color 0.1s ease;
+
+    &:hover,
+    &:focus {
+      border-color: #888888;
+      box-shadow: 0 2px 3px #00000018;
+    }
   }
 
   .button {
@@ -79,12 +109,17 @@
       cursor: not-allowed;
       background-color: $bg-light;
     }
+
+    &:hover {
+      background-color: $color-blueH;
+    }
   }
 
   .divider {
-    width: 100%;
+    width: calc(100% + 2 * $main-content-padding);
     height: 1px;
-    margin: calc($main-content-padding - $card-item-padding) 0;
-    background-color: $bg-darker;
+    margin: calc($main-content-padding - $card-item-padding)
+      calc(-1 * $main-content-padding);
+    background-color: $bg-light;
   }
 }
