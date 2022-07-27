@@ -4,3 +4,9 @@
   gap: $main-content-margin;
   width: 100%;
 }
+
+@media screen and (max-width: $viewport-mobile-from) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
