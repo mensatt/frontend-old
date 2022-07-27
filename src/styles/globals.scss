@@ -7,9 +7,15 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
   /** TEMPORÄRE FARBE */
-  // background-color: #dce3eb;
   background: linear-gradient(180deg, #dce3eb, #ebe6dc);
+  background-attachment: fixed;
+
+  @media screen and (max-width: $viewport-mobile-from) {
+    background-color: #dce3eb;
+    background-image: none;
+  }
 }
 
 a {
@@ -45,6 +51,8 @@ h2 {
 /* THEMING */
 
 body {
+  @include spacing();
+
   @media (prefers-color-scheme: dark) {
     & * {
       @include theme-dark();

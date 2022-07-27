@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import React, { ReactNode, useMemo } from 'react';
 
+import Icon from '../icon';
+
 import styles from './Navigation.module.scss';
 import LanguageSwitcher from './language-switcher';
 import MensaSelection from './mensa-selection';
@@ -27,12 +29,22 @@ const Navigation = ({ opts }: Props) => {
     if (opts.showProfile) array.push(<ProfileButton key={'logout'} />);
 
     // insert divider divs between each item in the list
-    return array
+    const out = array
       .flatMap((item, index) => [
         item,
         <div className={styles.divider} key={index} />,
       ])
       .slice(0, -1);
+
+    if (out.length) {
+      out.push(
+        <div className={styles.mobileMenu}>
+          <Icon name="menu" />
+        </div>,
+      );
+    }
+
+    return out;
   }, [opts.showLanguage, opts.showMensa, opts.showProfile]);
 
   return (
