@@ -65,6 +65,18 @@ $font-mono-bold: 'SpaceMono 700', monospace;
 
 //// SPACING / SIZES
 
+@mixin spacing {
+  --container-padding: 2rem;
+
+  @media screen and (max-width: $viewport-mobile-from) {
+    --container-padding: 0.5rem;
+  }
+}
+
+$viewport-mobile-from: 900px;
+
+//
+
 $max-content-width: 350pt;
 
 $header-element-height: 40pt;
@@ -77,11 +89,11 @@ $main-content-br: 7pt;
 $card-item-br: 3pt;
 $card-item-padding: 6pt;
 
-$container-padding: 2rem;
+$container-padding: var(--container-padding);
 
 $content-pills-height: 28pt;
 
-//
+//// MIXINS
 
 @mixin lifted {
   border: 1px solid $bg-darker;

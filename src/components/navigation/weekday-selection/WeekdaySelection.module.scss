@@ -62,3 +62,22 @@
     }
   }
 }
+
+@media screen and (max-width: $viewport-mobile-from) {
+  .container {
+    justify-content: space-evenly;
+    width: 100%;
+    height: unset;
+    padding: 6pt 0;
+    padding-bottom: calc(6pt + env(safe-area-inset-bottom));
+    border-right: none !important;
+    border-bottom: none !important;
+    border-left: none !important;
+    border-radius: 0;
+    box-shadow: none;
+
+    button {
+      padding: 3pt 0;
+    }
+  }
+}

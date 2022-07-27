@@ -11,10 +11,12 @@
 
   p {
     padding: $card-item-padding $card-item-padding * 1.5;
-    margin: 0;
     margin: 0 0 $card-item-padding 0;
     font-family: $font-regular;
     font-size: 11pt;
+    color: $color-major;
+    background-color: $bg-light;
+    border-radius: $card-item-br;
 
     &.error {
       color: $color-red;
@@ -41,6 +43,7 @@
       width: 100%;
       height: 100%;
       cursor: pointer;
+      opacity: 0;
     }
 
     span {
@@ -73,6 +76,7 @@
     font-family: $font-major;
     font-size: 9pt;
     color: $color-major;
+    text-transform: uppercase;
   }
 
   input[type='text'] {
