@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React, { ReactNode, useMemo } from 'react';
 
 import styles from './Navigation.module.scss';
@@ -37,7 +38,11 @@ const Navigation = ({ opts }: Props) => {
   return (
     <nav className={styles.content}>
       <div className={styles.navaction}>{opts.topLeftComp}</div>
-      {opts.showBrand && <h1>Mensatt</h1>}
+      {opts.showBrand && (
+        <Link href="/">
+          <h1>Mensatt</h1>
+        </Link>
+      )}
       <div className={styles.settings}>{settingsRendered}</div>
     </nav>
   );

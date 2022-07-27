@@ -1,4 +1,5 @@
 .button {
+  @include lifted;
   box-sizing: border-box;
   display: inline-flex;
   gap: 7pt;

@@ -1,7 +1,7 @@
 .content {
   display: grid;
   grid-template-areas: 'nav-left nav-center nav-right';
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   margin: 20pt 0;
 
@@ -13,6 +13,8 @@
     font-weight: 800;
     text-align: center;
     text-transform: uppercase;
+    cursor: pointer;
+    user-select: none;
 
     &::before {
       position: absolute;
@@ -34,6 +36,7 @@
 }
 
 .settings {
+  @include lifted;
   box-sizing: border-box;
   display: inline-flex !important;
   grid-area: nav-right;

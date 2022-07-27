@@ -4,6 +4,7 @@
 }
 
 .content {
+  @include lifted;
   width: 100%;
   max-width: $max-content-width;
   padding: $main-content-padding;
@@ -35,17 +36,20 @@
 
   input {
     all: unset;
-    padding: $card-item-padding * 1.5 $card-item-padding * 2;
+    padding: 10pt 12pt;
     margin-bottom: $main-content-padding;
     font-family: $font-regular;
-    font-size: 11pt;
-    background-color: $bg-light;
+    font-size: 12pt;
+    color: $color-regular;
+    border: 1px solid $bg-darker;
     border-radius: $card-item-br;
-    box-shadow: 0 0 0 0px inset #00000000;
-    transition: box-shadow 0.1s ease;
+    box-shadow: 0px 0px 0px #00000000;
+    transition: box-shadow 0.1s ease, border-color 0.1s ease;
 
-    &:hover {
-      box-shadow: 0 0 0 1px inset #00000022;
+    &:hover,
+    &:focus {
+      border-color: #888888;
+      box-shadow: 0 2px 3px #00000018;
     }
   }
 }
@@ -61,21 +65,25 @@
     font-size: 11pt;
     cursor: pointer;
     border: none;
-    border-radius: 999pt;
-    transition: filter 0.1s ease;
-
-    &:hover {
-      filter: brightness(0.93);
-    }
+    border-radius: $card-item-br;
+    transition: background-color 0.1s ease;
   }
 }
 
 .buttonPrimary {
   color: $bg-lighter;
   background-color: $color-blue;
+
+  &:hover {
+    background-color: $color-blueH;
+  }
 }
 
 .buttonSecondary {
   color: $color-regular;
   background-color: $bg-dark;
+
+  &:hover {
+    background-color: $bg-darker;
+  }
 }

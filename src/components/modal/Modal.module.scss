@@ -1,4 +1,5 @@
 .modal {
+  @include lifted;
   padding: $main-content-padding;
   background-color: $bg-lighter;
   border-radius: $main-content-br;

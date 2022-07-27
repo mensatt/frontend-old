@@ -1,4 +1,5 @@
 .content {
+  @include lifted;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -100,6 +101,10 @@
 
   &:focus-visible {
     outline: 2px solid $color-major !important;
+  }
+
+  &:hover {
+    background-color: $color-blueH;
   }
 }
 

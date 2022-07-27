@@ -9,12 +9,14 @@ const Footer = () => {
 
   return (
     <footer className={styles.footer}>
-      <p>{t('disclaimer')}</p>
+      <div className={styles.logo} />
       <div className={styles.links}>
+        <span>Copyright &copy; 2022 Mensatt.</span>
         <Link href={'/admin'}>{t('admin-link-text')}</Link>
         <Link href={'/contact'}>{t('contact-link-text')}</Link>
         <Link href={'/privacy'}>{t('privacy-link-text')}</Link>
       </div>
+      <p>{t('disclaimer')}</p>
     </footer>
   );
 };
