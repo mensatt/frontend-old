@@ -2,10 +2,11 @@
   display: grid;
   grid-template-columns: 1fr;
   row-gap: 3pt;
+  width: 100%;
   height: min-content;
-  padding: 10pt;
-  background-color: $bg-light;
-  border-radius: $card-item-br;
+  padding: 10pt 15pt;
+  border: 2px solid $bg-dark;
+  border-radius: $content-pills-height/2;
 }
 
 .pricePrimary {
@@ -13,10 +14,11 @@
   grid-template-columns: 1fr;
 
   .value {
-    font-family: $font-mono-bold;
+    font-family: $font-header;
     font-size: 20pt;
     line-height: 26pt;
     color: $color-header;
+    text-align: center;
 
     &::after {
       margin-left: 3pt;
@@ -26,28 +28,18 @@
 }
 
 .priceSecondary {
+  display: grid;
+  grid-template-columns: 1fr;
+
   .value {
-    font-family: $font-mono;
+    font-family: $font-regular;
     font-size: 10pt;
     line-height: 10pt;
     color: $color-regular;
+    text-align: center;
   }
 }
 
 .value {
   margin-bottom: 0;
-  font-weight: bolder;
-  text-align: center;
-}
-
-.label {
-  margin: 0 !important;
-}
-
-.labelSmallFont {
-  font-size: 5pt !important;
-}
-
-.labelMediumFont {
-  font-size: 10pt !important;
 }
