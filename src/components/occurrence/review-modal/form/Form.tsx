@@ -108,22 +108,25 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
     },
     [formState],
   );
-  return (
-    <div className={styles.wrapper}>
-      <h1>{t('reviewModalHeading', { name: occurrenceName })}</h1>
-      {addReviewError && <p>{t('reviewModalSubmitError')}</p>}
+
+  // TODO @bene bitte useState oder so draus machen
+  const errors = (
+    <>
+      {addReviewError && (
+        <p className={styles.error}>{t('reviewModalSubmitError')}</p>
+      )}
       {showMissingStarValueError && (
-        <p>{t('reviewModalMissingStarValueError')}</p>
+        <p className={styles.error}>{t('reviewModalMissingStarValueError')}</p>
       )}
       {showImageTooBigError && (
-        <p>
+        <p className={styles.error}>
           {t('reviewModalImageTooBigError', {
             size: `${MAX_UPLOAD_FILE_SIZE / (1024 * 1024)}MB`,
           })}
         </p>
       )}
       {showWrongExtensionError && (
-        <p>
+        <p className={styles.error}>
           {t('reviewModalWrongExtensionError', {
             extensions: ALLOWED_EXTENSIONS.map(
               (ext) => '.' + ext.toLowerCase(),
@@ -131,51 +134,64 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
           })}
         </p>
       )}
+    </>
+  );
+
+  return (
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <h1>{t('reviewModalHeading', { name: occurrenceName })}</h1>
       {formState.images && <p>{t('reviewModalImageDisclaimer')}</p>}
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <div className={styles.stars}>
+        <OccurrenceRating
+          onSetSelectedStars={(stars) => {
+            setFormState({ ...formState, stars: stars });
+            setShowMissingStarValueError(false);
+          }}
+        />
+      </div>
+      <div className={styles.divider} />
+      {/* TODO localize this */}
+      <label>Image (optional)</label>
+      <div className={styles.fileUpload}>
         <input type="file" onChange={onFileInputChange} multiple />
-        <div className={styles.stars}>
-          <OccurrenceRating
-            onSetSelectedStars={(stars) => {
-              setFormState({ ...formState, stars: stars });
-              setShowMissingStarValueError(false);
-            }}
-          />
-        </div>
-        <label className={styles.name}>
-          {t('reviewModalNameLabel')}
-          <input
-            type="text"
-            value={formState.author}
-            onChange={(event) => {
-              setFormState({
-                ...formState,
-                author: event.target.value || '',
-              });
-            }}
-          />
-        </label>
-        <label className={styles.comment}>
-          {t('reviewModalCommentLabel')}
-          <input
-            type="text"
-            value={formState.comment || ''}
-            onChange={(event) => {
-              setFormState({
-                ...formState,
-                comment: event.target.value || '',
-              });
-            }}
-          />
-        </label>
-        <button
-          className={styles.button}
-          disabled={addReviewLoading || formIsInvalid}
-        >
-          {addReviewLoading ? t('loading') : t('rate')}
-        </button>
-      </form>
-    </div>
+        <span>Click or drop an image to upload.</span>
+      </div>
+      <label htmlFor="reviewModalCommentInput">
+        {t('reviewModalCommentLabel')}
+      </label>
+      <input
+        id="reviewModalCommentInput"
+        type="text"
+        value={formState.comment || ''}
+        onChange={(event) => {
+          setFormState({
+            ...formState,
+            comment: event.target.value || '',
+          });
+        }}
+      />
+      <label htmlFor="reviewModalNameInput">{t('reviewModalNameLabel')}</label>
+      <input
+        id="reviewModalNameInput"
+        type="text"
+        value={formState.author}
+        onChange={(event) => {
+          setFormState({
+            ...formState,
+            author: event.target.value || '',
+          });
+        }}
+      />
+      <div className={styles.divider} />
+      {errors}
+      <button
+        className={styles.button}
+        disabled={addReviewLoading || formIsInvalid}
+      >
+        {/* TODO can we change the text here to something like "send review"? */}
+        {addReviewLoading ? t('loading') : t('rate')}
+      </button>
+    </form>
   );
 };
 
