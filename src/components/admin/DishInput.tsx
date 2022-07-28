@@ -10,14 +10,14 @@ import {
 import { UPDATE_DISH } from '../../graphql/mutations';
 import { GET_ADMIN_PANEL_DISHES } from '../../graphql/queries';
 
-type Dish = GetAdminPanelDishesQuery['dishes'][number];
+type DishNameInput = GetAdminPanelDishesQuery['dishes'][number];
 
 const DishInput = ({
   dish,
   valueAttribute,
 }: {
-  dish: Dish;
-  valueAttribute: Exclude<keyof Dish, '__typename' | 'aliases'>;
+  dish: DishNameInput;
+  valueAttribute: Exclude<keyof DishNameInput, '__typename' | 'aliases'>;
 }) => {
   const [currentDish, setCurrentDish] = useState({
     id: '',
