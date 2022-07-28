@@ -40,6 +40,7 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
     { loading: addReviewLoading, data: addReviewData, error: addReviewError },
   ] = useMutation<AddReviewMutation, AddReviewMutationVariables>(ADD_REVIEW);
 
+  const [fileInputIsDraggedOver, setFileInputIsDraggedOver] = useState(false);
   const [showMissingStarValueError, setShowMissingStarValueError] =
     useState(true);
   const [showImageTooBigError, setShowImageTooBigError] = useState(false);
@@ -161,9 +162,19 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
         />
       </div>
       <label>{t('reviewModalImageLabel')}</label>
-      <div className={styles.fileUpload}>
-        {/* TODO give this div element an additional class when the user is dragging a file over it */}
-        <input type="file" onChange={onFileInputChange} multiple />
+      <div
+        className={
+          styles.fileUpload +
+          (fileInputIsDraggedOver ? ' ' + styles.draggedOver : '')
+        }
+      >
+        <input
+          type="file"
+          onChange={onFileInputChange}
+          multiple
+          onDragEnter={() => setFileInputIsDraggedOver(true)}
+          onDragLeave={() => setFileInputIsDraggedOver(false)}
+        />
         {/* TODO put this into lang file */}
         <span>Click or drop an image to upload.</span>
         {/* TODO show a preview of the selected image file here, just add an <img> tag or something i can style if there is a file selected */}
