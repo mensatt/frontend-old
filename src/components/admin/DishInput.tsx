@@ -10,16 +10,14 @@ import {
 import { UPDATE_DISH } from '../../graphql/mutations';
 import { GET_ADMIN_PANEL_DISHES } from '../../graphql/queries';
 
-import styles from './DishInput.module.scss';
-
-type ValueType = 'id' | 'nameDe' | 'nameEn';
+type Dish = GetAdminPanelDishesQuery['dishes'][number];
 
 const DishInput = ({
   dish,
   valueAttribute,
 }: {
-  dish: GetAdminPanelDishesQuery['dishes'][number];
-  valueAttribute: ValueType;
+  dish: Dish;
+  valueAttribute: Exclude<keyof Dish, '__typename' | 'aliases'>;
 }) => {
   const [currentDish, setCurrentDish] = useState({
     id: '',
@@ -42,7 +40,6 @@ const DishInput = ({
     <input
       type="text"
       disabled={mutationLoading}
-      className={styles.dishInput}
       value={
         currentDish.id === dish.id
           ? currentDish[valueAttribute]
@@ -51,15 +48,15 @@ const DishInput = ({
       onChange={(e) =>
         setCurrentDish({
           id: dish.id,
-          nameDe: valueAttribute == 'nameDe' ? e.target.value : dish.nameDe,
+          nameDe: valueAttribute === 'nameDe' ? e.target.value : dish.nameDe,
           nameEn:
-            valueAttribute == 'nameEn'
+            valueAttribute === 'nameEn'
               ? e.target.value
               : dish.nameEn ?? '<NULL>',
         })
       }
       onKeyUp={(e) => {
-        if (e.key == 'Enter') {
+        if (e.key === 'Enter') {
           updateDish({
             variables: {
               id: dish.id,
