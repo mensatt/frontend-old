@@ -1,3 +1,3 @@
-import DishInput from './DishInput';
+import DishNameInput from './DishNameInput';
 
-export default DishInput;
+export default DishNameInput;
