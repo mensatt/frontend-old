@@ -20,7 +20,7 @@ const AdminDishesPage: NextPage = () => {
     { fieldName: 'id', displayName: 'ID' },
     { fieldName: 'nameDe', displayName: 'German name' },
     { fieldName: 'nameEn', displayName: 'English name' },
-    { fieldName: 'aliases', displayName: 'Aliases' },
+    { fieldName: 'aliases', displayName: 'Aliases', nonSortable: true },
   ]);
 
   const { data, loading, error } = useQuery<GetAdminPanelDishesQuery>(
@@ -58,7 +58,7 @@ const AdminDishesPage: NextPage = () => {
               ))}
             </Popup>
           ),
-        value: dish.aliases.at(0) ?? '<NULL>',
+        value: dish.aliases[0] ?? '<NULL>',
       },
     }));
   }, [data]);
