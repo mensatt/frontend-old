@@ -25,6 +25,7 @@
   "reviewModalImagesSelected": "{{amount}} Bilde(r) ausgewählt.",
   "reviewModalCommentLabel": "Kommentar (Optional)",
   "reviewModalNameLabel": "Nickname (Optional)",
+  "reviewModalSubmit": "Absenden",
   "reviewModalSubmitError": "Es gab einen Fehler beim Absenden deiner Bewertung",
   "reviewModalMissingStarValueError": "Du musst eine Sternebewertung angeben",
   "reviewModalImageTooBigError": "Eins deiner Bilder ist zu groß. Bilder dürfen maximal {{size}} groß sein",

@@ -25,6 +25,7 @@
   "reviewModalImagesSelected": "{{amount}} picture(s) selected.",
   "reviewModalCommentLabel": "Comment (Optional)",
   "reviewModalNameLabel": "Nickname (Optional)",
+  "reviewModalSubmit": "Submit",
   "reviewModalSubmitError": "There was an error while submitting your review",
   "reviewModalMissingStarValueError": "You need to provide a star rating",
   "reviewModalImageTooBigError": "One of your pictures is too big. Pictures must not be bigger than {{size}}.",
