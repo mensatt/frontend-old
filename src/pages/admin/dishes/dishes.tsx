@@ -40,26 +40,26 @@ const AdminDishesPage: NextPage = () => {
         node: <DishInput dish={dish} valueAttribute="nameEn" />,
         value: dish.nameEn ?? '<Null>',
       },
-      aliases: {
-        node:
-          dish.aliases.length == 1 ? (
-            <>{dish.aliases[0]}</>
-          ) : (
-            <Popup
-              trigger={<button className="button">View all aliases</button>}
-            >
-              {dish.aliases.map((x) => (
-                <>
-                  <p className={styles.popupText} key={x}>
-                    {x}
-                  </p>
-                  <hr className={styles.popupDivider} />
-                </>
-              ))}
-            </Popup>
-          ),
-        value: dish.aliases[0] ?? '<NULL>',
-      },
+      aliases:
+        dish.aliases.length == 1
+          ? dish.aliases[0]
+          : {
+              node: (
+                <Popup
+                  trigger={<button className="button">View all aliases</button>}
+                >
+                  {dish.aliases.map((x) => (
+                    <>
+                      <p className={styles.popupText} key={x}>
+                        {x}
+                      </p>
+                      <hr className={styles.popupDivider} />
+                    </>
+                  ))}
+                </Popup>
+              ),
+              value: dish.aliases[0] ?? '<NULL>',
+            },
     }));
   }, [data]);
 
