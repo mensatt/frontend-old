@@ -48,10 +48,10 @@ const AdminDishesPage: NextPage = () => {
                 <Popup
                   trigger={<button className="button">View all aliases</button>}
                 >
-                  {dish.aliases.map((x) => (
+                  {dish.aliases.map((alias) => (
                     <>
-                      <p className={styles.popupText} key={x}>
-                        {x}
+                      <p className={styles.popupText} key={alias}>
+                        {alias}
                       </p>
                       <hr className={styles.popupDivider} />
                     </>
