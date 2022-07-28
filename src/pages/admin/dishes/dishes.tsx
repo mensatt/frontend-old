@@ -4,12 +4,12 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React, { useMemo, useState } from 'react';
 import Popup from 'reactjs-popup';
 import { GetAdminPanelDishesQuery } from 'src/graphql/graphql-types';
-import { GET_ADMIN_PANEL_DISHES } from 'src/graphql/queries/';
+import { GET_ADMIN_PANEL_DISHES } from 'src/graphql/queries';
 
 import { useQuery } from '@apollo/client';
 
-import DishInput from '../../components/admin';
-import Table, { TableDataRow, TableHeaderRow } from '../../components/table';
+import DishInput from '../../../components/admin';
+import Table, { TableDataRow, TableHeaderRow } from '../../../components/table';
 
 import styles from './dishes.module.scss';
 
