@@ -21,6 +21,8 @@
   "reviewModalHeading": "How was '{{name}}'?",
   "reviewModalRatingLabel": "Rating",
   "reviewModalImageLabel": "Picture (Optional)",
+  "reviewModalNoImagesSelected": "Click or drop an image to upload.",
+  "reviewModalImagesSelected": "{{amount}} picture(s) selected.",
   "reviewModalCommentLabel": "Comment (Optional)",
   "reviewModalNameLabel": "Nickname (Optional)",
   "reviewModalSubmitError": "There was an error while submitting your review",
