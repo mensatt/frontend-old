@@ -41,7 +41,7 @@ const AdminDishesPage: NextPage = () => {
         value: dish.nameEn ?? '<Null>',
       },
       aliases:
-        dish.aliases.length == 1
+        dish.aliases.length === 1
           ? dish.aliases[0]
           : {
               node: (
