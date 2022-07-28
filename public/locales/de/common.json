@@ -21,6 +21,8 @@
   "reviewModalHeading": "Wie war '{{name}}'?",
   "reviewModalRatingLabel": "Bewertung",
   "reviewModalImageLabel": "Bild (Optional)",
+  "reviewModalNoImagesSelected": "Klicke oder ziehe ein Bild hierher um es hochzuladen.",
+  "reviewModalImagesSelected": "{{amount}} Bilde(r) ausgewählt.",
   "reviewModalCommentLabel": "Kommentar (Optional)",
   "reviewModalNameLabel": "Nickname (Optional)",
   "reviewModalSubmitError": "Es gab einen Fehler beim Absenden deiner Bewertung",
