@@ -41,6 +41,8 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
   ] = useMutation<AddReviewMutation, AddReviewMutationVariables>(ADD_REVIEW);
 
   const [fileInputIsDraggedOver, setFileInputIsDraggedOver] = useState(false);
+  const [fileAmount, setFileAmount] = useState(0);
+
   const [showMissingStarValueError, setShowMissingStarValueError] =
     useState(true);
   const [showImageTooBigError, setShowImageTooBigError] = useState(false);
@@ -80,6 +82,7 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
       if (event.target.files) {
         // `FileList` is not an array so we have to "convert" it
         const fileList = Array.from(event.target.files);
+        setFileAmount(fileList.length);
 
         // This function is from here: https://stackoverflow.com/a/12900504
         const getFileExt = (file: File) =>
@@ -175,8 +178,11 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
           onDragEnter={() => setFileInputIsDraggedOver(true)}
           onDragLeave={() => setFileInputIsDraggedOver(false)}
         />
-        {/* TODO put this into lang file */}
-        <span>Click or drop an image to upload.</span>
+        <span>
+          {fileAmount
+            ? t('reviewModalImagesSelected', { amount: fileAmount })
+            : t('reviewModalNoImagesSelected')}
+        </span>
         {/* TODO show a preview of the selected image file here, just add an <img> tag or something i can style if there is a file selected */}
       </div>
       {formState.images && <p>{t('reviewModalImageDisclaimer')}</p>}
