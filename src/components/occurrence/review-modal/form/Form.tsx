@@ -183,7 +183,9 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
             ? t('reviewModalImagesSelected', { amount: fileAmount })
             : t('reviewModalNoImagesSelected')}
         </span>
-        {/* TODO show a preview of the selected image file here, just add an <img> tag or something i can style if there is a file selected */}
+        {/* TODO Add image preview
+            Also see: https://github.com/mensatt/frontend/issues/121
+        */}
       </div>
       {formState.images && <p>{t('reviewModalImageDisclaimer')}</p>}
       <label htmlFor="reviewModalCommentInput">
