@@ -220,8 +220,7 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
         className={styles.button}
         disabled={addReviewLoading || formIsInvalid}
       >
-        {/* TODO can we change the text here to something like "send review"? */}
-        {addReviewLoading ? t('loading') : t('rate')}
+        {addReviewLoading ? t('loading') : t('reviewModalSubmit')}
       </button>
     </form>
   );
