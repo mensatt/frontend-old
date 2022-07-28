@@ -40,7 +40,8 @@ const ProfileButton = () => {
                 <Icon name={'logout'} />
               </button>
             ) : (
-              // TODO bene mach mal login button hin
+              // TODO Add login button
+              // Also see: https://github.com/mensatt/frontend/issues/120
               <></>
             )
           }
