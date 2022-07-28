@@ -109,32 +109,42 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
     [formState],
   );
 
-  // TODO @bene bitte useState oder so draus machen
-  const errors = (
-    <>
-      {addReviewError && (
-        <p className={styles.error}>{t('reviewModalSubmitError')}</p>
-      )}
-      {showMissingStarValueError && (
-        <p className={styles.error}>{t('reviewModalMissingStarValueError')}</p>
-      )}
-      {showImageTooBigError && (
-        <p className={styles.error}>
-          {t('reviewModalImageTooBigError', {
-            size: `${MAX_UPLOAD_FILE_SIZE / (1024 * 1024)}MB`,
-          })}
-        </p>
-      )}
-      {showWrongExtensionError && (
-        <p className={styles.error}>
-          {t('reviewModalWrongExtensionError', {
-            extensions: ALLOWED_EXTENSIONS.map(
-              (ext) => '.' + ext.toLowerCase(),
-            ).join(' '),
-          })}
-        </p>
-      )}
-    </>
+  const errors = useMemo(
+    () => (
+      <>
+        {addReviewError && (
+          <p className={styles.error}>{t('reviewModalSubmitError')}</p>
+        )}
+        {showMissingStarValueError && (
+          <p className={styles.error}>
+            {t('reviewModalMissingStarValueError')}
+          </p>
+        )}
+        {showImageTooBigError && (
+          <p className={styles.error}>
+            {t('reviewModalImageTooBigError', {
+              size: `${MAX_UPLOAD_FILE_SIZE / (1024 * 1024)}MB`,
+            })}
+          </p>
+        )}
+        {showWrongExtensionError && (
+          <p className={styles.error}>
+            {t('reviewModalWrongExtensionError', {
+              extensions: ALLOWED_EXTENSIONS.map(
+                (ext) => '.' + ext.toLowerCase(),
+              ).join(' '),
+            })}
+          </p>
+        )}
+      </>
+    ),
+    [
+      addReviewError,
+      showImageTooBigError,
+      showMissingStarValueError,
+      showWrongExtensionError,
+      t,
+    ],
   );
 
   return (
