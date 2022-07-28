@@ -8,7 +8,7 @@ import { GET_ADMIN_PANEL_DISHES } from 'src/graphql/queries';
 
 import { useQuery } from '@apollo/client';
 
-import DishInput from '../../../components/admin';
+import DishNameInput from '../../../components/admin';
 import Table, { TableDataRow, TableHeaderRow } from '../../../components/table';
 
 import styles from './dishes.module.scss';
@@ -33,11 +33,11 @@ const AdminDishesPage: NextPage = () => {
     return data.dishes.map((dish) => ({
       id: dish.id,
       nameDe: {
-        node: <DishInput dish={dish} valueAttribute="nameDe" />,
+        node: <DishNameInput dish={dish} valueAttribute="nameDe" />,
         value: dish.nameDe,
       },
       nameEn: {
-        node: <DishInput dish={dish} valueAttribute="nameEn" />,
+        node: <DishNameInput dish={dish} valueAttribute="nameEn" />,
         value: dish.nameEn ?? '<Null>',
       },
       aliases:
