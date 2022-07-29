@@ -168,8 +168,17 @@ const Table = ({ headerRow, dataRows }: TableProps) => {
             const isStrOrNum =
               typeof cell === 'string' || typeof cell === 'number';
 
-            if (isStrOrNum) return <div key={col.fieldName}>{cell}</div>;
-            return <div key={col.fieldName}>{cell.node}</div>;
+            if (isStrOrNum)
+              return (
+                <div className={styles.cell} key={col.fieldName}>
+                  {cell}
+                </div>
+              );
+            return (
+              <div className={styles.cell} key={col.fieldName}>
+                {cell.node}
+              </div>
+            );
           })}
         </div>
       )),
