@@ -483,7 +483,7 @@ export type SetOccurrenceStatusMutation = {
 };
 
 export type GetAdminPanelOccurrencesQueryVariables = Exact<{
-  date: Scalars['Date'];
+  [key: string]: never;
 }>;
 
 export type GetAdminPanelOccurrencesQuery = {

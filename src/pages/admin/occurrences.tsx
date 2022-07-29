@@ -11,18 +11,12 @@ import {
   SetOccurrenceStatusMutationVariables,
 } from 'src/graphql/graphql-types';
 import { SET_OCCURRENCE_STATUS } from 'src/graphql/mutations/';
-import {
-  GET_ADMIN_PANEL_OCCURRENCES,
-  GET_NAVIGATION,
-  Navigation,
-} from 'src/graphql/queries/';
-import { DATE_FORMAT } from 'src/util';
+import { GET_ADMIN_PANEL_OCCURRENCES } from 'src/graphql/queries/';
 
 import { useMutation, useQuery } from '@apollo/client';
 
 const AdminOccurrencesPage: NextPage = () => {
   const { t } = useTranslation('common');
-  const { data: navData } = useQuery<Navigation>(GET_NAVIGATION);
 
   // TODO: In the future this can/should be updated to display/hide columns dynamically
   const [headerRows] = useState<TableHeaderRow[]>([
@@ -34,10 +28,7 @@ const AdminOccurrencesPage: NextPage = () => {
   const { data, loading, error } = useQuery<
     GetAdminPanelOccurrencesQuery,
     GetAdminPanelOccurrencesQueryVariables
-  >(GET_ADMIN_PANEL_OCCURRENCES, {
-    variables: { date: navData?.selectedDate as string },
-    skip: !navData || navData.selectedDate.length < DATE_FORMAT.length,
-  });
+  >(GET_ADMIN_PANEL_OCCURRENCES);
 
   const [setOccurrenceStatus, { loading: mutationLoading }] = useMutation<
     SetOccurrenceStatusMutation,
@@ -48,7 +39,6 @@ const AdminOccurrencesPage: NextPage = () => {
     refetchQueries: [
       {
         query: GET_ADMIN_PANEL_OCCURRENCES,
-        variables: { date: navData?.selectedDate as string },
       },
     ],
   });
