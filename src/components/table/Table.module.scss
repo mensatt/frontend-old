@@ -17,6 +17,10 @@
   font-weight: bold;
 }
 
+.cell {
+  overflow: auto;
+}
+
 .headerCell {
   display: flex;
   gap: 5px;
