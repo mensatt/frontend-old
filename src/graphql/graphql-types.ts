@@ -482,6 +482,16 @@ export type SetOccurrenceStatusMutation = {
   };
 };
 
+export type SetReviewApprovalStatusMutationVariables = Exact<{
+  id: Scalars['UUID'];
+  approved?: InputMaybe<Scalars['Boolean']>;
+}>;
+
+export type SetReviewApprovalStatusMutation = {
+  __typename?: 'Mutation';
+  updateReview: { __typename?: 'Review'; id: string };
+};
+
 export type GetAdminPanelOccurrencesQueryVariables = Exact<{
   status?: InputMaybe<OccurrenceStatus>;
 }>;
@@ -494,6 +504,27 @@ export type GetAdminPanelOccurrencesQuery = {
     status: OccurrenceStatus;
     date: string;
     dish: { __typename?: 'Dish'; nameDe: string };
+  }>;
+};
+
+export type GetAdminPanelReviewsQueryVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type GetAdminPanelReviewsQuery = {
+  __typename?: 'Query';
+  reviews: Array<{
+    __typename?: 'Review';
+    id: string;
+    displayName?: string | null;
+    text?: string | null;
+    acceptedAt?: string | null;
+    stars: number;
+    occurrence: {
+      __typename?: 'Occurrence';
+      dish: { __typename?: 'Dish'; nameDe: string; nameEn?: string | null };
+    };
+    images: Array<{ __typename?: 'Image'; id: string; imageUrl: string }>;
   }>;
 };
 
