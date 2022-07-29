@@ -24,6 +24,7 @@ export type TableHeaderRow = {
   fieldName: string;
   displayName: string;
   nonSortable?: boolean;
+  filterComp?: ReactNode;
 };
 
 export type ReactNodeWithValue = {
@@ -129,20 +130,22 @@ const Table = ({ headerRow, dataRows }: TableProps) => {
             : '';
 
           return (
-            <div
-              key={cellIdx}
-              onClick={
-                !cell.nonSortable
-                  ? () => {
-                      setSortState({
-                        sortKey: cell.fieldName,
-                        sortOrder: nextSortOrder,
-                      });
-                    }
-                  : undefined
-              }
-            >
-              {cell.displayName + sortOrderText}
+            <div className={styles.headerCell} key={cellIdx}>
+              <div
+                onClick={
+                  !cell.nonSortable
+                    ? () => {
+                        setSortState({
+                          sortKey: cell.fieldName,
+                          sortOrder: nextSortOrder,
+                        });
+                      }
+                    : undefined
+                }
+              >
+                {cell.displayName + sortOrderText}
+              </div>
+              {cell.filterComp}
             </div>
           );
         })}
