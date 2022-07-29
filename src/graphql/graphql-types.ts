@@ -483,7 +483,7 @@ export type SetOccurrenceStatusMutation = {
 };
 
 export type GetAdminPanelOccurrencesQueryVariables = Exact<{
-  [key: string]: never;
+  status?: InputMaybe<OccurrenceStatus>;
 }>;
 
 export type GetAdminPanelOccurrencesQuery = {
