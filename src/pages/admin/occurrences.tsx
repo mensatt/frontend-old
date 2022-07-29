@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Table, { TableDataRow, TableHeaderRow } from 'src/components/table';
 import {
   GetAdminPanelOccurrencesQuery,
@@ -13,22 +13,32 @@ import {
 import { SET_OCCURRENCE_STATUS } from 'src/graphql/mutations/';
 import { GET_ADMIN_PANEL_OCCURRENCES } from 'src/graphql/queries/';
 
-import { useMutation, useQuery } from '@apollo/client';
+import { useLazyQuery, useMutation } from '@apollo/client';
+
+const approvalStatuses = Object.values(OccurrenceStatus);
 
 const AdminOccurrencesPage: NextPage = () => {
   const { t } = useTranslation('common');
 
-  // TODO: In the future this can/should be updated to display/hide columns dynamically
-  const [headerRows] = useState<TableHeaderRow[]>([
-    { fieldName: 'name', displayName: 'Name' },
-    { fieldName: 'occurrenceStatus', displayName: 'Review Status' },
-    { fieldName: 'date', displayName: 'Date' },
-  ]);
+  const [selectedReviewStatusFilter, setSelectedReviewStatusFilter] = useState(
+    OccurrenceStatus.AwaitingApproval,
+  );
 
-  const { data, loading, error } = useQuery<
+  const [fetchOccurrences, { data, loading, error }] = useLazyQuery<
     GetAdminPanelOccurrencesQuery,
     GetAdminPanelOccurrencesQueryVariables
-  >(GET_ADMIN_PANEL_OCCURRENCES);
+  >(GET_ADMIN_PANEL_OCCURRENCES, {
+    variables: { status: selectedReviewStatusFilter },
+  });
+
+  useEffect(() => {
+    fetchOccurrences({
+      // Avoiding the cache here because it could be possible that an occurrenceStatus
+      // was updated by the mutation below in the meantime which would not be reflected in the cache
+      // TODO: Should be able to remove this if not using refetching anymore
+      fetchPolicy: 'no-cache',
+    });
+  }, [fetchOccurrences]);
 
   const [setOccurrenceStatus, { loading: mutationLoading }] = useMutation<
     SetOccurrenceStatusMutation,
@@ -39,9 +49,37 @@ const AdminOccurrencesPage: NextPage = () => {
     refetchQueries: [
       {
         query: GET_ADMIN_PANEL_OCCURRENCES,
+        variables: { status: selectedReviewStatusFilter },
       },
     ],
   });
+
+  // TODO: In the future this can/should be updated to display/hide columns dynamically
+  const headerRows = useMemo<TableHeaderRow[]>(
+    () => [
+      { fieldName: 'name', displayName: 'Name' },
+      {
+        fieldName: 'occurrenceStatus',
+        displayName: 'Review Status',
+        filterComp: (
+          <select
+            value={selectedReviewStatusFilter}
+            onChange={(e) =>
+              setSelectedReviewStatusFilter(e.target.value as OccurrenceStatus)
+            }
+          >
+            {approvalStatuses.map((status) => (
+              <option key={status} value={status}>
+                {status}
+              </option>
+            ))}
+          </select>
+        ),
+      },
+      { fieldName: 'date', displayName: 'Date' },
+    ],
+    [selectedReviewStatusFilter],
+  );
 
   const rows: TableDataRow[] = useMemo(() => {
     if (!data || data.occurrences.length < 1) return [];
@@ -63,21 +101,11 @@ const AdminOccurrencesPage: NextPage = () => {
                 })
               }
             >
-              <option value={OccurrenceStatus.Approved}>
-                {OccurrenceStatus.Approved}
-              </option>
-              <option value={OccurrenceStatus.AwaitingApproval}>
-                {OccurrenceStatus.AwaitingApproval}
-              </option>
-              <option value={OccurrenceStatus.Confirmed}>
-                {OccurrenceStatus.Confirmed}
-              </option>
-              <option value={OccurrenceStatus.PendingDeletion}>
-                {OccurrenceStatus.PendingDeletion}{' '}
-              </option>
-              <option value={OccurrenceStatus.Updated}>
-                {OccurrenceStatus.Updated}
-              </option>
+              {approvalStatuses.map((status) => (
+                <option key={status} value={status}>
+                  {status}
+                </option>
+              ))}
             </select>
           </>
         ),
