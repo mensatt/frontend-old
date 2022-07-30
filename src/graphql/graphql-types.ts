@@ -482,6 +482,7 @@ export type SetReviewApprovalStatusMutation = {
 
 export type GetAdminPanelOccurrencesQueryVariables = Exact<{
   status?: InputMaybe<OccurrenceStatus>;
+  locationId: Scalars['UUID'];
 }>;
 
 export type GetAdminPanelOccurrencesQuery = {
@@ -525,6 +526,7 @@ export type GetLocationsQuery = {
 
 export type GetOccurrencesByDateQueryVariables = Exact<{
   date: Scalars['Date'];
+  locationId: Scalars['UUID'];
 }>;
 
 export type GetOccurrencesByDateQuery = {

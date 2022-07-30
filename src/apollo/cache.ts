@@ -13,14 +13,19 @@ export const cache = new InMemoryCache({
             return selectedDateVar();
           },
         },
-        activeMensaIdx: {
+        activeLocationId: {
           read() {
-            return activeMensaIdxVar();
+            return activeLocationIdVar();
           },
         },
-        mensas: {
+        activeBackendIdx: {
           read() {
-            return mensasVar();
+            return activeBackendIdxVar();
+          },
+        },
+        backends: {
+          read() {
+            return backendsVar();
           },
         },
         isLoggedIn: {
@@ -35,18 +40,14 @@ export const cache = new InMemoryCache({
 
 export const selectedDateVar = makeVar<Navigation['selectedDate']>('');
 
-export const mensasVar = makeVar<Navigation['mensas']>([
-  {
-    name: 'Südmensa',
-    url: 'https://api.mensatt.de/v1/graphql',
-  },
-  {
-    name: 'Devmensa',
-    url: 'https://dev-api.mensatt.de/v1/graphql',
-  },
-]);
+export const activeLocationIdVar = makeVar<Navigation['activeLocationId']>('');
 
-export const activeMensaIdxVar = makeVar<Navigation['activeMensaIdx']>(0);
+export const activeBackendIdxVar = makeVar<Navigation['activeBackendIdx']>(0);
+export const backendsVar = makeVar<Navigation['backends']>([
+  { name: 'Prod', url: 'https://api.mensatt.de/v1/graphql' },
+  { name: 'Dev', url: 'https://dev-api.mensatt.de/v1/graphql' },
+  { name: 'Localhost', url: 'http://localhost:4000/v1/graphql' },
+]);
 
 export const isLoggedInVar = makeVar<Navigation['isLoggedIn']>(
   typeof window !== 'undefined' && !!localStorage.getItem('token'),

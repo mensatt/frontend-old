@@ -52,9 +52,8 @@ const Occurrence = ({ occurrence }: Props) => {
   const { data: navData } = useQuery<Navigation>(GET_NAVIGATION);
   const backendURLBase = useMemo(() => {
     const { protocol, hostname } = new URL(
-      navData
-        ? navData.mensas[navData.activeMensaIdx].url
-        : 'https://api.mensatt.de/v1/graphql',
+      navData?.backends[navData.activeBackendIdx].url ||
+        'https://api.mensatt.de/v1/graphql',
     );
     return `${protocol}//${hostname}`;
   }, [navData]);
