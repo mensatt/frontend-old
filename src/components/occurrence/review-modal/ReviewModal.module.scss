@@ -1,0 +1,37 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: $main-content-padding;
+  width: 90vw;
+  max-width: 400pt;
+
+  p {
+    font-family: $font-regular;
+    font-size: 12pt;
+    color: $color-major;
+    margin: 0;
+  }
+
+  button {
+    height: $content-pills-height;
+    font-family: $font-major;
+    font-size: 10pt;
+    color: $color-major;
+    text-align: center;
+    cursor: pointer;
+    background-color: $color-blue;
+    border: none;
+    border-radius: $card-item-br;
+    transition: background-color 0.1s ease;
+
+    &:disabled {
+      color: $color-minor;
+      cursor: not-allowed;
+      background-color: $bg-light;
+    }
+
+    &:hover {
+      background-color: $color-blueH;
+    }
+  }
+}
