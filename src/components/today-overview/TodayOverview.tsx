@@ -28,6 +28,7 @@ const TodayOverview = () => {
       // We can safely cast to string (aka remove undefined) here
       // as the query would be skipped if this is not a string
       date: (navData && navData.selectedDate) as string,
+      locationId: (navData && navData.activeLocationId) as string,
     },
     skip: !navData || navData.selectedDate.length < DATE_FORMAT.length,
   });

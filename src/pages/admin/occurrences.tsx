@@ -11,9 +11,13 @@ import {
   SetOccurrenceStatusMutationVariables,
 } from 'src/graphql/graphql-types';
 import { SET_OCCURRENCE_STATUS } from 'src/graphql/mutations/';
-import { GET_ADMIN_PANEL_OCCURRENCES } from 'src/graphql/queries/';
+import {
+  GET_ADMIN_PANEL_OCCURRENCES,
+  GET_NAVIGATION,
+  Navigation,
+} from 'src/graphql/queries/';
 
-import { useLazyQuery, useMutation } from '@apollo/client';
+import { useLazyQuery, useMutation, useQuery } from '@apollo/client';
 
 const approvalStatuses = Object.values(OccurrenceStatus);
 
@@ -24,11 +28,16 @@ const AdminOccurrencesPage: NextPage = () => {
     OccurrenceStatus.AwaitingApproval,
   );
 
+  const { data: navData } = useQuery<Navigation>(GET_NAVIGATION);
+
   const [fetchOccurrences, { data, loading, error }] = useLazyQuery<
     GetAdminPanelOccurrencesQuery,
     GetAdminPanelOccurrencesQueryVariables
   >(GET_ADMIN_PANEL_OCCURRENCES, {
-    variables: { status: selectedReviewStatusFilter },
+    variables: {
+      status: selectedReviewStatusFilter,
+      locationId: (navData && navData.activeLocationId) as string,
+    },
   });
 
   useEffect(() => {

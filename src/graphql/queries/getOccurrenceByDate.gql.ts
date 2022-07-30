@@ -1,8 +1,10 @@
 import { gql } from '@apollo/client';
 
 export const GET_OCCURRENCES_BY_DATE = gql`
-  query getOccurrencesByDate($date: Date!) {
-    occurrences(filter: { startDate: $date, endDate: $date }) {
+  query getOccurrencesByDate($date: Date!, $locationId: UUID!) {
+    occurrences(
+      filter: { startDate: $date, endDate: $date, location: $locationId }
+    ) {
       id
       dish {
         id

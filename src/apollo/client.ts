@@ -1,4 +1,5 @@
 import { createUploadLink } from 'apollo-upload-client';
+import { isDev } from 'src/util';
 
 import { ApolloClient } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
@@ -12,8 +13,10 @@ const authMiddleware = setContext((_, { headers }) => {
       ...headers,
       authorization: token ? `Bearer ${token}` : '',
     },
-    uri:
-      localStorage.getItem('backendURL') || 'https://api.mensatt.de/v1/graphql',
+    uri: isDev
+      ? localStorage.getItem('backendURL') ||
+        'https://api.mensatt.de/v1/graphql'
+      : 'https://api.mensatt.de/v1/graphql',
   };
 });
 

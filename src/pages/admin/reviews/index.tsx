@@ -54,9 +54,8 @@ const AdminReviewsPage: NextPage = () => {
 
   const backendUrlBase = useMemo(() => {
     const { protocol, hostname } = new URL(
-      navData
-        ? navData.mensas[navData.activeMensaIdx].url
-        : 'https://api.mensatt.de/v1/graphql',
+      navData?.backends[navData.activeBackendIdx].url ||
+        'https://api.mensatt.de/v1/graphql',
     );
     return `${protocol}//${hostname}`;
   }, [navData]);
