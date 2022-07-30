@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Modal from 'src/components/modal';
 import { GetOccurrencesByDateQuery } from 'src/graphql/graphql-types';
 
+import styles from './ReviewModal.module.scss';
 import Form from './form';
 
 type Props = {
@@ -24,10 +25,10 @@ const ReviewModal = ({
   return (
     <Modal>
       {submitted ? (
-        <>
+        <div className={styles.content}>
           <p>{t('reviewModalSubmittedAwaitingApproval')}</p>
           <button onClick={onSuccessfulSubmit}>Okay</button>
-        </>
+        </div>
       ) : (
         <Form
           {...{ occurrenceId, occurrenceName }}
