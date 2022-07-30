@@ -16,6 +16,7 @@ import { GET_NAVIGATION, Navigation } from 'src/graphql/queries';
 
 import { useMutation, useQuery } from '@apollo/client';
 
+import styles from './page.module.scss';
 import { SET_REVIEW_APPROVAL_STATUS } from 'src/graphql/mutations/setReviewApprovalStatus.gql';
 import { GET_ADMIN_PANEL_REVIEWS } from 'src/graphql/queries/getAdminPanelReviews.gql';
 
@@ -90,12 +91,7 @@ const AdminReviewsPage: NextPage = () => {
                     author: elem.displayName || t('noAuthorName'),
                   })}
                 </h1>
-                <div
-                  style={{
-                    height: '200pt',
-                    position: 'relative',
-                  }}
-                >
+                <div className={styles.image}>
                   <Image
                     src={backendUrlBase + elem.images[0].imageUrl}
                     alt={t('imageDescription', {
