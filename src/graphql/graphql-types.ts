@@ -161,7 +161,6 @@ export type Mutation = {
   loginUser: Scalars['String'];
   removeSideDishFromOccurrence: OccurrenceSideDish;
   removeTagFromOccurrence: OccurrenceTag;
-  setReviewApproval: Review;
   updateDish: Dish;
   updateDishAlias: DishAlias;
   updateOccurrence: Occurrence;
@@ -218,10 +217,6 @@ export type MutationRemoveSideDishFromOccurrenceArgs = {
 
 export type MutationRemoveTagFromOccurrenceArgs = {
   input: RemoveTagFromOccurrenceInput;
-};
-
-export type MutationSetReviewApprovalArgs = {
-  input: SetReviewApprovalInput;
 };
 
 export type MutationUpdateDishArgs = {
@@ -337,13 +332,11 @@ export type Review = {
   acceptedAt?: Maybe<Scalars['Timestamp']>;
   createdAt: Scalars['Timestamp'];
   displayName?: Maybe<Scalars['String']>;
-  downVotes: Scalars['Int'];
   id: Scalars['UUID'];
   images: Array<Image>;
   occurrence: Occurrence;
   stars: Scalars['Int'];
   text?: Maybe<Scalars['String']>;
-  upVotes: Scalars['Int'];
   updatedAt: Scalars['Timestamp'];
 };
 
@@ -375,11 +368,6 @@ export type ReviewMetadataOccurrence = {
   __typename?: 'ReviewMetadataOccurrence';
   averageStars?: Maybe<Scalars['Float']>;
   reviewCount: Scalars['Int'];
-};
-
-export type SetReviewApprovalInput = {
-  approved: Scalars['Boolean'];
-  id: Scalars['UUID'];
 };
 
 export type Tag = {
@@ -526,6 +514,13 @@ export type GetAdminPanelReviewsQuery = {
     };
     images: Array<{ __typename?: 'Image'; id: string; imageUrl: string }>;
   }>;
+};
+
+export type GetLocationsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetLocationsQuery = {
+  __typename?: 'Query';
+  locations: Array<{ __typename?: 'Location'; id: string; name: string }>;
 };
 
 export type GetOccurrencesByDateQueryVariables = Exact<{
