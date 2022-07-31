@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:dev": "NEXT_PUBLIC_APP_ENV=development next build",
     "start": "next start",
     "lint": "yarn run lint:next && yarn run lint:style && yarn lint:prettier",
     "lint-fix": "yarn run lint:style-fix && yarn lint:prettier-fix",
