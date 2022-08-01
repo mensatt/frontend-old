@@ -1,2 +1,2 @@
-export * from './startOfWeek';
+export * from './dayjs';
 export * from './isDev';
