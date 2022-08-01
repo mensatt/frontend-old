@@ -1,6 +1,13 @@
 import dayjs from 'dayjs';
 import { NextRouter, useRouter } from 'next/router';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, {
+  MouseEvent,
+  TouchEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { selectedDateVar } from 'src/apollo';
 import Icon from 'src/components/icon';
 import {
@@ -14,6 +21,8 @@ import { useReactiveVar } from '@apollo/client';
 
 import Weekday from './Weekday';
 import styles from './WeekdaySelection.module.scss';
+
+const DESKTOP_SWIPING_ENABLED = false;
 
 const WeekdaySelection = () => {
   const router = useRouter();
@@ -99,8 +108,93 @@ const WeekdaySelection = () => {
     [selectedDate, selectedDateVarWrapper],
   );
 
+  const [isDragging, setIsDragging] = useState(false);
+  const [xCoord, setXCoord] = useState<number | null>(null);
+  const [dragBeginX, setDragBeginX] = useState<number | null>(null);
+  const [dragDirection, setDragDirection] = useState<'left' | 'right' | null>(
+    null,
+  );
+  const [completedDragDirection, setCompletedDragDirection] = useState<
+    'left' | 'right' | null
+  >(null);
+
+  const resetValues = useCallback(() => {
+    setIsDragging(false);
+    setXCoord(null);
+    setDragDirection(null);
+    setDragBeginX(null);
+    setCompletedDragDirection(null);
+  }, []);
+
+  const handleMove = useCallback(
+    (newXCoord: number) => {
+      if (!isDragging || completedDragDirection) return;
+      if (xCoord) {
+        if (newXCoord > xCoord && dragDirection !== 'right') {
+          setDragBeginX(newXCoord);
+          setDragDirection('right');
+        }
+        if (newXCoord < xCoord && dragDirection !== 'left') {
+          setDragBeginX(newXCoord);
+          setDragDirection('left');
+        }
+      }
+
+      setXCoord(newXCoord);
+    },
+    [completedDragDirection, dragDirection, isDragging, xCoord],
+  );
+
+  const handleMouseMove = useCallback(
+    (event: MouseEvent) => DESKTOP_SWIPING_ENABLED && handleMove(event.screenX),
+    [handleMove],
+  );
+
+  const handleTouchMove = useCallback(
+    (event: TouchEvent) => handleMove(event.touches[0].screenX),
+    [handleMove],
+  );
+
+  // Executed after values have been updated by `handleMove`
+  useEffect(() => {
+    if (!dragBeginX || !dragDirection || !xCoord) return;
+
+    // How far (in percent relative to the screen size) have we swiped
+    const distance = (Math.abs(dragBeginX - xCoord) * 100) / window.innerWidth;
+
+    // If the user has swiped > 10% of his screen width consider a swipe completed
+    // Note: This is only relevant on mobile where the navigation is full width
+    if (distance > 10) setCompletedDragDirection(dragDirection);
+  }, [dragBeginX, dragDirection, xCoord]);
+
+  // Executed on completed drag
+  useEffect(() => {
+    if (!completedDragDirection) return;
+
+    setDateChangedManually(true);
+    selectedDateVarWrapper(
+      selectedDate.add(completedDragDirection === 'right' ? 1 : -1, 'week'),
+    );
+    // Reset dragging values after setting new date
+    resetValues();
+  }, [
+    completedDragDirection,
+    resetValues,
+    selectedDate,
+    selectedDateVarWrapper,
+  ]);
+
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      onTouchStart={() => setIsDragging(true)}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={() => resetValues()}
+      onMouseDown={() => DESKTOP_SWIPING_ENABLED && setIsDragging(true)}
+      onMouseMove={handleMouseMove}
+      onMouseUp={() => DESKTOP_SWIPING_ENABLED && resetValues()}
+      onMouseLeave={() => DESKTOP_SWIPING_ENABLED && resetValues()}
+    >
       <div
         className={styles.button}
         onClick={() => {
