@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import { NextRouter, useRouter } from 'next/router';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { selectedDateVar } from 'src/apollo';
+import Icon from 'src/components/icon';
 import {
   DATE_FORMAT,
   afterFriday,
@@ -98,7 +99,29 @@ const WeekdaySelection = () => {
     [selectedDate, selectedDateVarWrapper],
   );
 
-  return <div className={styles.container}>{week}</div>;
+  return (
+    <div className={styles.container}>
+      <div
+        className={styles.button}
+        onClick={() => {
+          setDateChangedManually(true);
+          selectedDateVarWrapper(selectedDate.subtract(1, 'week'));
+        }}
+      >
+        <Icon name="arrow_left" />
+      </div>
+      {week}
+      <div
+        className={styles.button}
+        onClick={() => {
+          setDateChangedManually(true);
+          selectedDateVarWrapper(selectedDate.add(1, 'week'));
+        }}
+      >
+        <Icon name="arrow_right" />
+      </div>
+    </div>
+  );
 };
 
 export default WeekdaySelection;
