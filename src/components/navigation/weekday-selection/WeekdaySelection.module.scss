@@ -63,6 +63,32 @@
   }
 }
 
+// TODO: @maanex this was "stolen" from the back-button, adjust as you see fit
+.button {
+  box-sizing: border-box;
+  display: inline-flex;
+  gap: 7pt;
+  align-items: center;
+  justify-content: center;
+  padding: 3pt 10pt;
+  font-family: Arial, sans-serif;
+  font-size: 12pt;
+  font-weight: 400;
+  cursor: pointer;
+  background-color: $bg-lighter;
+  border-radius: $header-element-br;
+  transition: background-color 0.1s ease;
+
+  &:hover {
+    background-color: $bg-light;
+  }
+
+  *[class='icon'] {
+    width: 12pt;
+    height: 12pt;
+  }
+}
+
 @media screen and (max-width: $viewport-mobile-from) {
   .container {
     justify-content: space-evenly;
