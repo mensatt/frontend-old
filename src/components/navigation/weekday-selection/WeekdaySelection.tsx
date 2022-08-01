@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
-import { useRouter } from 'next/router';
-import React, { useEffect, useMemo } from 'react';
+import { NextRouter, useRouter } from 'next/router';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { selectedDateVar } from 'src/apollo';
 import { GET_NAVIGATION, Navigation } from 'src/graphql/queries';
 import { DATE_FORMAT, afterFriday, currentDate, startOfWeek } from 'src/util/';
@@ -14,6 +14,23 @@ const WeekdaySelection = () => {
   const { data } = useQuery<Navigation>(GET_NAVIGATION);
   const router = useRouter();
 
+  // Computes the date that is set by the `useEffect` below
+  const determineDateToSet = useCallback(
+    (
+      dateUrl: NextRouter['query'][string],
+      afterFriday: boolean,
+      startOfWeek: dayjs.Dayjs,
+    ) => {
+      const dateUrlParsed =
+        typeof dateUrl === 'string'
+          ? dayjs(dateUrl, DATE_FORMAT, true)
+          : undefined;
+      const nextOpenDate = afterFriday ? startOfWeek : currentDate;
+      return dateUrlParsed?.isValid() ? dateUrlParsed : nextOpenDate;
+    },
+    [],
+  );
+
   useEffect(() => {
     // Skip execution until router is ready
     // This is done to avoid undefined query params
@@ -22,15 +39,11 @@ const WeekdaySelection = () => {
 
     // Get and parse the date from URL
     const { date: dateURL } = router.query;
-    const dateURLParsed =
-      typeof dateURL === 'string'
-        ? dayjs(dateURL, DATE_FORMAT, true)
-        : undefined;
-    const nextOpenDate = afterFriday ? startOfWeek : currentDate;
-    const dateToSet = dateURLParsed?.isValid() ? dateURLParsed : nextOpenDate;
 
-    selectedDateVar(dateToSet.format(DATE_FORMAT));
-  }, [router]);
+    selectedDateVar(
+      determineDateToSet(dateURL, afterFriday, startOfWeek).format(DATE_FORMAT),
+    );
+  }, [determineDateToSet, router]);
 
   const week = useMemo(
     () =>
