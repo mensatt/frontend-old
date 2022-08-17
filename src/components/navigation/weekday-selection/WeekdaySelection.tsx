@@ -151,7 +151,8 @@ const WeekdaySelection = () => {
   );
 
   const handleTouchMove = useCallback(
-    (event: TouchEvent) => handleMove(event.touches[0].screenX),
+    (event: TouchEvent) =>
+      event.touches.length > 0 && handleMove(event.touches[0].screenX),
     [handleMove],
   );
 
