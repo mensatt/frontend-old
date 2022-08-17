@@ -109,7 +109,7 @@ const WeekdaySelection = () => {
   );
 
   const [isDragging, setIsDragging] = useState(false);
-  const [xCoord, setXCoord] = useState<number | null>(null);
+  const [xCoordinate, setXCoordinate] = useState<number | null>(null);
   const [dragBeginX, setDragBeginX] = useState<number | null>(null);
   const [dragDirection, setDragDirection] = useState<'left' | 'right' | null>(
     null,
@@ -120,7 +120,7 @@ const WeekdaySelection = () => {
 
   const resetValues = useCallback(() => {
     setIsDragging(false);
-    setXCoord(null);
+    setXCoordinate(null);
     setDragDirection(null);
     setDragBeginX(null);
     setCompletedDragDirection(null);
@@ -129,20 +129,20 @@ const WeekdaySelection = () => {
   const handleMove = useCallback(
     (newXCoord: number) => {
       if (!isDragging || completedDragDirection) return;
-      if (xCoord) {
-        if (newXCoord > xCoord && dragDirection !== 'right') {
+      if (xCoordinate) {
+        if (newXCoord > xCoordinate && dragDirection !== 'right') {
           setDragBeginX(newXCoord);
           setDragDirection('right');
         }
-        if (newXCoord < xCoord && dragDirection !== 'left') {
+        if (newXCoord < xCoordinate && dragDirection !== 'left') {
           setDragBeginX(newXCoord);
           setDragDirection('left');
         }
       }
 
-      setXCoord(newXCoord);
+      setXCoordinate(newXCoord);
     },
-    [completedDragDirection, dragDirection, isDragging, xCoord],
+    [completedDragDirection, dragDirection, isDragging, xCoordinate],
   );
 
   const handleMouseMove = useCallback(
@@ -157,15 +157,16 @@ const WeekdaySelection = () => {
 
   // Executed after values have been updated by `handleMove`
   useEffect(() => {
-    if (!dragBeginX || !dragDirection || !xCoord) return;
+    if (!dragBeginX || !dragDirection || !xCoordinate) return;
 
     // How far (in percent relative to the screen size) have we swiped
-    const distance = (Math.abs(dragBeginX - xCoord) * 100) / window.innerWidth;
+    const distance =
+      (Math.abs(dragBeginX - xCoordinate) * 100) / window.innerWidth;
 
     // If the user has swiped > 10% of his screen width consider a swipe completed
     // Note: This is only relevant on mobile where the navigation is full width
     if (distance > 10) setCompletedDragDirection(dragDirection);
-  }, [dragBeginX, dragDirection, xCoord]);
+  }, [dragBeginX, dragDirection, xCoordinate]);
 
   // Executed on completed drag
   useEffect(() => {
