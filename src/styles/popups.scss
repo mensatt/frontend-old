@@ -53,10 +53,11 @@
 }
 
 [role='popup-content'].popup-content {
-  height: 100vw;
+  max-height: 100vw;
   overflow: auto;
 
   @media screen and (max-width: $viewport-mobile-from) {
+    height: 100vw;
     padding-bottom: calc(
       $header-element-height + 6pt + env(safe-area-inset-bottom)
     );
