@@ -5,8 +5,6 @@
   background: rgba(0, 0, 0, 0.5);
 }
 
-//
-
 [role='tooltip'].popup-content {
   @include lifted;
   display: flex;
@@ -52,4 +50,19 @@
 
 [data-popup='tooltip'].popup-overlay {
   background: transparent;
+}
+
+[role='popup-content'].popup-content {
+  height: 100vw;
+  overflow: auto;
+
+  @media screen and (max-width: $viewport-mobile-from) {
+    padding-bottom: calc(
+      $header-element-height + 6pt + env(safe-area-inset-bottom)
+    );
+  }
+
+  & > * {
+    border-radius: 0;
+  }
 }
