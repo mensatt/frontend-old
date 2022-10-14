@@ -33,9 +33,15 @@ const TodayOverview = () => {
     skip: !navData || navData.selectedDate.length < DATE_FORMAT.length,
   });
 
+  const uniqueDishes = data && [
+    ...new Map(
+      data.occurrences.map((item) => [item['dish'].id, item]),
+    ).values(),
+  ];
+
   const content =
     data &&
-    data.occurrences.map((occurrence) => (
+    uniqueDishes.map((occurrence) => (
       <Occurrence occurrence={occurrence} key={occurrence.id} />
     ));
 
