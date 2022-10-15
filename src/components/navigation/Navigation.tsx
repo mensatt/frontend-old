@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import React, { ReactNode, useMemo } from 'react';
+import Popup from 'reactjs-popup';
 
 import Icon from '../icon';
+import Modal from '../modal';
 
 import styles from './Navigation.module.scss';
 import LanguageSwitcher from './language-switcher';
@@ -22,29 +24,51 @@ type Props = {
 
 const Navigation = ({ opts }: Props) => {
   const settingsRendered = useMemo(() => {
-    const array = [];
-    if (opts.showMensa) array.push(<MensaSelection key={'showMensa'} />);
+    const settingElements = [];
+    // Add "normal" menu options
+    if (opts.showMensa)
+      settingElements.push(<MensaSelection key={'showMensa'} />);
     if (opts.showLanguage)
-      array.push(<LanguageSwitcher key={'showLanguage'} />);
-    if (opts.showProfile) array.push(<ProfileButton key={'logout'} />);
+      settingElements.push(<LanguageSwitcher key={'showLanguage'} />);
+    if (opts.showProfile)
+      settingElements.push(<ProfileButton key={'logout'} />);
 
-    // insert divider divs between each item in the list
-    const out = array
+    // insert divider div between each item in the list
+    const settingElementsWithDiv = settingElements
       .flatMap((item, index) => [
         item,
         <div className={styles.divider} key={index} />,
       ])
       .slice(0, -1);
 
-    if (out.length) {
-      out.push(
+    // Insert mobile menu
+    if (settingElementsWithDiv.length) {
+      settingElementsWithDiv.push(
         <div className={styles.mobileMenu}>
-          <Icon name="menu" />
+          {
+            <Popup
+              trigger={
+                <button>
+                  <Icon name="menu" />
+                </button>
+              }
+              closeOnDocumentClick
+              nested
+              modal
+              on="click"
+            >
+              <Modal>
+                <MensaSelection key={'showMensa'} />
+                <LanguageSwitcher key={'showLanguage'} />
+                <ProfileButton key={'logout'} />
+              </Modal>
+            </Popup>
+          }
         </div>,
       );
     }
 
-    return out;
+    return settingElementsWithDiv;
   }, [opts.showLanguage, opts.showMensa, opts.showProfile]);
 
   return (
