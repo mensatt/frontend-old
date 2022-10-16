@@ -52,18 +52,16 @@
   background: transparent;
 }
 
-[role='popup-content'].popup-content {
-  max-height: 100vw;
+.popup-content {
+  max-height: 100vh;
   overflow: auto;
-
+  
   @media screen and (max-width: $viewport-mobile-from) {
-    height: 100vw;
-    padding-bottom: calc(
-      $header-element-height + 6pt + env(safe-area-inset-bottom)
-    );
+    padding-bottom: calc($header-element-height + 6pt + env(safe-area-inset-bottom));
+    height: 100vh;
   }
 
   & > * {
-    border-radius: 0;
+    border-radius: 0 !important;
   }
 }
