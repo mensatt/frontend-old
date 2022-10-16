@@ -55,10 +55,12 @@
 .popup-content {
   max-height: 100vh;
   overflow: auto;
-  
+
   @media screen and (max-width: $viewport-mobile-from) {
-    padding-bottom: calc($header-element-height + 6pt + env(safe-area-inset-bottom));
     height: 100vh;
+    padding-bottom: calc(
+      $header-element-height + 6pt + env(safe-area-inset-bottom)
+    );
   }
 
   & > * {
