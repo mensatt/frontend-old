@@ -154,7 +154,8 @@ const Occurrence = ({ occurrence }: Props) => {
         {comments}
         <div className={styles.dynamicSpace} />
         <div className={styles.buttonContainer}>
-          <button className={styles.occDetails}>
+          {/* TODO: Enable once feature is implemented */}
+          <button className={styles.occDetails} disabled>
             {t('showOccurrenceDetails')}
           </button>
           {/* NOTE: At the time of writing reduxjs-popup did not support using `open => ReactNode` as children (even though it was documented). So I had to work around it.
