@@ -115,3 +115,32 @@
     }
   }
 }
+
+.mobileMenuButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 15pt;
+  cursor: pointer;
+  background-color: $bg-lighter;
+  border: none;
+  border-radius: $header-element-br;
+  outline: none;
+  transition: background-color 0.1s ease-out;
+
+  &:hover {
+    background-color: $bg-light;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-blue !important;
+  }
+
+  & > * {
+    display: block;
+    flex-shrink: 0;
+    width: 15pt;
+    height: 15pt;
+  }
+}
