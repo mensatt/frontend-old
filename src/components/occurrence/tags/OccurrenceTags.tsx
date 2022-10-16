@@ -54,7 +54,10 @@ const OccurrenceTags = ({ tags }: Props) => {
     <>
       {tagComponents}
       {sortedByPriority.length > TAG_LIMIT && (
-        <button className={styles.showMore}>{t('showMore')}</button>
+        // TODO: Enable once feature is implemented
+        <button className={styles.showMore} disabled>
+          {t('showMore')}
+        </button>
       )}
     </>
   );
