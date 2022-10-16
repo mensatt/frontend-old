@@ -48,7 +48,7 @@ const Navigation = ({ opts }: Props) => {
           {
             <Popup
               trigger={
-                <button>
+                <button className={styles.mobileMenuButton}>
                   <Icon name="menu" />
                 </button>
               }
