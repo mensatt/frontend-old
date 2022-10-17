@@ -1,11 +1,12 @@
 .footer {
   box-sizing: border-box;
   display: grid;
-  grid-template-areas: 'logo copyright legal' 'logo disclaimer disclaimer';
+  grid-template-areas: 'logo copyright legal social' 'logo disclaimer disclaimer social';
   grid-template-rows: 1fr 1fr;
-  grid-template-columns: auto auto 1fr;
+  grid-template-columns: auto auto 1fr auto;
   row-gap: 2pt;
   column-gap: 8pt;
+  align-items: center;
   padding: $main-content-padding 0;
   margin: #{$container-padding} #{-$container-padding} 0 #{-$container-padding};
 
@@ -21,6 +22,7 @@
 .copyright {
   display: inline;
   grid-area: copyright;
+  margin-right: $main-content-padding;
   font-family: $font-major;
   font-size: 11pt;
   font-weight: 600;
@@ -57,9 +59,45 @@
   }
 }
 
+.social {
+  display: flex;
+  grid-area: social;
+  gap: 20pt;
+  justify-content: center;
+
+  a {
+    display: grid;
+    place-items: center;
+    width: 34pt;
+    height: 34pt;
+    margin: -8pt;
+    background-color: #ffffff00;
+    border-radius: 99pt;
+    transition: background-color 0.1s ease;
+
+    &:hover {
+      background-color: $bg-darker;
+
+      path {
+        fill: #111111;
+      }
+    }
+
+    svg {
+      width: 14pt;
+      height: 14pt;
+
+      path {
+        fill: #444444;
+        transition: fill 0.1s ease;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: $viewport-mobile-from) {
   .footer {
-    grid-template-areas: 'copyright' 'legal' 'disclaimer';
+    grid-template-areas: 'copyright' 'social' 'legal' 'disclaimer';
     grid-template-columns: 1fr;
     row-gap: 8pt;
     padding: 40pt 0;
@@ -82,5 +120,9 @@
 
   .footer p {
     text-align: center;
+  }
+
+  .social {
+    margin: 5pt 0 10pt 0;
   }
 }

@@ -91,6 +91,11 @@
       margin-left: calc(24pt * 1.3);
       font-size: 14pt;
       text-align: left;
+
+      &::before {
+        width: 20pt;
+        height: 20pt;
+      }
     }
   }
 
@@ -142,5 +147,6 @@
     flex-shrink: 0;
     width: 15pt;
     height: 15pt;
+    margin-bottom: 2px; // temporary, just to align the icon by eye
   }
 }
