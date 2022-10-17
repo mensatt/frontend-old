@@ -19,3 +19,25 @@
     outline: 2px solid $color-blue !important;
   }
 }
+
+.backend {
+  padding: 2pt;
+  cursor: pointer;
+  border-radius: $header-element-br;
+  transition: background-color 0.1s ease-out;
+
+  &:hover {
+    background-color: $bg-light;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-blue !important;
+  }
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  margin: 2px 0;
+  background-color: #dedede;
+}

@@ -9,6 +9,7 @@ type Props = {
   metadata?: GetOccurrencesByDateQuery['occurrences'][number]['dish']['reviewData']['metadata'];
   onSetSelectedStars?: (stars: number) => void;
   className?: string;
+  onClick?: () => void;
 };
 
 const OccurrenceRating = ({
@@ -16,6 +17,7 @@ const OccurrenceRating = ({
   onSetSelectedStars,
   className,
   hideAmount = false,
+  onClick,
 }: Props) => {
   const [hoverStarAmount, setHoverStarAmount] = useState(0);
   const [selectedStars, setSelectedStars] = useState(0);
@@ -54,7 +56,10 @@ const OccurrenceRating = ({
           onMouseEnter={() => isInteractive && setHoverStarAmount(idx + 1)}
           onMouseLeave={() => isInteractive && setHoverStarAmount(0)}
           onClick={() => {
-            if (!isInteractive) return;
+            if (!isInteractive) {
+              onClick?.();
+              return;
+            }
             setSelectedStars(idx + 1);
             if (onSetSelectedStars) {
               onSetSelectedStars(idx + 1);
@@ -64,7 +69,7 @@ const OccurrenceRating = ({
           <Icon name="star" percentage={determineStarPercentage(idx)} />
         </div>
       )),
-    [determineStarPercentage, isInteractive, onSetSelectedStars],
+    [determineStarPercentage, isInteractive, onClick, onSetSelectedStars],
   );
 
   return (
