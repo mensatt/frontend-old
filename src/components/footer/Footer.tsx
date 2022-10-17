@@ -2,6 +2,8 @@ import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
 import React from 'react';
 
+import Icon from '../icon';
+
 import styles from './Footer.module.scss';
 
 const Footer = () => {
@@ -17,6 +19,17 @@ const Footer = () => {
         <Link href={'/privacy'}>{t('privacy-link-text')}</Link>
       </div>
       <p>{t('disclaimer')}</p>
+      <div className={styles.social}>
+        <a href="https://github.com/mensatt">
+          <Icon name="github" />
+        </a>
+        <a href="https://discord.gg/wjeYsQQQ3R">
+          <Icon name="discord" />
+        </a>
+        <a href="mailto://hello@mensatt.de">
+          <Icon name="mail" />
+        </a>
+      </div>
     </footer>
   );
 };

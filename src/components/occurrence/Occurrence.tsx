@@ -124,6 +124,8 @@ const Occurrence = ({ occurrence }: Props) => {
 
   const [popupOpen, setPopupOpen] = useState(false);
 
+  const canReview = dayjs(occurrence.date, DATE_FORMAT) <= currentDate;
+
   return (
     <div className={styles.content}>
       <div className={styles.image}>
@@ -145,7 +147,10 @@ const Occurrence = ({ occurrence }: Props) => {
         <h2>{occurrenceName}</h2>
         <div className={styles.priceAndRatingWrapper}>
           <div className={styles.pillsWrapper}>
-            <OccurrenceRating metadata={occurrence.dish.reviewData.metadata} />
+            <OccurrenceRating
+              metadata={occurrence.dish.reviewData.metadata}
+              onClick={canReview ? () => setPopupOpen(true) : undefined}
+            />
             <OccurrenceTags tags={occurrence.tags} />
           </div>
           {prices}
@@ -166,7 +171,7 @@ const Occurrence = ({ occurrence }: Props) => {
                     even replace popups with own implementation
           */}
           <button
-            disabled={dayjs(occurrence.date, DATE_FORMAT) > currentDate}
+            disabled={!canReview}
             className={styles.rate}
             onClick={() => setPopupOpen(true)}
           >
