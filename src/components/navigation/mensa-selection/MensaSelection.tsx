@@ -135,7 +135,7 @@ const MensaSelection = () => {
     >
       {isDev &&
         data?.backends.map((backend, idx) => (
-          <label key={idx}>
+          <label key={idx} className={styles.backend}>
             <input
               type="radio"
               checked={data.activeBackendIdx === idx}
@@ -147,6 +147,7 @@ const MensaSelection = () => {
             {backend.name}
           </label>
         ))}
+      {isDev && <div className={styles.divider} />}
 
       {filteredLocations?.map((location) => (
         <button
