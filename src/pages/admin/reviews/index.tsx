@@ -23,12 +23,26 @@ import { GET_ADMIN_PANEL_REVIEWS } from 'src/graphql/queries/getAdminPanelReview
 const AdminReviewsPage: NextPage = () => {
   const { t } = useTranslation('common');
 
+  const [onlyShowApprovedReviews, setOnlyShowApprovedReviews] = useState(false);
+
   const { data: navData } = useQuery<Navigation>(GET_NAVIGATION);
 
   const { data, loading, error } = useQuery<
     GetAdminPanelReviewsQuery,
     GetAdminPanelReviewsQuery
   >(GET_ADMIN_PANEL_REVIEWS);
+
+  // TODO: Filtering for unapproved reviews should be done by the backend
+  // (similar to how it is done with the occurrences), but at the time of writing
+  // the API was missing support for it.
+  // Should be removed/replaced when https://github.com/mensatt/backend/issues/110 is closed
+  const filteredReviews = useMemo(
+    () =>
+      data?.reviews.filter(
+        (review) => !!review.acceptedAt === onlyShowApprovedReviews,
+      ),
+    [data?.reviews, onlyShowApprovedReviews],
+  );
 
   const [setReviewApprovalStatus, { loading: mutationLoading }] = useMutation<
     SetReviewApprovalStatusMutation,
@@ -43,14 +57,27 @@ const AdminReviewsPage: NextPage = () => {
     ],
   });
 
-  const [headerRows] = useState<TableHeaderRow[]>([
-    { fieldName: 'dishName', displayName: 'Dish' },
-    { fieldName: 'author', displayName: 'Author' },
-    { fieldName: 'comment', displayName: 'Comment' },
-    { fieldName: 'rating', displayName: 'Rating' },
-    { fieldName: 'image', displayName: 'Image' },
-    { fieldName: 'approvalStatus', displayName: 'Approval Status' },
-  ]);
+  const headerRows = useMemo<TableHeaderRow[]>(
+    () => [
+      { fieldName: 'dishName', displayName: 'Dish' },
+      { fieldName: 'author', displayName: 'Author' },
+      { fieldName: 'comment', displayName: 'Comment' },
+      { fieldName: 'rating', displayName: 'Rating' },
+      { fieldName: 'image', displayName: 'Image' },
+      {
+        fieldName: 'approvalStatus',
+        displayName: 'Approval Status',
+        filterComp: (
+          <button
+            onClick={() => setOnlyShowApprovedReviews(!onlyShowApprovedReviews)}
+          >
+            Only show {onlyShowApprovedReviews ? '' : 'un'}approved reviews
+          </button>
+        ),
+      },
+    ],
+    [onlyShowApprovedReviews],
+  );
 
   const backendUrlBase = useMemo(() => {
     const { protocol, hostname } = new URL(
@@ -61,9 +88,9 @@ const AdminReviewsPage: NextPage = () => {
   }, [navData]);
 
   const rows: TableDataRow[] = useMemo(() => {
-    if (!data || data.reviews.length < 1) return [];
+    if (!filteredReviews || filteredReviews.length < 1) return [];
 
-    return data.reviews.map((elem) => ({
+    return filteredReviews.map((elem) => ({
       dishName: elem.occurrence.dish.nameDe,
       author: elem.displayName || t('noAuthorName'),
       comment: elem.text || '<NULL>',
@@ -82,7 +109,7 @@ const AdminReviewsPage: NextPage = () => {
       image: {
         node:
           elem.images.length > 0 ? (
-            <Popup trigger={<button>Show image</button>} modal>
+            <Popup trigger={<button>Show images</button>} modal>
               <Modal>
                 <h1>
                   {t('imageDescription', {
@@ -121,19 +148,25 @@ const AdminReviewsPage: NextPage = () => {
               })
             }
           >
-            {elem.acceptedAt ? 'Unapprove' : 'approve'}
+            {elem.acceptedAt ? 'Unapprove' : 'Approve'}
           </button>
         ),
         value: elem.acceptedAt || '0',
       },
     }));
-  }, [backendUrlBase, data, mutationLoading, setReviewApprovalStatus, t]);
+  }, [
+    backendUrlBase,
+    filteredReviews,
+    mutationLoading,
+    setReviewApprovalStatus,
+    t,
+  ]);
 
   return (
     <>
       {loading && t('loading')}
       {error && error.message}
-      {data && <Table headerRow={headerRows} dataRows={rows} />}
+      {filteredReviews && <Table headerRow={headerRows} dataRows={rows} />}
     </>
   );
 };
