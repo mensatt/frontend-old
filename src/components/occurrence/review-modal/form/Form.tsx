@@ -47,6 +47,9 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
     useState(true);
   const [showImageTooBigError, setShowImageTooBigError] = useState(false);
   const [showWrongExtensionError, setShowWrongExtensionError] = useState(false);
+  const [showInvalidUsernameError, setShowInvalidUsernameError] =
+    useState(false);
+  const [showInvalidCommentError, setShowInvalidCommentError] = useState(false);
 
   const [formState, setFormState] = useState<AddReviewMutationVariables>({
     author: '',
@@ -57,8 +60,17 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
   });
 
   const formIsInvalid = useMemo(
-    () => showMissingStarValueError || showWrongExtensionError,
-    [showMissingStarValueError, showWrongExtensionError],
+    () =>
+      showMissingStarValueError ||
+      showInvalidUsernameError ||
+      showInvalidCommentError ||
+      showWrongExtensionError,
+    [
+      showMissingStarValueError,
+      showInvalidUsernameError,
+      showInvalidCommentError,
+      showWrongExtensionError,
+    ],
   );
 
   useEffect(() => {
@@ -69,6 +81,12 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
     (event: FormEvent) => {
       event.preventDefault();
       if (!formIsInvalid) {
+        setFormState({
+          ...formState,
+          author: formState.author.trim(),
+          comment: formState.comment ? formState.comment.trim() : '',
+        });
+
         addReview({
           variables: formState,
         });
@@ -124,6 +142,12 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
             {t('reviewModalMissingStarValueError')}
           </p>
         )}
+        {showInvalidUsernameError && (
+          <p className={styles.error}>{t('reviewModalInvalidUsernameError')}</p>
+        )}
+        {showInvalidCommentError && (
+          <p className={styles.error}>{t('reviewModalInvalidCommentError')}</p>
+        )}
         {showImageTooBigError && (
           <p className={styles.error}>
             {t('reviewModalImageTooBigError', {
@@ -146,6 +170,7 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
       addReviewError,
       showImageTooBigError,
       showMissingStarValueError,
+      showInvalidUsernameError,
       showWrongExtensionError,
       t,
     ],
@@ -196,6 +221,8 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
         type="text"
         value={formState.comment || ''}
         onChange={(event) => {
+          setShowInvalidCommentError(event.target.value.trim().length === 0);
+
           setFormState({
             ...formState,
             comment: event.target.value || '',
@@ -208,6 +235,8 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
         type="text"
         value={formState.author}
         onChange={(event) => {
+          setShowInvalidUsernameError(event.target.value.trim().length === 0);
+
           setFormState({
             ...formState,
             author: event.target.value || '',
