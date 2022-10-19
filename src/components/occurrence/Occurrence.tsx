@@ -34,8 +34,8 @@ const imagesMapFunction = (review: Review) =>
   }));
 
 const reviewSortFunction = (a: Review, b: Review) => {
-  if (a.createdAt > b.createdAt) return 1;
-  if (a.createdAt < b.createdAt) return -1;
+  if (a.createdAt < b.createdAt) return 1;
+  if (a.createdAt > b.createdAt) return -1;
   return 0;
 };
 
