@@ -28,8 +28,6 @@
   "reviewModalSubmit": "Absenden",
   "reviewModalSubmitError": "Es gab einen Fehler beim Absenden deiner Bewertung",
   "reviewModalMissingStarValueError": "Du musst eine Sternebewertung angeben",
-  "reviewModalInvalidUsernameError": "Dein Username darf nicht leer sein",
-  "reviewModalInvalidCommentError": "Der Kommentar darf nicht leer sein",
   "reviewModalImageTooBigError": "Eins deiner Bilder ist zu groß. Bilder dürfen maximal {{size}} groß sein",
   "reviewModalWrongExtensionError": "Eins deiner Bilder hat eine nicht-unterstüzte Dateiendung. Erlaubte Endungen sind: {{extensions}}",
   "reviewModalImageDisclaimer": "Durch das Hochladen deiner Bilder erlaubst du Mensatt sie in jeglicher Form zu verwenden.",
