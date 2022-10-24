@@ -5,9 +5,9 @@ const render = function () {
     <Html>
       <Head>
         <link rel="manifest" href="/manifest.json" />
-        <link rel="apple-touch-icon" href="/icon.png"></link>
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png" />
+        <link rel="icon" href="/favicon-32.png" />
         <meta name="theme-color" content="#fff" />
-        <link rel="shortcut icon" href="/favicon-32.png" />
       </Head>
       <body>
         <Main />
