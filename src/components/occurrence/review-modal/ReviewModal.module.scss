@@ -14,12 +14,13 @@
 
   button {
     height: $content-pills-height;
+    padding: 3pt 0;
     font-family: $font-major;
-    font-size: 10pt;
-    color: $color-major;
+    font-size: 11pt;
+    color: #ffffff;
     text-align: center;
     cursor: pointer;
-    background-color: $color-blue;
+    background-color: $color-green;
     border: none;
     border-radius: $card-item-br;
     transition: background-color 0.1s ease;
@@ -30,8 +31,8 @@
       background-color: $bg-light;
     }
 
-    &:hover {
-      background-color: $color-blueH;
+    &:hover:not(:disabled) {
+      background-color: $color-greenH;
     }
   }
 }

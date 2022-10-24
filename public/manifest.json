@@ -1,32 +1,36 @@
 {
-  "theme_color": "#55acee",
-  "background_color": "#8edfff",
+  "theme_color": "#77b255",
+  "background_color": "#dce3ea",
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
-  "name": "mensatt",
-  "short_name": "mensatt",
+  "name": "Mensatt",
+  "short_name": "Mensatt",
   "description": "Mensatt - In der Mensa wird man satt",
   "icons": [
     {
       "src": "/icon-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
       "src": "/icon-256x256.png",
       "sizes": "256x256",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
       "src": "/icon-384x384.png",
       "sizes": "384x384",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
       "src": "/icon-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
