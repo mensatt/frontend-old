@@ -7,7 +7,9 @@
 
   h1 {
     grid-area: nav-center;
+    padding: 13pt 20pt;
     margin: 0;
+    margin: -13pt -20pt;
     font-family: Arial, sans-serif;
     font-size: 18pt;
     font-weight: 800;
@@ -21,12 +23,13 @@
       display: inline;
       width: 24pt;
       height: 24pt;
+      padding-right: 1em;
       content: '';
       background-image: url('/static/img/logo.svg');
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
-      transform: translateX(-130%);
+      transform: translateX(-100%);
     }
   }
 }
@@ -88,7 +91,7 @@
     margin: 10pt 0;
 
     h1 {
-      margin-left: calc(24pt * 1.3);
+      margin-left: 1em;
       font-size: 14pt;
       text-align: left;
 
@@ -139,7 +142,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid $color-blue !important;
+    outline: 2px solid $color-green !important;
   }
 
   & > * {
