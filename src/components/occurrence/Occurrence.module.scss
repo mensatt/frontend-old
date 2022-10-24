@@ -71,9 +71,10 @@
   all: unset;
   flex: 1;
   height: $content-pills-height;
+  padding: 3pt 0;
   font-family: $font-major;
-  font-size: 10pt;
-  color: $color-major;
+  font-size: 11pt;
+  color: #ffffff;
   text-align: center;
   cursor: pointer;
   background-color: $bg-light;
@@ -82,17 +83,22 @@
 }
 
 .buttonContainer .occDetails {
-  &:hover {
+  &:disabled {
+    cursor: not-allowed;
+    background-color: $bg-dark;
+  }
+
+  &:hover:not(:disabled) {
     background-color: $bg-darker;
   }
 
   &:focus-visible {
-    outline: 2px solid $color-blue !important;
+    outline: 2px solid $color-green !important;
   }
 }
 
 .buttonContainer .rate {
-  background-color: $color-blue;
+  background-color: $color-green;
 
   &:disabled {
     cursor: not-allowed;
@@ -103,8 +109,8 @@
     outline: 2px solid $color-major !important;
   }
 
-  &:hover {
-    background-color: $color-blueH;
+  &:hover:not(:disabled) {
+    background-color: $color-greenH;
   }
 }
 

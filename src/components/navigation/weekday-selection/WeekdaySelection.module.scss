@@ -28,7 +28,7 @@
     }
 
     &:focus-visible {
-      outline: 2px solid $color-blue !important;
+      outline: 2px solid $color-green !important;
     }
 
     span {
@@ -50,7 +50,7 @@
     }
 
     &.selected {
-      background-color: $color-blue;
+      background-color: $color-green;
 
       span {
         color: $bg-lighter;
