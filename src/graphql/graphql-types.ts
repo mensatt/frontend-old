@@ -317,6 +317,10 @@ export type QueryOccurrencesArgs = {
   filter?: InputMaybe<OccurrenceFilter>;
 };
 
+export type QueryReviewsArgs = {
+  filter?: InputMaybe<ReviewFilter>;
+};
+
 export type RemoveSideDishFromOccurrenceInput = {
   dish: Scalars['UUID'];
   occurrence: Scalars['UUID'];
@@ -436,7 +440,7 @@ export type VcsBuildInfo = {
 
 export type AddReviewMutationVariables = Exact<{
   occId: Scalars['UUID'];
-  author: Scalars['String'];
+  author?: InputMaybe<Scalars['String']>;
   images?: InputMaybe<Array<ImageInput> | ImageInput>;
   stars: Scalars['Int'];
   comment?: InputMaybe<Scalars['String']>;
