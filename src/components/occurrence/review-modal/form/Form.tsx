@@ -51,7 +51,7 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
   const [formState, setFormState] = useState<
     AddReviewMutationVariables & { submitted: boolean }
   >({
-    author: '',
+    author: null,
     stars: 0,
     comment: null,
     images: null,
@@ -72,7 +72,6 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
   useEffect(() => {
     if (!formIsInvalid && formState.submitted)
       addReview({ variables: formState });
-    console.log(formState);
   }, [addReview, formIsInvalid, formState]);
 
   const handleSubmit = useCallback(
@@ -81,7 +80,10 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
       if (!formIsInvalid)
         setFormState({
           ...formState,
-          author: formState.author.trim(),
+          author:
+            formState.author?.trim().length === 0
+              ? null
+              : formState.author?.trim(),
           comment:
             formState.comment?.trim().length === 0
               ? null
@@ -221,7 +223,7 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
       <input
         id="reviewModalNameInput"
         type="text"
-        value={formState.author}
+        value={formState.author || ''}
         onChange={(event) => {
           setFormState({
             ...formState,
