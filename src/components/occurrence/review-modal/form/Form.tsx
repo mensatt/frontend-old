@@ -48,12 +48,15 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
   const [showImageTooBigError, setShowImageTooBigError] = useState(false);
   const [showWrongExtensionError, setShowWrongExtensionError] = useState(false);
 
-  const [formState, setFormState] = useState<AddReviewMutationVariables>({
+  const [formState, setFormState] = useState<
+    AddReviewMutationVariables & { submitted: boolean }
+  >({
     author: '',
     stars: 0,
     comment: null,
     images: null,
     occId: occurrenceId,
+    submitted: false,
   });
 
   const formIsInvalid = useMemo(
@@ -65,22 +68,28 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
     if (addReviewData) onSuccessfulSubmit();
   }, [addReviewData, onSuccessfulSubmit]);
 
+  // Add review once it was submitted
+  useEffect(() => {
+    if (!formIsInvalid && formState.submitted)
+      addReview({ variables: formState });
+    console.log(formState);
+  }, [addReview, formIsInvalid, formState]);
+
   const handleSubmit = useCallback(
     (event: FormEvent) => {
       event.preventDefault();
-      if (!formIsInvalid) {
-        formState.author = formState.author.trim();
-        formState.comment =
-          formState.comment?.trim().length === 0
-            ? null
-            : formState.comment?.trim();
-
-        addReview({
-          variables: formState,
+      if (!formIsInvalid)
+        setFormState({
+          ...formState,
+          author: formState.author.trim(),
+          comment:
+            formState.comment?.trim().length === 0
+              ? null
+              : formState.comment?.trim(),
+          submitted: true,
         });
-      }
     },
-    [formIsInvalid, addReview, formState],
+    [formIsInvalid, formState],
   );
 
   const onFileInputChange = useCallback(
