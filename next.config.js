@@ -14,6 +14,9 @@ module.exports = withPWA({
     includePaths: [path.join(__dirname, 'styles')],
     prependData: '@import "~@styles/variables.scss";',
   },
-  images: { domains: ['dev-api.mensatt.de', 'api.mensatt.de'] },
+  images: {
+    domains: ['dev-api.mensatt.de', 'api.mensatt.de'],
+    loader: 'custom',
+  },
   i18n,
 });

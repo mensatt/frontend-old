@@ -7,6 +7,7 @@ import Popup from 'reactjs-popup';
 import { GetOccurrencesByDateQuery } from 'src/graphql/graphql-types';
 import { GET_NAVIGATION, Navigation } from 'src/graphql/queries';
 import { DATE_FORMAT, currentDate } from 'src/util';
+import { backendImageLoader } from 'src/util/imageLoader';
 
 import { useQuery } from '@apollo/client';
 
@@ -50,7 +51,7 @@ const Occurrence = ({ occurrence }: Props) => {
   // Get "URL-Base" from currently active backend
   // Example: https://api.mensatt.de/v1/graphql => https://api.mensatt.de
   const { data: navData } = useQuery<Navigation>(GET_NAVIGATION);
-  const backendURLBase = useMemo(() => {
+  const backendUrlBase = useMemo(() => {
     const { protocol, hostname } = new URL(
       navData?.backends[navData.activeBackendIdx].url ||
         'https://api.mensatt.de/v1/graphql',
@@ -132,12 +133,13 @@ const Occurrence = ({ occurrence }: Props) => {
         {filteredDishImages.length > 0 ? (
           <Image
             key={randomImage.id}
-            src={backendURLBase + randomImage.imageUrl}
+            src={backendUrlBase + randomImage.imageUrl}
             alt={t('imageDescription', {
               name: occurrenceName,
               author: randomImage.displayName || t('noAuthorName'),
             })}
             layout={'fill'}
+            loader={backendImageLoader}
           />
         ) : (
           <span>{t('noImagesMsg')}</span>
