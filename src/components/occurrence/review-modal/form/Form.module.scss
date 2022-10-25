@@ -83,7 +83,8 @@
     text-transform: uppercase;
   }
 
-  input[type='text'] {
+  input[type='text'],
+  textarea {
     padding: 10pt 12pt;
     font-family: $font-regular;
     font-size: 12pt;
@@ -98,6 +99,11 @@
       border-color: #888888;
       box-shadow: 0 2px 3px #00000018;
     }
+  }
+
+  textarea {
+    height: 100px;
+    resize: none;
   }
 
   .button {
