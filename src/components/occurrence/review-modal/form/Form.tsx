@@ -205,20 +205,6 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
         */}
       </div>
       {formState.images && <p>{t('reviewModalImageDisclaimer')}</p>}
-      <label htmlFor="reviewModalCommentInput">
-        {t('reviewModalCommentLabel')}
-      </label>
-      <input
-        id="reviewModalCommentInput"
-        type="text"
-        value={formState.comment || ''}
-        onChange={(event) => {
-          setFormState({
-            ...formState,
-            comment: event.target.value || '',
-          });
-        }}
-      />
       <label htmlFor="reviewModalNameInput">{t('reviewModalNameLabel')}</label>
       <input
         id="reviewModalNameInput"
@@ -231,6 +217,20 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
           });
         }}
       />
+      <label htmlFor="reviewModalCommentTextArea">
+        {t('reviewModalCommentLabel')}
+      </label>
+      <textarea
+        id="reviewModalCommentTextArea"
+        value={formState.comment || ''}
+        onChange={(event) => {
+          setFormState({
+            ...formState,
+            comment: event.target.value || '',
+          });
+        }}
+      />
+
       <div className={styles.divider} />
       {errors}
       <button
