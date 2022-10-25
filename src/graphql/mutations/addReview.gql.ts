@@ -3,7 +3,7 @@ import { gql } from '@apollo/client';
 export const ADD_REVIEW = gql`
   mutation addReview(
     $occId: UUID!
-    $author: String!
+    $author: String
     $images: [ImageInput!]
     $stars: Int!
     $comment: String
