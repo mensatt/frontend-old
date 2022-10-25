@@ -11,7 +11,9 @@ const Footer = () => {
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.logo} />
+      <Link href="/">
+        <div className={styles.logo} />
+      </Link>
       <span className={styles.copyright}>Copyright &copy; 2022 Mensatt.</span>
       <div className={styles.links}>
         <Link href={'/admin'}>{t('admin-link-text')}</Link>
