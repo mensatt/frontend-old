@@ -1,6 +1,8 @@
 import React, { useMemo } from 'react';
 import { GetOccurrencesByDateQuery, Priority } from 'src/graphql/graphql-types';
 
+import Tooltip from '../../tooltip';
+
 import styles from './OccurrenceTags.module.scss';
 
 const TAG_LIMIT = 3;
@@ -41,10 +43,11 @@ const OccurrenceTags = ({ tags }: Props) => {
   const tagComponents = useMemo(
     () =>
       sortedByPriority.slice(0, TAG_LIMIT).map((tag) => (
-        <div className={styles.tag} key={tag.key}>
-          {tag.shortName ? tag.shortName : tag.name}
-          <div className={styles.tagTooltip}>{tag.description}</div>
-        </div>
+        <Tooltip key={tag.key} text={tag.description}>
+          <div className={styles.tag} key={tag.key}>
+            {tag.shortName ? tag.shortName : tag.name}
+          </div>
+        </Tooltip>
       )),
     [sortedByPriority],
   );

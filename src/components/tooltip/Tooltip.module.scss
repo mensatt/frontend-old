@@ -1,0 +1,20 @@
+.tooltip {
+  position: absolute;
+  // TODO: Seems to move the tooltip up a bit, but this variable is not available here right?
+  // bottom: $content-pills-height;
+  left: 50%;
+  font-size: 10pt;
+  z-index: 1;
+  padding: 5px;
+  color: #ffffff;
+  text-align: center;
+  pointer-events: none;
+  visibility: hidden;
+  background-color: black;
+  border-radius: 6px;
+  transform: translateX(-50%);
+}
+
+.elem:hover .tooltip {
+  visibility: visible;
+}
