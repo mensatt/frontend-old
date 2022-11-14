@@ -8,10 +8,13 @@ import Modal from 'src/components/modal';
 import OccurrenceRating from 'src/components/occurrence/rating';
 import Table, { TableDataRow, TableHeaderRow } from 'src/components/table';
 import {
+  DeleteReviewMutation,
+  DeleteReviewMutationVariables,
   GetAdminPanelReviewsQuery,
   SetReviewApprovalStatusMutation,
   SetReviewApprovalStatusMutationVariables,
 } from 'src/graphql/graphql-types';
+import { DELETE_REVIEW } from 'src/graphql/mutations';
 import { GET_NAVIGATION, Navigation } from 'src/graphql/queries';
 
 import { useMutation, useQuery } from '@apollo/client';
@@ -26,6 +29,17 @@ const AdminReviewsPage: NextPage = () => {
   const [onlyShowApprovedReviews, setOnlyShowApprovedReviews] = useState(false);
 
   const { data: navData } = useQuery<Navigation>(GET_NAVIGATION);
+
+  const [deleteReview, { loading: deletionLoading }] = useMutation<
+    DeleteReviewMutation,
+    DeleteReviewMutationVariables
+  >(DELETE_REVIEW, {
+    refetchQueries: [
+      {
+        query: GET_ADMIN_PANEL_REVIEWS,
+      },
+    ],
+  });
 
   const { data, loading, error } = useQuery<
     GetAdminPanelReviewsQuery,
@@ -74,6 +88,11 @@ const AdminReviewsPage: NextPage = () => {
             Only show {onlyShowApprovedReviews ? '' : 'un'}approved reviews
           </button>
         ),
+      },
+      {
+        fieldName: 'delete',
+        displayName: 'Delete',
+        nonSortable: true,
       },
     ],
     [onlyShowApprovedReviews],
@@ -138,7 +157,7 @@ const AdminReviewsPage: NextPage = () => {
       approvalStatus: {
         node: (
           <button
-            disabled={mutationLoading}
+            disabled={mutationLoading || deletionLoading}
             onClick={() =>
               setReviewApprovalStatus({
                 variables: {
@@ -153,13 +172,26 @@ const AdminReviewsPage: NextPage = () => {
         ),
         value: elem.acceptedAt || '0',
       },
+      delete: {
+        node: (
+          <button
+            disabled={mutationLoading || deletionLoading}
+            onClick={() => deleteReview({ variables: { id: elem.id } })}
+          >
+            Delete this review
+          </button>
+        ),
+        value: 'delete',
+      },
     }));
   }, [
-    backendUrlBase,
     filteredReviews,
-    mutationLoading,
-    setReviewApprovalStatus,
     t,
+    backendUrlBase,
+    mutationLoading,
+    deletionLoading,
+    setReviewApprovalStatus,
+    deleteReview,
   ]);
 
   return (
