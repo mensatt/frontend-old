@@ -451,6 +451,15 @@ export type AddReviewMutation = {
   createReview: { __typename?: 'Review'; id: string };
 };
 
+export type DeleteReviewMutationVariables = Exact<{
+  id: Scalars['UUID'];
+}>;
+
+export type DeleteReviewMutation = {
+  __typename?: 'Mutation';
+  deleteReview: { __typename?: 'Review'; id: string };
+};
+
 export type LoginUserMutationVariables = Exact<{
   email: Scalars['String'];
   password: Scalars['String'];
