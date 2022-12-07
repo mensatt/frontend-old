@@ -177,6 +177,9 @@ const AdminReviewsPage: NextPage = () => {
           <button
             disabled={mutationLoading || deletionLoading}
             onClick={() => deleteReview({ variables: { id: elem.id } })}
+            style={{
+              backgroundColor: 'red',
+            }}
           >
             Delete this review
           </button>
