@@ -26,7 +26,7 @@ const icons = {
 
 type Props<
   T extends keyof typeof icons,
-  Args = Parameters<typeof icons[T]>[0],
+  Args = Parameters<(typeof icons)[T]>[0],
 > = Args extends undefined ? { name: T } : { name: T } & Args;
 
 const Icon = <T extends keyof typeof icons>(props: Props<T>) => {
