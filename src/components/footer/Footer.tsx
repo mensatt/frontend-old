@@ -28,7 +28,7 @@ const Footer = () => {
         <a href="https://discord.gg/wjeYsQQQ3R">
           <Icon name="discord" />
         </a>
-        <a href="mailto://hello@mensatt.de">
+        <a href="mailto:hello@mensatt.de">
           <Icon name="mail" />
         </a>
       </div>
