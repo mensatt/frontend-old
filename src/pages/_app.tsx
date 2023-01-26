@@ -95,30 +95,30 @@ function MyApp({ Component, pageProps }: AppProps) {
   const navOpts = layout.nav;
 
   return (
-    <ApolloProvider client={apolloClient}>
+    <>
       <Head>
         <title>Mensatt</title>
-        {/* <link rel="icon" href="/favicon.ico" /> */}
-
         {/* See https://stackoverflow.com/a/51322362 */}
         <meta
           name="viewport"
           content="height=device-height, 
-                      width=device-width, initial-scale=1.0, 
-                      minimum-scale=1.0, maximum-scale=1.0, 
-                      user-scalable=no, target-densitydpi=device-dpi"
+          width=device-width, initial-scale=1.0, 
+          minimum-scale=1.0, maximum-scale=1.0, 
+          user-scalable=no, target-densitydpi=device-dpi"
         />
       </Head>
-      <div className={'app-container'}>
-        <div className={'page-content'}>
-          <RouteGuard>
-            <Navigation opts={navOpts} />
-            <Component {...pageProps} />
-          </RouteGuard>
+      <ApolloProvider client={apolloClient}>
+        <div className="app-container">
+          <div className="page-content">
+            <RouteGuard>
+              <Navigation opts={navOpts} />
+              <Component {...pageProps} />
+            </RouteGuard>
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
-    </ApolloProvider>
+      </ApolloProvider>
+    </>
   );
 }
 
