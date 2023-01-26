@@ -10,6 +10,7 @@ const render = function () {
         <meta name="theme-color" content="#fff" />
       </Head>
       <body>
+        <noscript>You need to enable JavaScript to use this page!</noscript>
         <Main />
         <NextScript />
       </body>
