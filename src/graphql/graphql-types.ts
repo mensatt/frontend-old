@@ -125,6 +125,7 @@ export type DishAlias = {
 
 export type Image = {
   __typename?: 'Image';
+  hash: Scalars['String'];
   id: Scalars['UUID'];
   imageUrl: Scalars['String'];
   review: Review;
@@ -146,6 +147,11 @@ export type LoginUserInput = {
   password: Scalars['String'];
 };
 
+export type MergeDishesInput = {
+  keep: Scalars['UUID'];
+  merge: Scalars['UUID'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   addSideDishToOccurrence: OccurrenceSideDish;
@@ -159,6 +165,7 @@ export type Mutation = {
   deleteOccurrence: Occurrence;
   deleteReview: Review;
   loginUser: Scalars['String'];
+  mergeDishes: Dish;
   removeSideDishFromOccurrence: OccurrenceSideDish;
   removeTagFromOccurrence: OccurrenceTag;
   updateDish: Dish;
@@ -209,6 +216,10 @@ export type MutationDeleteReviewArgs = {
 
 export type MutationLoginUserArgs = {
   input: LoginUserInput;
+};
+
+export type MutationMergeDishesArgs = {
+  input: MergeDishesInput;
 };
 
 export type MutationRemoveSideDishFromOccurrenceArgs = {
@@ -466,6 +477,21 @@ export type LoginUserMutationVariables = Exact<{
 }>;
 
 export type LoginUserMutation = { __typename?: 'Mutation'; loginUser: string };
+
+export type MergeDishesMutationVariables = Exact<{
+  keep: Scalars['UUID'];
+  merge: Scalars['UUID'];
+}>;
+
+export type MergeDishesMutation = {
+  __typename?: 'Mutation';
+  mergeDishes: {
+    __typename?: 'Dish';
+    id: string;
+    nameDe: string;
+    nameEn?: string | null;
+  };
+};
 
 export type SetOccurrenceStatusMutationVariables = Exact<{
   id: Scalars['UUID'];
