@@ -16,6 +16,7 @@ import {
 } from 'src/graphql/graphql-types';
 import { DELETE_REVIEW } from 'src/graphql/mutations';
 import { GET_NAVIGATION, Navigation } from 'src/graphql/queries';
+import { backendImageLoader } from 'src/util/imageLoader';
 
 import { useMutation, useQuery } from '@apollo/client';
 
@@ -145,6 +146,7 @@ const AdminReviewsPage: NextPage = () => {
                     })}
                     layout={'fill'}
                     objectFit="contain"
+                    loader={backendImageLoader}
                   />
                 </div>
               </Modal>
