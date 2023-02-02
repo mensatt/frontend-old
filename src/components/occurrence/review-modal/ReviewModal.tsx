@@ -19,14 +19,14 @@ const ReviewModal = ({
   occurrenceId,
   afterSuccessfulSubmit: onSuccessfulSubmit,
 }: Props) => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('reviewModal');
   const [submitted, setSubmitted] = useState(false);
 
   return (
     <Modal>
       {submitted ? (
         <div className={styles.content}>
-          <p>{t('reviewModalSubmittedAwaitingApproval')}</p>
+          <p>{t('submittedAwaitingApproval')}</p>
           <button onClick={onSuccessfulSubmit}>Okay</button>
         </div>
       ) : (

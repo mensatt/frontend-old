@@ -32,9 +32,8 @@ type Props<
 const Icon = <T extends keyof typeof icons>(props: Props<T>) => {
   const icon = useMemo(() => {
     // compProps contains all but name
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { name, ...compProps } = props;
-    const selectedIcon = icons[props.name];
+    const selectedIcon = icons[name];
     return selectedIcon(compProps);
   }, [props]);
 

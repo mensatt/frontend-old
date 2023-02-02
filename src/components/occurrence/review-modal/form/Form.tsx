@@ -33,7 +33,8 @@ type Props = {
 };
 
 const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
-  const { t } = useTranslation('common');
+  const { t: tCommon } = useTranslation('common');
+  const { t: tReview } = useTranslation('reviewModal');
   // NOTE: Currently there is no need to refetch the occurrences as a review has to be approved first anyways
   const [
     addReview,
@@ -134,23 +135,21 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
     () => (
       <>
         {addReviewError && (
-          <p className={styles.error}>{t('reviewModalSubmitError')}</p>
+          <p className={styles.error}>{tReview('submitError')}</p>
         )}
         {showMissingStarValueError && (
-          <p className={styles.error}>
-            {t('reviewModalMissingStarValueError')}
-          </p>
+          <p className={styles.error}>{tReview('missingStarValueError')}</p>
         )}
         {showImageTooBigError && (
           <p className={styles.error}>
-            {t('reviewModalImageTooBigError', {
+            {tReview('imageTooBigError', {
               size: `${MAX_UPLOAD_FILE_SIZE / (1024 * 1024)}MB`,
             })}
           </p>
         )}
         {showWrongExtensionError && (
           <p className={styles.error}>
-            {t('reviewModalWrongExtensionError', {
+            {tReview('wrongExtensionError', {
               extensions: ALLOWED_EXTENSIONS.map(
                 (ext) => '.' + ext.toLowerCase(),
               ).join(' '),
@@ -164,14 +163,14 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
       showImageTooBigError,
       showMissingStarValueError,
       showWrongExtensionError,
-      t,
+      tReview,
     ],
   );
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <h1>{t('reviewModalHeading', { name: occurrenceName })}</h1>
-      <label>{t('reviewModalRatingLabel')}</label>
+      <h1>{tReview('heading', { name: occurrenceName })}</h1>
+      <label>{tReview('ratingLabel')}</label>
       <div className={styles.stars}>
         <OccurrenceRating
           onSetSelectedStars={(stars) => {
@@ -181,7 +180,7 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
           className={styles.rating}
         />
       </div>
-      <label>{t('reviewModalImageLabel')}</label>
+      <label>{tReview('imageLabel')}</label>
       <div
         className={
           styles.fileUpload +
@@ -197,15 +196,15 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
         />
         <span>
           {fileAmount
-            ? t('reviewModalImagesSelected', { amount: fileAmount })
-            : t('reviewModalNoImagesSelected')}
+            ? tReview('imagesSelected', { amount: fileAmount })
+            : tReview('noImagesSelected')}
         </span>
         {/* TODO Add image preview
             Also see: https://github.com/mensatt/frontend/issues/121
         */}
       </div>
-      {formState.images && <p>{t('reviewModalImageDisclaimer')}</p>}
-      <label htmlFor="reviewModalNameInput">{t('reviewModalNameLabel')}</label>
+      {formState.images && <p>{tReview('imageDisclaimer')}</p>}
+      <label htmlFor="reviewModalNameInput">{tReview('nameLabel')}</label>
       <input
         id="reviewModalNameInput"
         type="text"
@@ -218,7 +217,7 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
         }}
       />
       <label htmlFor="reviewModalCommentTextArea">
-        {t('reviewModalCommentLabel')}
+        {tReview('commentLabel')}
       </label>
       <textarea
         id="reviewModalCommentTextArea"
@@ -237,7 +236,7 @@ const Form = ({ occurrenceName, occurrenceId, onSuccessfulSubmit }: Props) => {
         className={styles.button}
         disabled={addReviewLoading || formIsInvalid}
       >
-        {addReviewLoading ? t('loading') : t('reviewModalSubmit')}
+        {addReviewLoading ? tCommon('loading') : tCommon('submit')}
       </button>
     </form>
   );

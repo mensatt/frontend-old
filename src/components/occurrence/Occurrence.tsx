@@ -6,6 +6,7 @@ import { useMemo, useState } from 'react';
 import Popup from 'reactjs-popup';
 import { GetOccurrencesByDateQuery } from 'src/graphql/graphql-types';
 import { GET_NAVIGATION, Navigation } from 'src/graphql/queries';
+import { API_URLS } from 'src/lib/config';
 import { DATE_FORMAT, currentDate } from 'src/util';
 
 import { useQuery } from '@apollo/client';
@@ -52,8 +53,7 @@ const Occurrence = ({ occurrence }: Props) => {
   const { data: navData } = useQuery<Navigation>(GET_NAVIGATION);
   const backendURLBase = useMemo(() => {
     const { protocol, hostname } = new URL(
-      navData?.backends[navData.activeBackendIdx].url ||
-        'https://api.mensatt.de/v1/graphql',
+      navData?.backends[navData.activeBackendIdx].url || API_URLS.PROD,
     );
     return `${protocol}//${hostname}`;
   }, [navData]);
