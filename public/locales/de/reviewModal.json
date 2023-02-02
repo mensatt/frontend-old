@@ -1,0 +1,15 @@
+{
+  "heading": "Wie war '{{name}}'?",
+  "ratingLabel": "Bewertung",
+  "imageLabel": "Bild (Optional)",
+  "noImagesSelected": "Klicke oder ziehe ein Bild hierher um es hochzuladen.",
+  "imagesSelected": "{{amount}} Bilde(r) ausgewählt.",
+  "commentLabel": "Kommentar (Optional)",
+  "nameLabel": "Nickname (Optional)",
+  "submitError": "Es gab einen Fehler beim Absenden deiner Bewertung",
+  "missingStarValueError": "Du musst eine Sternebewertung angeben",
+  "imageTooBigError": "Eins deiner Bilder ist zu groß. Bilder dürfen maximal {{size}} groß sein",
+  "wrongExtensionError": "Eins deiner Bilder hat eine nicht-unterstüzte Dateiendung. Erlaubte Endungen sind: {{extensions}}",
+  "imageDisclaimer": "Durch das Hochladen deiner Bilder erlaubst du Mensatt sie in jeglicher Form zu verwenden.",
+  "submittedAwaitingApproval": "Deine Bewertung wurde erfolgreich abgeschickt und wird sichtbar, sobald sie vom Moderationsteam freigegeben wurde."
+}

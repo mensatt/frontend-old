@@ -1,0 +1,15 @@
+{
+  "heading": "How was '{{name}}'?",
+  "ratingLabel": "Rating",
+  "imageLabel": "Picture (Optional)",
+  "noImagesSelected": "Click or drop an image to upload.",
+  "imagesSelected": "{{amount}} picture(s) selected.",
+  "commentLabel": "Comment (Optional)",
+  "nameLabel": "Nickname (Optional)",
+  "submitError": "There was an error while submitting your review",
+  "missingStarValueError": "You need to provide a star rating",
+  "imageTooBigError": "One of your pictures is too big. Pictures must not be bigger than {{size}}.",
+  "wrongExtensionError": "One of your pictures has a unsupported extension. Allowed extensions are: {{extensions}}",
+  "imageDisclaimer": "By uploading your pictures you allow Mensatt to use them in any form.",
+  "submittedAwaitingApproval": "Your review was submitted successfully and will be visible once it is approved by one of our moderators."
+}

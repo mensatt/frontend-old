@@ -18,18 +18,5 @@
   "noImagesMsg": "Es gibt noch keine Bilder für dieses Gericht.",
   "noAuthorName": "(anonym)",
   "rate": "Bewerten",
-  "reviewModalHeading": "Wie war '{{name}}'?",
-  "reviewModalRatingLabel": "Bewertung",
-  "reviewModalImageLabel": "Bild (Optional)",
-  "reviewModalNoImagesSelected": "Klicke oder ziehe ein Bild hierher um es hochzuladen.",
-  "reviewModalImagesSelected": "{{amount}} Bilde(r) ausgewählt.",
-  "reviewModalCommentLabel": "Kommentar (Optional)",
-  "reviewModalNameLabel": "Nickname (Optional)",
-  "reviewModalSubmit": "Absenden",
-  "reviewModalSubmitError": "Es gab einen Fehler beim Absenden deiner Bewertung",
-  "reviewModalMissingStarValueError": "Du musst eine Sternebewertung angeben",
-  "reviewModalImageTooBigError": "Eins deiner Bilder ist zu groß. Bilder dürfen maximal {{size}} groß sein",
-  "reviewModalWrongExtensionError": "Eins deiner Bilder hat eine nicht-unterstüzte Dateiendung. Erlaubte Endungen sind: {{extensions}}",
-  "reviewModalImageDisclaimer": "Durch das Hochladen deiner Bilder erlaubst du Mensatt sie in jeglicher Form zu verwenden.",
-  "reviewModalSubmittedAwaitingApproval": "Deine Bewertung wurde erfolgreich abgeschickt und wird sichtbar, sobald sie vom Moderationsteam freigegeben wurde."
+  "submit": "Absenden"
 }
