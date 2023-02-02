@@ -16,6 +16,7 @@ import {
 } from 'src/graphql/graphql-types';
 import { DELETE_REVIEW } from 'src/graphql/mutations';
 import { GET_NAVIGATION, Navigation } from 'src/graphql/queries';
+import { API_URLS } from 'src/lib/config';
 
 import { useMutation, useQuery } from '@apollo/client';
 
@@ -100,8 +101,7 @@ const AdminReviewsPage: NextPage = () => {
 
   const backendUrlBase = useMemo(() => {
     const { protocol, hostname } = new URL(
-      navData?.backends[navData.activeBackendIdx].url ||
-        'https://api.mensatt.de/v1/graphql',
+      navData?.backends[navData.activeBackendIdx].url || API_URLS.PROD,
     );
     return `${protocol}//${hostname}`;
   }, [navData]);
