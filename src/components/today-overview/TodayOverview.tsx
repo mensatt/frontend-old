@@ -13,7 +13,7 @@ import { DATE_FORMAT } from 'src/util';
 
 import { useQuery } from '@apollo/client';
 
-import Occurrence from '../occurrence';
+import Occurrence from '../occurrence-overview';
 
 import styles from './TodayOverview.module.scss';
 

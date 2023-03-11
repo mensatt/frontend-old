@@ -5,7 +5,7 @@ import Image from 'next/image';
 import React, { useMemo, useState } from 'react';
 import Popup from 'reactjs-popup';
 import Modal from 'src/components/modal';
-import OccurrenceRating from 'src/components/occurrence/rating';
+import OccurrenceRating from 'src/components/occurrence-overview/rating';
 import Table, { TableDataRow, TableHeaderRow } from 'src/components/table';
 import {
   DeleteReviewMutation,
