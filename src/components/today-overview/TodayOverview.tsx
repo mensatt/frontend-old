@@ -1,5 +1,5 @@
 import { useTranslation } from 'next-i18next';
-import React, { useMemo } from 'react';
+import React from 'react';
 import {
   GetOccurrencesByDateQuery,
   GetOccurrencesByDateQueryVariables,
@@ -33,30 +33,9 @@ const TodayOverview = () => {
     skip: !navData || navData.selectedDate.length < DATE_FORMAT.length,
   });
 
-  // Remove duplicate occurrences. This hack is needed because there were
-  // bugs in the backend that caused duplicate occurrences
-  // TODO: Remove once those duplicated entries are deleted
-  const uniqueOccurrences = useMemo(() => {
-    const uniqueDishIds = data?.occurrences
-      .map((occ) => occ.dish.id)
-      // Only pick the first occurrence of each id
-      .filter((val, idx, arr) => arr.indexOf(val) === idx);
-
-    return (
-      data?.occurrences &&
-      uniqueDishIds?.map(
-        (id) =>
-          // Find (first) occurrence with that id or just use the first one
-          // Note: The latter should not occur and is a quick workaround to achieve proper typing
-          data.occurrences.find((occ) => occ.dish.id == id) ||
-          data.occurrences[0],
-      )
-    );
-  }, [data?.occurrences]);
-
   const content =
-    uniqueOccurrences &&
-    uniqueOccurrences.map((occurrence) => (
+    data?.occurrences &&
+    data.occurrences.map((occurrence) => (
       <Occurrence occurrence={occurrence} key={occurrence.id} />
     ));
 
