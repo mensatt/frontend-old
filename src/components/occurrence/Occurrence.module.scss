@@ -1,12 +1,12 @@
 .content {
-  @include lifted;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
   background-color: $bg-lighter;
-  border-radius: $main-content-br;
+  border-bottom: 1px solid $bg-dark;
+  padding-bottom: calc($main-content-padding * 2);
 }
 
 .inner {
@@ -64,7 +64,7 @@
 .buttonContainer {
   display: flex;
   gap: $card-item-padding;
-  margin-top: $main-content-padding;
+  margin-bottom: $main-content-padding;
 }
 
 .buttonContainer button {

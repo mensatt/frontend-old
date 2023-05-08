@@ -155,8 +155,6 @@ const Occurrence = ({ occurrence }: Props) => {
           </div>
           {prices}
         </div>
-        <h3>{t('commentHeading')}</h3>
-        {comments}
         <div className={styles.dynamicSpace} />
         <div className={styles.buttonContainer}>
           {/* TODO: Enable once feature is implemented */}
@@ -191,6 +189,7 @@ const Occurrence = ({ occurrence }: Props) => {
             />
           </Popup>
         </div>
+        {comments}
       </div>
     </div>
   );

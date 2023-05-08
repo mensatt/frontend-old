@@ -7,7 +7,7 @@
   row-gap: 2pt;
   column-gap: 8pt;
   align-items: center;
-  padding: $main-content-padding 0;
+  padding: $main-content-padding $container-padding;
   margin: #{$container-padding} #{-$container-padding} 0 #{-$container-padding};
 
   p {
@@ -100,7 +100,7 @@
     grid-template-areas: 'copyright' 'social' 'legal' 'disclaimer';
     grid-template-columns: 1fr;
     row-gap: 8pt;
-    padding: 40pt 0;
+    padding: 40pt $container-padding;
     margin-bottom: calc(
       $header-element-height + 6pt + env(safe-area-inset-bottom)
     );

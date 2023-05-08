@@ -3,7 +3,8 @@
   grid-template-areas: 'nav-left nav-center nav-right';
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  margin: 20pt 0;
+  padding: 20pt $container-padding;
+  border-bottom: 1px solid $bg-darker;
 
   h1 {
     grid-area: nav-center;
@@ -88,7 +89,7 @@
   .content {
     grid-template-areas: 'nav-center nav-right';
     grid-template-columns: 1fr auto;
-    margin: 10pt 0;
+    padding: 10pt $container-padding;
 
     h1 {
       margin-left: 1em;
