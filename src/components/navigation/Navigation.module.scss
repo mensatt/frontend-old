@@ -4,7 +4,6 @@
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   padding: 20pt $container-padding;
-  border-bottom: 1px solid $bg-darker;
 
   h1 {
     grid-area: nav-center;

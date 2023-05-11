@@ -17,7 +17,7 @@
   "noCommentMsg": "Es gibt noch keine Kommentare für dieses Gericht.",
   "noImagesMsg": "Es gibt noch keine Bilder für dieses Gericht.",
   "noAuthorName": "(anonym)",
-  "rate": "Bewerten",
+  "rate": "Bewertung abgeben...",
   "reviewModalHeading": "Wie war '{{name}}'?",
   "reviewModalRatingLabel": "Bewertung",
   "reviewModalImageLabel": "Bild (Optional)",
