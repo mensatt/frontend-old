@@ -29,7 +29,7 @@
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
-      transform: translateX(-100%);
+      transform: translateX(-100%) translateY(-2px);
     }
   }
 }
@@ -39,7 +39,7 @@
 }
 
 .settings {
-  @include lifted;
+  border: 1px solid $bg-darker;
   box-sizing: border-box;
   display: inline-flex !important;
   grid-area: nav-right;

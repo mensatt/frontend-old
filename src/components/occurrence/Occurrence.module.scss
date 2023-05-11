@@ -81,8 +81,7 @@
   transition: background-color 0.1s ease;
 
   &:disabled {
-    cursor: not-allowed;
-    background-color: $bg-dark;
+    display: none;
   }
 
   &:focus-visible {
