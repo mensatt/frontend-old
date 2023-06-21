@@ -11,6 +11,11 @@ const render = function () {
       </Head>
       <body>
         <noscript>You need to enable JavaScript to use this page!</noscript>
+        <script
+          async
+          src="https://umami.mensatt.de/script.js"
+          data-website-id="3e757e9e-d5a2-43d8-b62f-73b155f99800"
+        />
         <Main />
         <NextScript />
       </body>
