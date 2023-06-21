@@ -1,4 +1,5 @@
 import { Head, Html, Main, NextScript } from 'next/document';
+import { isDev } from 'src/util';
 
 const render = function () {
   return (
@@ -14,7 +15,11 @@ const render = function () {
         <script
           async
           src="https://umami.mensatt.de/script.js"
-          data-website-id="3e757e9e-d5a2-43d8-b62f-73b155f99800"
+          data-website-id={
+            isDev
+              ? 'd243f8e9-9d0e-46e5-bb2b-3a1c1a7165b5'
+              : '3e757e9e-d5a2-43d8-b62f-73b155f99800'
+          }
         />
         <Main />
         <NextScript />
