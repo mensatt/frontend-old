@@ -24,7 +24,7 @@
     transition: background-color 0.1s ease-out;
 
     &:hover {
-      background-color: $bg-light;
+      background-color: $color-green60;
     }
 
     &:focus-visible {
@@ -51,10 +51,6 @@
 
     &.selected {
       background-color: $color-green;
-
-      span {
-        color: $bg-lighter;
-      }
 
       &:focus-visible {
         outline: 2px solid black !important;
@@ -96,14 +92,18 @@
     height: unset;
     padding: 6pt 0;
     padding-bottom: calc(6pt + env(safe-area-inset-bottom));
-    border-right: none !important;
-    border-bottom: none !important;
-    border-left: none !important;
+    border: none !important;
     border-radius: 0;
     box-shadow: none;
-
+    background-color: $bg-tinted;
+    
     button {
-      padding: 3pt 0;
+      padding: 4pt 0;
+      background-color: $bg-tinted;
+    }
+    
+    .button {
+      display: none;
     }
   }
 }

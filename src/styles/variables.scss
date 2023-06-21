@@ -3,9 +3,11 @@
   --bg-dark: #dddddd;
   --bg-light: #eeeeee;
   --bg-lighter: #ffffff;
-  --color-green: #77b255;
-  --color-green20: #77b25520;
-  --color-greenH: #609740;
+  --bg-tinted: #d3e9c6;
+  --color-green: #89c06a;
+  --color-green20: #89c06a20;
+  --color-green60: #89c06a60;
+  --color-greenH: #77b255;
   --color-red: #ec3960;
   --color-red20: #ec396020;
   --color-redH: #961f39;
@@ -22,9 +24,11 @@
   --bg-dark: #dddddd;
   --bg-light: #eeeeee;
   --bg-lighter: #ffffff;
-  --color-green: #77b255;
-  --color-green20: #77b25520;
-  --color-greenH: #609740;
+  --bg-tinted: #e5f3dd;
+  --color-green: #89c06a;
+  --color-green20: #89c06a20;
+  --color-green60: #89c06a60;
+  --color-greenH: #77b255;
   --color-red: #ec3960;
   --color-red20: #ec396020;
   --color-redH: #961f39;
@@ -41,10 +45,12 @@ $bg-darker: var(--bg-darker);
 $bg-dark: var(--bg-dark);
 $bg-light: var(--bg-light);
 $bg-lighter: var(--bg-lighter);
+$bg-tinted: var(--bg-tinted);
 
 // theme
 $color-green: var(--color-green);
 $color-green20: var(--color-green20);
+$color-green60: var(--color-green60);
 $color-greenH: var(--color-greenH);
 $color-red: var(--color-red);
 $color-red20: var(--color-red20);

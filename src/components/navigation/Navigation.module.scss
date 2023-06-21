@@ -3,7 +3,7 @@
   grid-template-areas: 'nav-left nav-center nav-right';
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  margin: 20pt 0;
+  padding: 20pt $container-padding;
 
   h1 {
     grid-area: nav-center;
@@ -29,7 +29,7 @@
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
-      transform: translateX(-100%);
+      transform: translateX(-100%) translateY(-2px);
     }
   }
 }
@@ -39,7 +39,7 @@
 }
 
 .settings {
-  @include lifted;
+  border: 1px solid $bg-darker;
   box-sizing: border-box;
   display: inline-flex !important;
   grid-area: nav-right;
@@ -88,7 +88,7 @@
   .content {
     grid-template-areas: 'nav-center nav-right';
     grid-template-columns: 1fr auto;
-    margin: 10pt 0;
+    padding: 10pt $container-padding;
 
     h1 {
       margin-left: 1em;

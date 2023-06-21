@@ -155,42 +155,28 @@ const Occurrence = ({ occurrence }: Props) => {
           </div>
           {prices}
         </div>
-        <h3>{t('commentHeading')}</h3>
-        {comments}
         <div className={styles.dynamicSpace} />
-        <div className={styles.buttonContainer}>
-          {/* TODO: Enable once feature is implemented */}
-          <button className={styles.occDetails} disabled>
-            {t('showOccurrenceDetails')}
-          </button>
-          {/* NOTE: At the time of writing reduxjs-popup did not support using `open => ReactNode` as children (even though it was documented). So I had to work around it.
-              This involved:
-                - not using the rate button as the `trigger` value for the Popup
-                - using `useState` to manage the open state of the popup ourself
-              TODO: Investigate if this is still needed in the future or perhaps
-                    even replace popups with own implementation
-          */}
-          <button
-            disabled={!canReview}
-            className={styles.rate}
-            onClick={() => setPopupOpen(true)}
-          >
-            {t('rate')}
-          </button>
-          <Popup
-            closeOnDocumentClick
-            on="click"
-            modal
-            open={popupOpen}
-            onClose={() => setPopupOpen(false)}
-          >
-            <ReviewModal
-              occurrenceName={occurrenceName}
-              occurrenceId={occurrence.id}
-              afterSuccessfulSubmit={() => setPopupOpen(false)}
-            />
-          </Popup>
-        </div>
+        {comments}
+        <button
+          disabled={!canReview}
+          className={styles.rate}
+          onClick={() => setPopupOpen(true)}
+        >
+          {t('rate')}
+        </button>
+        <Popup
+          closeOnDocumentClick
+          on="click"
+          modal
+          open={popupOpen}
+          onClose={() => setPopupOpen(false)}
+        >
+          <ReviewModal
+            occurrenceName={occurrenceName}
+            occurrenceId={occurrence.id}
+            afterSuccessfulSubmit={() => setPopupOpen(false)}
+          />
+        </Popup>
       </div>
     </div>
   );

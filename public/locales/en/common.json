@@ -17,7 +17,7 @@
   "noCommentMsg": "There are no comments for this dish yet.",
   "noImagesMsg": "There are no images for this dish yet.",
   "noAuthorName": "(anonymous)",
-  "rate": "Rate",
+  "rate": "Give a rating...",
   "reviewModalHeading": "How was '{{name}}'?",
   "reviewModalRatingLabel": "Rating",
   "reviewModalImageLabel": "Picture (Optional)",

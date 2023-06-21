@@ -8,14 +8,15 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 
-  /** TEMPORÄRE FARBE */
-  background: linear-gradient(180deg, #dce3eb, #ebe6dc);
-  background-attachment: fixed;
+  background-color: #ffffff;
+  // /** TEMPORÄRE FARBE */
+  // background: linear-gradient(180deg, #dce3eb, #ebe6dc);
+  // background-attachment: fixed;
 
-  @media screen and (max-width: $viewport-mobile-from) {
-    background-color: #dce3eb;
-    background-image: none;
-  }
+  // @media screen and (max-width: $viewport-mobile-from) {
+  //   background-color: #dce3eb;
+  //   background-image: none;
+  // }
 }
 
 a {
@@ -29,7 +30,7 @@ a {
   flex-direction: column;
   justify-content: space-between;
   min-height: 100vh;
-  padding: 0 $container-padding;
+  padding: 0;
 }
 
 .page-content {

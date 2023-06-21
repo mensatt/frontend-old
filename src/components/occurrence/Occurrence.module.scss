@@ -1,12 +1,12 @@
 .content {
-  @include lifted;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
   background-color: $bg-lighter;
-  border-radius: $main-content-br;
+  padding-bottom: calc($main-content-padding * 2);
+  border-radius: 20pt;
 }
 
 .inner {
@@ -64,45 +64,24 @@
 .buttonContainer {
   display: flex;
   gap: $card-item-padding;
-  margin-top: $main-content-padding;
+  margin-bottom: $main-content-padding;
 }
 
-.buttonContainer button {
+.rate {
   all: unset;
   flex: 1;
-  height: $content-pills-height;
-  padding: 3pt 0;
-  font-family: $font-major;
+  padding: 8pt;
+  font-family: $font-regular;
   font-size: 11pt;
-  color: #ffffff;
-  text-align: center;
-  cursor: pointer;
-  background-color: $bg-light;
+  color: $color-minor;
+  border: 1px solid $bg-dark;
+  margin-top: 10pt;
+  cursor: text;
   border-radius: $card-item-br;
   transition: background-color 0.1s ease;
-}
-
-.buttonContainer .occDetails {
-  &:disabled {
-    cursor: not-allowed;
-    background-color: $bg-dark;
-  }
-
-  &:hover:not(:disabled) {
-    background-color: $bg-darker;
-  }
-
-  &:focus-visible {
-    outline: 2px solid $color-green !important;
-  }
-}
-
-.buttonContainer .rate {
-  background-color: $color-green;
 
   &:disabled {
-    cursor: not-allowed;
-    background-color: $bg-dark;
+    display: none;
   }
 
   &:focus-visible {
@@ -110,7 +89,7 @@
   }
 
   &:hover:not(:disabled) {
-    background-color: $color-greenH;
+    border-color: $bg-darker;
   }
 }
 
