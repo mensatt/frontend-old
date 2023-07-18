@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useState } from 'react';
 import { GET_NAVIGATION, Navigation } from 'src/graphql/queries';
 import { Url } from 'url';
 
@@ -16,21 +16,6 @@ const RouteGuard = ({ children }: Props) => {
   const [authorized, setAuthorized] = useState(false);
   const { data } = useQuery<Navigation>(GET_NAVIGATION);
 
-  // Construct allowed paths
-  const langPrefixes = useMemo(() => ['/', '/en'], []);
-  const publicPaths = useMemo(() => ['/login', '/contact', '/privacy'], []);
-  const publicPathsWithLangPrefixes = useMemo(
-    () =>
-      langPrefixes.flatMap((prefix) => {
-        if (prefix === '/') {
-          return [prefix, ...publicPaths];
-        } else {
-          return [prefix, ...publicPaths.map((path) => prefix + path)];
-        }
-      }),
-    [langPrefixes, publicPaths],
-  );
-
   const authCheck = useCallback(
     (url: string) => {
       const path = url.split('?')[0];
@@ -41,13 +26,24 @@ const RouteGuard = ({ children }: Props) => {
       }
 
       /**
+       * Regex of public paths the current path is tested against
+       * Examples of allowed paths are:
+       *  - /en
+       *  - /login
+       *  - /en/login/
+       *  - /occurrence/12345
+       *  - /en/occurrence/12345/
+       */
+      const publicPathsRegex = /^(\/en)?(\/(login|contact|privacy))?\/?$/;
+
+      /**
        * TODO: Simply checking if the token is non-empty will allow access to every page that is not in
        * `publicPathsWithLangPrefixes` if a token is present.
        * If in the future there should be more than one level of access this approach has to be refined
        * or a better one found.
        **/
       // Redirect to login page if accessing a private page and not logged in
-      if (!data.isLoggedIn && !publicPathsWithLangPrefixes.includes(path)) {
+      if (!data.isLoggedIn && !publicPathsRegex.test(path)) {
         setAuthorized(false);
         router.push({
           pathname: '/login',
@@ -57,7 +53,7 @@ const RouteGuard = ({ children }: Props) => {
         setAuthorized(true);
       }
     },
-    [data, publicPathsWithLangPrefixes, router],
+    [data, router],
   );
 
   useEffect(() => {

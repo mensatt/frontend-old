@@ -5,7 +5,7 @@ import Image from 'next/image';
 import React, { useMemo, useState } from 'react';
 import Popup from 'reactjs-popup';
 import Modal from 'src/components/modal';
-import OccurrenceRating from 'src/components/occurrence/rating';
+import OccurrenceRating from 'src/components/occurrence-overview/rating';
 import Table, { TableDataRow, TableHeaderRow } from 'src/components/table';
 import {
   DeleteReviewMutation,
@@ -15,7 +15,7 @@ import {
   SetReviewApprovalStatusMutationVariables,
 } from 'src/graphql/graphql-types';
 import { DELETE_REVIEW } from 'src/graphql/mutations';
-import { GET_NAVIGATION, Navigation } from 'src/graphql/queries';
+import { useBackendUrlBase } from 'src/hooks';
 
 import { useMutation, useQuery } from '@apollo/client';
 
@@ -26,9 +26,9 @@ import { GET_ADMIN_PANEL_REVIEWS } from 'src/graphql/queries/getAdminPanelReview
 const AdminReviewsPage: NextPage = () => {
   const { t } = useTranslation('common');
 
-  const [onlyShowApprovedReviews, setOnlyShowApprovedReviews] = useState(false);
+  const backendUrlBase = useBackendUrlBase();
 
-  const { data: navData } = useQuery<Navigation>(GET_NAVIGATION);
+  const [onlyShowApprovedReviews, setOnlyShowApprovedReviews] = useState(false);
 
   const [deleteReview, { loading: deletionLoading }] = useMutation<
     DeleteReviewMutation,
@@ -97,14 +97,6 @@ const AdminReviewsPage: NextPage = () => {
     ],
     [onlyShowApprovedReviews],
   );
-
-  const backendUrlBase = useMemo(() => {
-    const { protocol, hostname } = new URL(
-      navData?.backends[navData.activeBackendIdx].url ||
-        'https://api.mensatt.de/v1/graphql',
-    );
-    return `${protocol}//${hostname}`;
-  }, [navData]);
 
   const rows: TableDataRow[] = useMemo(() => {
     if (!filteredReviews || filteredReviews.length < 1) return [];
