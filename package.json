@@ -24,7 +24,7 @@
     "apollo-upload-client": "^17.0.0",
     "babel-plugin-inline-react-svg": "^2.0.2",
     "dayjs": "^1.11.7",
-    "graphql": "^16.5.0",
+    "graphql": "^16.8.1",
     "next": "12.3.1",
     "next-i18next": "12.1.0",
     "next-pwa": "^5.5.4",
